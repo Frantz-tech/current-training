@@ -1,0 +1,51 @@
+
+  .a-propos-main {
+     margin: center;
+  }
+  .contenu {
+      border-bottom: 1px #8e86b5 solid;
+      border-right: 1px #8e86b5 solid;
+      padding: 50px;
+      margin: auto;
+      width: 50%;
+      margin-bottom: 80px;
+      
+  }
+  .contenu + div {
+    text-align: center;
+  }
+  .contenu h2 {
+      margin-top: 30px;
+  }
+  .contenu Ul {
+      margin-top: 30px;
+  }
+ table {
+    color: white;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+  }
+  td {
+    padding: 100px;
+  }
+  th {
+    padding: 30px;
+}
+td, th {
+    border: 3px #a5b4fc solid ; 
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 80px;
+}
+
+@media screen and ( max-width:996px) {
+  .section-tarifs {
+    display: none;
+  }
+}

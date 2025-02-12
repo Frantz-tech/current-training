@@ -1,0 +1,452 @@
+* {
+  margin: 0;
+}
+
+body {
+  background-color: #606060;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  justify-content: center;
+}
+a:not(.logotop):not(.more):hover {
+  color: burlywood;
+  border-bottom: 2px burlywood solid;
+  padding-bottom: 20px;
+}
+a {
+  color: white;
+  text-decoration: none;
+  letter-spacing: 3px;
+}
+
+.logotop:hover {
+  content: url(/img/logo_hover.png);
+}
+
+header {
+  position: relative;
+  background-image: url(/img/bg_header.jpg);
+  background-size: cover;
+}
+
+.section1 {
+  display: flex;
+  justify-content: center;
+  padding: 60px;
+  margin-top: 180px;
+  margin-left: 250px;
+}
+.parag {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  width: fit-content;
+  align-items: flex-end;
+  text-align: right;
+  letter-spacing: 3px;
+  font-family: "Franklin Gothic ", "Arial Narrow", Arial, sans-serif;
+}
+
+.parag h1 {
+  font-size: 4.5em;
+  margin-bottom: 60px;
+}
+
+.parag p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  line-height: 40px;
+}
+
+.lookmore {
+  width: fit-content;
+  font-weight: bolder;
+  color: white;
+  background: burlywood;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  font-family: "Franklin Gothic ", "Arial Narrow", Arial, sans-serif;
+}
+
+.aboutgohall {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  background-color: #272727;
+  margin: auto;
+  padding: 80px;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  font-size: 3em;
+  font-family: "Franklin Gothic ", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: 10px;
+  margin-bottom: 60px;
+  color: white;
+  gap: 20px;
+}
+
+h2 span {
+  color: burlywood;
+}
+
+.boxintro {
+  display: flex;
+  height: auto;
+  justify-content: center;
+}
+.intro {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+}
+.txt1 p {
+  margin-left: 50px;
+  color: white;
+  font-size: 1.5em;
+  width: fit-content;
+  margin-bottom: 30px;
+}
+
+.lorem {
+  color: #c2c2c2;
+  font-size: 1em;
+  line-height: 1.5em;
+  margin-bottom: 20px;
+}
+
+.lorem1 p {
+  border-left: 4px solid burlywood;
+  color: burlywood;
+  font-size: 1em;
+  line-height: 1.5em;
+  padding-left: 50px;
+  margin-bottom: 20px;
+}
+.londonhall {
+  position: relative;
+}
+
+.lond {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  font-weight: bolder;
+  color: white;
+  background: burlywood;
+  padding: 5px 10px;
+  font-family: "Franklin Gothic ", "Arial Narrow", Arial, sans-serif;
+}
+.aboutprojects {
+  background-color: burlywood;
+  width: 50%;
+  margin: auto;
+  padding: 80px;
+}
+.hall {
+  display: flex;
+  width: 50%;
+  justify-content: flex-end;
+  gap: 20px;
+  position: relative;
+}
+.boxproject {
+  display: flex;
+  justify-content: center;
+}
+
+h3 {
+  display: flex;
+  justify-content: center;
+  font-size: 3em;
+  font-family: "Franklin Gothic ", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: 10px;
+  margin-bottom: 60px;
+  color: white;
+  gap: 20px;
+}
+
+h3 span {
+  color: #272727;
+}
+.paris {
+  position: absolute;
+  top: 0;
+  margin: 30px;
+  color: white;
+  font-family: "Franklin Gothic ", "Arial Narrow", Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1.5em;
+}
+.parisbot {
+  position: absolute;
+  bottom: 0;
+  margin: 30px;
+  color: white;
+  font-family: "Franklin Gothic ", "Arial Narrow", Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1.5em;
+  background-color: #272727;
+  padding: 2px 5px;
+}
+
+.Londontxt {
+  color: burlywood;
+}
+.london {
+  position: absolute;
+  top: 0;
+  margin: 30px;
+  color: white;
+  font-family: "Franklin Gothic ", "Arial Narrow", Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1.5em;
+}
+
+.londonbot {
+  position: absolute;
+  bottom: 0;
+  margin: 30px;
+  color: white;
+  font-family: "Franklin Gothic ", "Arial Narrow", Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1.5em;
+  background-color: #272727;
+  width: 25%;
+  padding: 2px 5px;
+}
+
+.years {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  height: fit-content;
+  margin-left: 20px;
+}
+
+.years img {
+  margin-bottom: 25px;
+}
+
+.yearz {
+  margin-bottom: 35px;
+}
+.yearsone {
+  font-family: "Franklin Gothic ", "Arial Narrow", Arial, sans-serif;
+  font-weight: bolder;
+  color: #272727;
+  font-size: 1.5em;
+}
+
+.yearstwo {
+  font-family: "Franklin Gothic ", "Arial Narrow", Arial, sans-serif;
+  font-weight: bolder;
+  color: white;
+  font-size: 1.5em;
+}
+
+.aboutservices {
+  background-color: #272727;
+  width: 50%;
+  margin: auto;
+  padding: 80px;
+  height: 500px;
+}
+
+h4 {
+  display: flex;
+  justify-content: center;
+  font-size: 3em;
+  font-family: "Franklin Gothic ", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: 10px;
+  margin-bottom: 60px;
+  color: white;
+  gap: 20px;
+}
+
+h4 span {
+  color: burlywood;
+}
+.boxservices {
+  display: flex;
+  justify-content: center;
+}
+.boxdev {
+  display: flex;
+  flex-direction: column;
+  width: 26%;
+  margin-right: 20px;
+}
+.devparag {
+  color: rgba(255, 255, 255, 0.149);
+  line-height: 1.5em;
+  height: 100%;
+}
+h5 {
+  color: white;
+  font-family: "Franklin Gothic ", "Arial Narrow", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+.boxplans {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin-right: 20px;
+}
+h6 {
+  color: white;
+  font-family: "Franklin Gothic ", "Arial Narrow", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+.more {
+  display: flex;
+  justify-content: right;
+  color: burlywood;
+  background-color: #606060;
+  padding: 10px;
+  width: 60%;
+  border-left: 2px solid burlywood;
+}
+
+.more:hover {
+  background-color: burlywood;
+  color: #272727;
+  border-left: 2px solid #606060;
+}
+.boxmap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 35%;
+}
+.borderimg {
+  display: flex;
+  border-top: 2px solid burlywood;
+  width: 300px;
+  margin-bottom: 20px;
+}
+.borderimg1 {
+  display: flex;
+  border-top: 2px solid burlywood;
+  width: 300px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.txtmap {
+  color: rgba(255, 255, 255, 0.749);
+  text-align: right;
+  line-height: 1.5em;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(/img/bg_footer.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 430px;
+}
+
+.imgrequest {
+  display: flex;
+  position: relative;
+  width: 42%;
+}
+.request {
+  display: flex;
+  width: 60%;
+}
+.prequest {
+  position: absolute;
+  color: white;
+  top: 20px;
+  left: 20px;
+  font-size: 30px;
+  font-family: "Franklin Gothic", "Arial Narrow", Arial, sans-serif;
+  letter-spacing: 5px;
+}
+
+.formclass {
+  background-color: black;
+  color: white;
+  opacity: 0.9;
+  width: 60%;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+::placeholder {
+  color: rgba(255, 255, 255, 0.466);
+}
+
+.boitedev {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+input,
+textarea {
+  background-color: transparent;
+  all: unset;
+  color: white;
+  margin: 20px;
+  border-bottom: 1px solid gray;
+}
+
+#submit {
+  color: white;
+  background: burlywood;
+  font-size: 1em;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  font-family: "Franklin Gothic ", "Arial Narrow", Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+i:hover {
+  color: burlywood;
+  border: 2px solid burlywood;
+}
+
+.svgbg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #272727;
+  padding: 10px 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.fa-brands {
+  padding: 10px;
+  color: #606060;
+  border: 2px solid #606060;
+  font-size: 40px;
+  margin: 10px;
+}
+
+.fa-pinterest-p {
+  padding: 10px 18px;
+}
+
+.fa-facebook-f {
+  padding: 10px 20px;
+}

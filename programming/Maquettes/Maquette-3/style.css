@@ -1,0 +1,225 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  padding: 10px;
+}
+
+.contactsocial {
+  display: flex;
+  gap: 15px;
+  width: fit-content;
+}
+
+i {
+  background-color: #3b1d0f;
+  padding: 10px;
+  font-size: 20px;
+  color: white;
+}
+
+.navbar {
+  background-color: #ee6822;
+  width: 100%;
+}
+ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  color: white;
+  font-size: 1.5em;
+}
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 160px;
+  border-bottom: 5px solid transparent;
+}
+li:hover {
+  background-color: #3b1d0f;
+  border-bottom: 5px solid white;
+}
+ul {
+  overflow: hidden;
+}
+
+.top {
+  background-image: url(Img/header.jpg);
+  height: 420px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+.baresky {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  bottom: -250px;
+}
+.barefoot {
+  display: flex;
+  flex-direction: column;
+  margin-top: -50px;
+  background-image: url(img/barefoot.jpg);
+  background-size: cover;
+  height: 250px;
+  width: 470px;
+  padding: 30px;
+  border-top: 5px solid #ee6822;
+  justify-content: space-between;
+}
+.skysurf {
+  display: flex;
+  flex-direction: column;
+  margin-top: -50px;
+  background-image: url(img/sky.jpg);
+  background-size: cover;
+  height: 250px;
+  width: 470px;
+  padding: 30px;
+  border-top: 5px solid #ee6822;
+}
+
+.ESP {
+  background-color: #ee6822;
+  font-size: 20px;
+  padding: 10px;
+  border: none;
+  color: white;
+  width: fit-content;
+}
+
+h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+p {
+  font-size: 20px;
+  width: 85%;
+}
+h1,
+p {
+  color: white;
+}
+
+.barefoot p {
+  width: 58%;
+}
+.ESP:hover {
+  background-color: #ff5900bb;
+}
+
+h2 {
+  color: #ee6822;
+  font-size: 2.5em;
+  margin-bottom: 30px;
+}
+.sportext {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+.sportext p {
+  color: #7d7d7d;
+  width: 35%;
+  text-align: center;
+  margin-bottom: 50px;
+  line-height: 1.6em;
+}
+
+button {
+  background-color: #3b1d0f;
+  color: white;
+  font-size: 1.5em;
+  padding: 15px 40px;
+  border: none;
+}
+button:hover {
+  background-color: #3b1d0fd8;
+}
+.running {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(Img/equipement.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 550px;
+  margin-bottom: 100px;
+}
+.runningtxt {
+  width: 50%;
+}
+h3 {
+  color: white;
+  font-size: 3em;
+}
+.running p {
+  color: #ee6822;
+  font-size: 8em;
+}
+span {
+  font-weight: 900;
+}
+
+.p1 img {
+  width: 150px;
+}
+.p1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 50px;
+}
+h4 {
+  color: #ee6822;
+  font-size: 40px;
+}
+.section3 p {
+  width: 100%;
+  color: #7d7d7d;
+}
+.section3 img {
+  margin-bottom: 30px;
+}
+.p2 {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 230px;
+  gap: 30px;
+  margin-bottom: 100px;
+}
+.p2 p {
+  color: black;
+}
+.member1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25%;
+  text-align: left;
+}
+
+.livraisonsatis {
+  background-image: url(Img/savoir.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 450px;
+}

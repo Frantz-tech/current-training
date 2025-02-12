@@ -1,0 +1,27 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: grey;
+}
+.joueur {
+  font-size: 50px;
+}
+.case {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  background-color: white;
+  border: solid black 2px;
+  height: 150px;
+  width: 150px;
+}
+
+.sectionCase {
+  display: flex;
+  flex-wrap: wrap;
+  width: 470px;
+}
