@@ -1,1 +1,1 @@
-# current-training
+Formation de ma programmation en continue
