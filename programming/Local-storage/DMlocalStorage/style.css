@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+/* Class pour le Dark Mode */
+:root {
+  --navbarColor: black;
+  --borders: wheat;
+  --bordersHover: black;
+}
+
+.darkMode {
+  --navbarColor: wheat;
+  --borders: black;
+  --bordersHover: wheat;
+  --textcolor: wheat;
+}
+
+.navbar {
+  display: flex;
+}
+.elemNavbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  background-color: var(--navbarColor);
+  padding: 1rem;
+}
+
+input {
+  width: 5rem;
+  height: 1rem;
+  margin: 0.5rem;
+  cursor: pointer;
+}
+
+a {
+  color: var(--borders);
+  font-size: 1.5rem;
+  font-family: monospace;
+  letter-spacing: 0.2rem;
+  border: 2px solid var(--borders);
+  padding: 0.5rem;
+}
+
+a:hover {
+  border: 2px solid var(--bordersHover);
+  padding: 0.5rem;
+}
+
+.containers {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+.homeContainer,
+.shoesContainer {
+  background-color: var(--borders);
+  width: 70%;
+  height: 94vh;
+}
+.clothesContainer,
+.accessoriesContainer {
+  background-color: var(--bordersHover);
+  width: 70%;
+  height: 94vh;
+}
+
+.titleContainer1 {
+  color: var(--bordersHover);
+}
+.titleContainer2 {
+  color: var(--borders);
+}
+.titleContainer1,
+.titleContainer2 {
+  text-transform: capitalize;
+  font-size: 8em;
+  display: flex;
+}
+
+.container1,
+.container2,
+.container3,
+.container4 {
+  padding: 5vh;
+  height: 84vh;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textContainer,
+.textContainer1 {
+  width: 70%;
+  letter-spacing: 0.2rem;
+  font-size: 2em;
+}
+
+.textContainer1 {
+  color: var(--borders);
+}
+.textContainer {
+  color: var(--textcolor);
+}

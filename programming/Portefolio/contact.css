@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+}
+
+.conctactbox {
+  display: flex;
+  justify-content: center;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60vh;
+}
+
+.formbox {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 5px;
+}
+.bitmojiContact {
+  width: 20vh;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px 0 20px 0;
+}
+.submit {
+  border-radius: 50px;
+  align-self: center;
+  border: 0.8px solid var(--textcolor);
+  background-color: var(--links);
+  color: var(--textcolor);
+  font-weight: bold;
+  cursor: pointer;
+}
+.submit:hover {
+  background-color: var(--textcolor);
+  color: rgb(255, 255, 255);
+}
+input,
+textarea {
+  background-color: transparent;
+  color: var(--textcolor);
+  padding: 15px;
+  border: none;
+  border-bottom: 0.8px solid var(--textcolor);
+}
+
+.name {
+  display: flex;
+  justify-content: space-between;
+}
+
+::placeholder {
+  color: #bbb;
+}
+.np {
+  gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+textarea {
+  resize: none;
+  padding: 0;
+}

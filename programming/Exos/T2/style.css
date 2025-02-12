@@ -1,0 +1,390 @@
+* {
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+a {
+  font-size: 2em;
+  color: white;
+  position: relative;
+}
+a::after {
+  content: "";
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 5px;
+  position: absolute;
+  opacity: 0;
+  background-color: #ff002b6e;
+  transition: opacity 0.7s ease, box-shadow 0.7s ease;
+}
+a:hover::after {
+  box-shadow: 0 0 8px 2px rgb(5, 145, 170, 0);
+  opacity: 1;
+}
+body {
+  overflow: hidden;
+}
+.top {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+.bg {
+  width: 60%;
+}
+.bg img {
+  width: max-content;
+  height: 100vh;
+}
+.menu {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: end;
+  width: 40%;
+  font-style: italic;
+  transition: transform 2.5s ease;
+}
+
+.takken {
+  position: absolute;
+  top: -25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.devProject {
+  width: 300px;
+  height: 80px;
+  position: absolute;
+  left: 30%;
+  top: 70%;
+}
+
+p {
+  display: none;
+  font-weight: bolder;
+  justify-content: center;
+  position: absolute;
+  top: 350px;
+  letter-spacing: 0.4em;
+  width: 200px;
+  font-size: 10em;
+  color: white;
+}
+.slideLeft {
+  transform: translateX(-100%);
+  transition: transform 2.5s ease;
+}
+.slideRight {
+  transform: translateX(+100%);
+  transition: transform 2.5s ease;
+}
+.slideDown {
+  transform: translateY(100%);
+  transition: transform 2.5s ease;
+}
+.slideDown2 {
+  transform: translateY(100vh);
+  transition: 2.5s ease;
+}
+.slidePlayer {
+  transform: translateY(20%);
+  transition: 2.5s ease;
+}
+.slideName {
+  transform: translateY(50vh);
+  transition: 2.5s ease;
+}
+
+h1 {
+  font-size: 3em;
+  text-shadow: 10px 10px 50px #ff002b;
+}
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+ul li:nth-child(2) {
+  margin-right: -40px;
+}
+
+ul li:nth-child(3) {
+  margin-right: 0px;
+}
+ul li:nth-child(4) {
+  margin-right: 40px;
+}
+ul li:nth-child(5) {
+  margin-right: 80px;
+}
+ul li:nth-child(6) {
+  margin-right: 120px;
+}
+ul li:nth-child(7) {
+  margin-right: 160px;
+}
+ul li:nth-child(8) {
+  margin-right: 200px;
+}
+ul li:nth-child(9) {
+  margin-right: 240px;
+}
+
+ul h1 {
+  margin-right: -80px;
+}
+.zIndex {
+  display: block;
+  z-index: 2;
+}
+.mainContainer {
+  display: flex;
+  position: relative;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  height: 100vh;
+  background-image: url(assets/Tekken-8-Second-Keyart-Horizontal-Without-Logo.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fighters {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.player {
+  height: 80vh;
+  width: 20%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.playerName {
+  display: flex;
+  color: #fff;
+  justify-content: center;
+  width: 20%;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 2em;
+  letter-spacing: 0.1em;
+}
+.healthbar {
+  width: 20%;
+  height: 30px;
+  background-color: rgb(36, 190, 62);
+}
+.playerInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.vs {
+  display: flex;
+  width: 10%;
+  height: 10vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.buttonPLay {
+  display: none;
+  position: absolute;
+  top: 500px;
+  display: none;
+  font-size: 2em;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  color: white;
+  background-color: #ff356e79;
+  width: 120px;
+  padding: 10px;
+  border-radius: 50px;
+  border: none;
+  box-shadow: 0px 0px 20px 10px #ff356e80;
+  cursor: pointer;
+}
+.buttonPLay2 {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  font-size: 3em;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #2523a55b;
+  width: 120px;
+  height: 35px;
+  padding: 10px;
+  border-radius: 100px;
+  border: none;
+  box-shadow: 0px 0px 20px 30px #2523a55b;
+  cursor: pointer;
+}
+.buttonPlay:hover {
+  transition: 1.5s ease;
+  transform: scale(1.1);
+}
+.grille1 {
+  bottom: 200px;
+}
+.grille {
+  bottom: 45px;
+}
+.grille1,
+.grille {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  height: 15vh;
+  width: 100%;
+  gap: 10px;
+}
+.select {
+  display: flex;
+  align-items: center;
+  background-color: #3e3c41;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 5%;
+  border: 2px solid rgb(240, 240, 240);
+}
+
+.selectedPerso1:hover {
+  transition: 0.2 ease;
+  transform: scale(1.2);
+  background-color: #3e3c41;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  box-shadow: 0px 0px 20px 10px rgb(0, 110, 255);
+  cursor: pointer;
+}
+.selectedPerso2:hover {
+  transition: 0.2 ease;
+  transform: scale(1.1);
+  background-color: #3e3c41;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  box-shadow: 0px 0px 20px 10px tomato;
+  cursor: pointer;
+}
+.noSelected:hover {
+  transition: none;
+  transform: none;
+  background-color: #3e3c41;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  box-shadow: 0px 0px 0px 0px black;
+  cursor: not-allowed;
+}
+#vsLogo {
+  display: none;
+  background-image: url("assets/vs.png");
+}
+.j1 {
+  background-image: url("assets2/Asuka_Kazama.png");
+}
+.j2 {
+  background-image: url("assets2/Azucena_Ortiz.png");
+}
+.j3 {
+  background-image: url("assets2/Bryan_Furry.png");
+}
+.aleatoire {
+  background-image: url("assets/Random.webp");
+}
+.j4 {
+  background-image: url("assets2/Jack.png");
+}
+.j5 {
+  background-image: url("assets2/Jun_Kazama.png");
+}
+.j6 {
+  background-image: url("assets2/Lili.png");
+}
+.j7 {
+  background-image: url("assets2/Kazuya_Mishima.png");
+}
+.j8 {
+  background-image: url("assets2/King.png");
+}
+.j9 {
+  background-image: url("assets2/Kuma.png");
+}
+.j10 {
+  background-image: url("assets2/Hwaorang.png");
+}
+.j11 {
+  background-image: url("assets2/Lee_Chaolan.png");
+}
+.j12 {
+  background-image: url("assets2/Leo.png");
+}
+.j13 {
+  background-image: url("assets2/Leroy_Smith.png");
+}
+.j14 {
+  background-image: url("assets2/Lili.png");
+}
+.j15 {
+  background-image: url("assets2/Marshal_Law.png");
+}
+.j16 {
+  background-image: url("assets2/Nina_Williams.png");
+}
+.j17 {
+  background-image: url("assets2/Paul_Phoenix.png");
+}
+.j18 {
+  background-image: url("assets2/Reina.png");
+}
+.j19 {
+  background-image: url("assets2/Sergei_Dragunov.png");
+}
+.j20 {
+  background-image: url("assets2/Shaheen.png");
+}
+.j21 {
+  background-image: url("assets2/Steve_fox.png");
+}
+.j22 {
+  background-image: url("");
+}
+.j22 {
+  background-image: url("assets2/Xiaoyu.png");
+}
+.j23 {
+  background-image: url("assets2/Yoshimitsu.png");
+}
+.j24 {
+  background-image: url("assets2/Zafina.png");
+}

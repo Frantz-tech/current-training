@@ -1,0 +1,312 @@
+* {
+  margin: 0;
+  border: none;
+  list-style: none;
+}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+html {
+  scroll-behavior: smooth;
+}
+header {
+  position: relative;
+  height: 100%;
+}
+
+:root {
+  --bodyBgColor: #141e28;
+  --bgCalq: linear-gradient(rgb(20, 30, 40, 0) 60%, #141e28 95%);
+  --links: #f1f1f1;
+  --textcolor: rgb(0, 0, 0);
+  --purple: #9381ff;
+}
+body {
+  position: relative;
+  font-family: "Roboto Mono", monospace;
+  background-color: var(--bodyBgColor);
+}
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url(pics/homeCover.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100vh;
+  width: 100%;
+}
+
+#btnGoUp {
+  animation: fadeIn 2s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.bgcalq {
+  height: 100%;
+  width: 100%;
+  background: var(--bgCalq);
+}
+body {
+  text-rendering: optimizeLegibility;
+}
+main {
+  padding: 120px 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 25px;
+}
+
+.linka {
+  display: flex;
+  width: 70%;
+  justify-content: center;
+  gap: 30px;
+  font-size: 18px;
+}
+
+.grp1 {
+  border-radius: 50px;
+  height: 80px;
+}
+
+.linka a {
+  border-radius: 50px;
+  padding: 5px 20px;
+  text-decoration: none;
+  color: var(--links);
+}
+
+.linka a:hover {
+  background: var(--links);
+  color: var(--textcolor);
+}
+
+.abb1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 70vh;
+}
+.abb1 div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.elementor {
+  box-sizing: border-box;
+}
+.elementor-widget-container {
+  position: absolute;
+  top: 4%;
+  left: 54%;
+  width: 50px;
+  height: 50px;
+  animation: 2s linear infinite alternate widgetslide;
+}
+@keyframes widgetslide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(10px);
+  }
+}
+.circle {
+  box-sizing: border-box;
+  width: 50px;
+  height: 50px;
+  background-color: var(--links);
+  opacity: 1;
+}
+.circle.yel {
+  border-radius: 50px;
+  box-shadow: inset 0 0 30px 0 #fff, inset 20px 0 30px #ffd400,
+    inset -20px 0 30px red, inset 20px 0 300px #ff40d6,
+    inset -20px 0 300px #e3ff4b, 0 0 50px #fff, -10px 0 100px #fbff00,
+    10px 0 80px #f55;
+}
+h1,
+h2,
+h3,
+h5 {
+  color: var(--links);
+}
+
+h1 {
+  letter-spacing: 20px;
+  font-size: 12em;
+  text-align: center;
+}
+
+h2,
+h4,
+h3 {
+  font-size: 5em;
+}
+
+h5 {
+  font-size: 30px;
+  font-weight: normal;
+}
+
+.mouseloop {
+  display: flex;
+  justify-content: center;
+}
+
+h2,
+h3 {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+
+footer {
+  height: 200px;
+}
+
+.rsx:hover {
+  opacity: 0.5;
+  background-position: center;
+}
+
+.fa-brands {
+  border: 2px solid var(--links);
+  border-radius: 100%;
+  padding: 10px;
+}
+.fa-arrow-up {
+  color: var(--purple);
+}
+
+button {
+  visibility: hidden;
+  position: fixed;
+  cursor: pointer;
+  right: 5vh;
+  bottom: 5vh;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: var(--links);
+}
+
+.fa-arrow-up {
+  font-size: 25px;
+}
+/* MEDIA QUERIES POUR LES TAILLES D'ÉCRAN PLUS PETITES */
+
+@media (max-width: 1366px) {
+  main {
+    padding: 100px 50px;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+  }
+
+  .linka {
+    gap: 20px;
+  }
+
+  h1 {
+    font-size: 10em;
+  }
+
+  h2,
+  h3,
+  h4 {
+    font-size: 4em;
+  }
+
+  .elementor-widget-container {
+    width: 40px;
+    height: 40px;
+  }
+
+  .circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  button {
+    width: 45px;
+    height: 45px;
+  }
+}
+@media (max-width: 1024px) {
+  main {
+    padding: 100px 50px;
+  }
+  .abb1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 80vh;
+  }
+  .abb1 div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav {
+    font-size: 20px;
+  }
+
+  .linka {
+    gap: 20px;
+  }
+
+  h1 {
+    font-size: 6em;
+  }
+
+  h2,
+  h3,
+  h4 {
+    font-size: 4em;
+  }
+
+  .elementor-widget-container {
+    width: 40px;
+    height: 40px;
+  }
+
+  .circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  button {
+    width: 45px;
+    height: 45px;
+  }
+}

@@ -1,0 +1,140 @@
+:root {
+  --bgcolor: #1f191d;
+  --links: #f1f1f1;
+  --textcolor: black;
+  --aboutMeText: #f1f1f1b0;
+  --aboutMebg: rgba(128, 128, 128, 0.137);
+  --purple: #9381ff;
+}
+
+.aboutMe {
+  display: flex;
+  flex-direction: column;
+}
+.containerAboutMe {
+  display: flex;
+  justify-content: space-around;
+}
+
+.map1 {
+  width: 700px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.map {
+  display: flex;
+  align-self: center;
+  width: 100%;
+  height: 100%;
+  transition: 1s ease-out;
+  transform: scale(1);
+}
+
+.map:hover {
+  cursor: pointer;
+  transition: 1s ease;
+  transform: scale(1.1);
+}
+
+.bitmoji {
+  display: flex;
+  width: 18vh;
+}
+.bitmojiImg {
+  margin-left: 50px;
+}
+.aboutMe1 {
+  background-color: var(--aboutMebg);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+  padding: 20px;
+  height: 360px;
+  font-size: clamp(1rem, 5vw, 1.2rem);
+  color: var(--aboutMeText);
+  width: 660px;
+}
+.bvn {
+  color: var(--purple);
+}
+
+.herop {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  max-width: 320px;
+  border: 2px solid var(--aboutMeText);
+  height: 40px;
+  border-radius: 5px;
+  animation: changeBorderColor 1s infinite;
+}
+@keyframes changeBorderColor {
+  0% {
+    border-top-color: #9381ff;
+  }
+
+  16% {
+    border-right-color: #9381ff;
+  }
+
+  32% {
+    border-bottom-color: #9381ff;
+  }
+  50% {
+    border-left-color: #9381ff;
+  }
+
+  51% {
+    border-top-color: var(--aboutMeText);
+  }
+  67% {
+    border-right-color: var(--aboutMeText);
+  }
+  84% {
+    border-bottom-color: var(--aboutMeText);
+  }
+
+  100% {
+    border-left-color: var(--aboutMeText);
+  }
+}
+
+.herop span {
+  color: white;
+}
+
+/* MEDIA QUERIES POUR LES TAILLES D'ÉCRAN PLUS PETITES */
+
+@media (max-width: 1366px) {
+  .containerAboutMe {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+@media (max-width: 1024px) {
+  .containerAboutMe {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .bitmoji {
+    width: 14vh;
+  }
+  .bitmojiImg {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+  .herop {
+    display: flex;
+    width: 100%;
+    align-self: center;
+    justify-self: center;
+  }
+}
