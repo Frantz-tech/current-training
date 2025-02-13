@@ -4,7 +4,6 @@ const wait = (duration) =>
   new Promise((resolve) => setTimeout(resolve, duration));
 
 console.time("code");
-
 const files = await readdir("./", { withFileTypes: true });
 await Promise.allSettled(
   files.map(async (file) => {
