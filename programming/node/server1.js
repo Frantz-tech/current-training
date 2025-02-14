@@ -1,3 +1,10 @@
+// Exercice 4 : Créer un serveur Node.js qui affiche un fichier HTML
+// 💡 Objectif : Charger dynamiquement un fichier index.html HTML et l'afficher dans le navigateur.
+
+// ✅ Bonus :
+
+// Créer plusieurs pages (index.html, about.html, contact.html) et gérer la navigation
+
 const http = require("http");
 const fs = require("fs");
 
@@ -10,30 +17,22 @@ const routes = {
 
 const server = http.createServer((req, res) => {
   if (req.method === "GET") {
-    Object.entries(routes).forEach(([path, file]) => {
-      console.log(routes);
-      console.log(path);
-      console.log(file);
+    const file = routes[req.url];
 
-      fs.readFile(file, "utf8", (err, data) => {
-        if (err) {
-          res.writeHead(500, { "Content-Type": "text/plain" });
-          res.end("Erreur interne du serveur");
-        } else {
-          res.writeHead(200, { "Content-Type": "text/html" });
-          res.end(data);
-          console.log(data);
-        }
-      });
-    });
-  } else if (req.url === "/" && req.method === "GET") {
-    fs.readFile("index.html", "utf8", (err, data) => {
+    if (!file) {
+      res.writeHead(404, { "Content-Type": "text/plain" });
+      res.end("Page non trouvée");
+      return;
+    }
+
+    fs.readFile(file, "utf8", (err, data) => {
       if (err) {
         res.writeHead(500, { "Content-Type": "text/plain" });
         res.end("Erreur interne du serveur");
+      } else {
+        res.writeHead(200, { "Content-Type": "text/html" });
+        res.end(data);
       }
-      res.writeHead(200, { "Content-Type": "text.html" });
-      res.end(data);
     });
   }
 });

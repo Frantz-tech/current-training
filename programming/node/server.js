@@ -1,3 +1,12 @@
+// Exercice 3 : Créer un serveur Node.js qui lit un fichier JSON
+// 💡 Objectif : Créer un serveur qui charge un fichier data.json et le renvoie en réponse.
+
+// ✅ Bonus :
+
+// Tester les url avec POSTMAN
+// Créer une route /user/:id qui retourne un utilisateur spécifique
+// Écrire dans le fichier JSON (ajouter un utilisateur avec une requête POST)
+
 const http = require("http"); // Importation du module qui permet de créer un serveur HTTP
 const fs = require("fs");
 
