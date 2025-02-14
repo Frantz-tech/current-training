@@ -12,6 +12,8 @@ const server = http.createServer((req, res) => {
   if (req.method === "GET") {
     Object.entries(routes).forEach(([path, file]) => {
       console.log(routes);
+      console.log(path);
+      console.log(file);
 
       fs.readFile(file, "utf8", (err, data) => {
         if (err) {
@@ -20,6 +22,7 @@ const server = http.createServer((req, res) => {
         } else {
           res.writeHead(200, { "Content-Type": "text/html" });
           res.end(data);
+          console.log(data);
         }
       });
     });
