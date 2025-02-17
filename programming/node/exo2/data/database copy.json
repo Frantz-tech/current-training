@@ -1,0 +1,60 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "nom": "orsinet",
+      "prenom": "frantz",
+      "age": 28,
+      "ville": "dunkerque",
+      "profession": "developpeur"
+    },
+    {
+      "id": 2,
+      "nom": "dupont",
+      "prenom": "alice",
+      "age": 34,
+      "ville": "paris",
+      "profession": "designer"
+    },
+    {
+      "id": 3,
+      "nom": "taylor",
+      "prenom": "john",
+      "age": 40,
+      "ville": "lyon",
+      "profession": "chef de projet"
+    },
+    {
+      "id": 4,
+      "nom": "bernard",
+      "prenom": "lucie",
+      "age": 22,
+      "ville": "marseille",
+      "profession": "ingénieur"
+    },
+    {
+      "id": 5,
+      "nom": "martin",
+      "prenom": "paul",
+      "age": 30,
+      "ville": "toulouse",
+      "profession": "enseignant"
+    },
+    {
+      "id": 6,
+      "nom": "michaud",
+      "prenom": "elisabeth",
+      "age": 25,
+      "ville": "bordeaux",
+      "profession": "journaliste"
+    },
+    {
+      "id": 7,
+      "nom": "rodriguez",
+      "prenom": "manuel",
+      "age": 37,
+      "ville": "nantes",
+      "profession": "responsable marketing"
+    }
+  ]
+}

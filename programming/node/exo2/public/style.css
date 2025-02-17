@@ -1,3 +1,77 @@
 body {
-  background-color: red;
+  background-color: rgb(255, 255, 255);
+}
+
+.navbarIndex {
+  display: flex;
+}
+a {
+  list-style: none;
+  color: black;
+  text-decoration: none;
+  font-size: 1.5em;
+}
+a:hover {
+  text-decoration: underline;
+}
+ul {
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.navbarIndex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.formBox {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  border: 2px solid black;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  gap: 5px;
+  background-color: burlywood;
+}
+input {
+  padding: 5px;
+}
+button {
+  padding: 10px;
+  border: 2px solid burlywood;
+  background-color: black;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+}
+button:hover {
+  border: 2px solid black;
+  background-color: burlywood;
+  color: black;
+}
+form,
+#data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.item {
+  border: 2px solid rgb(0, 0, 0);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  font-size: 1.5em;
+  border-radius: 5px;
+  background-color: burlywood;
+  min-width: 350px;
 }

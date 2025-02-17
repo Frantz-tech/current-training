@@ -1,101 +1,77 @@
-// Exercice 5 : Créer un serveur Node.js qui sert plusieurs fichiers statiques (HTML, CSS, JS)
-// 💡 Objectif : Rendre accessibles plusieurs fichiers statiques (index.html, style.css, script.js).
-// ✅ Bonus :
-// Ajouter la gestion des images (/images/logo.png)
-// Compresser les fichiers (gzip) pour optimiser les performances
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+const zlib = require("zlib");
 
-const http = require("http"); // Module HTTP de Node.js pour créer le serveur
-const fs = require("fs"); // Module FS pour lire les fichiers
-const path = require("path"); // Module Path pour manipuler les chemins de fichiers
-const zlib = require("zlib"); // Module Zlib pour compresser les fichiers en gzip
-
-// Définition des routes et des fichiers à servir
 const route = {
-  "/": {
-    path: "../public/index.html",
-    contentType: "text/html",
-  }, // Fichier HTML principal
+  "/": { path: "../public/index.html", contentType: "text/html" },
   "/style.css": {
     path: "../public/style.css",
     contentType: "text/css",
-  }, // Fichier CSS
+  },
   "/script.js": {
     path: "../public/script.js",
     contentType: "application/javascript",
-  }, // Fichier JS
+  },
   "/assets/node-js2.png": {
     path: "../assets/node-js2.png",
     contentType: "image/png",
-  }, // Image PNG
+  },
   "/assets/node-js1.png": {
     path: "../assets/node-js1.png",
     contentType: "image/png",
-  }, // Autre image PNG
+  },
+  "/admin": {
+    path: "../public/admin.html",
+    contentType: "text/html",
+  },
 };
 
-// Création du serveur HTTP
 const server = http.createServer((req, res) => {
-  // Vérification que la méthode est GET
-  if (req.method === "GET") {
-    const url = route[req.url]; // Récupère les informations associées à l'URL demandée
-    console.log("URL demandée : " + req.url); // Affiche l'URL demandée
-    console.log("Voici le path que je cherche : " + url.path); // Affiche le chemin du fichier
+  if (req.method !== "GET") {
+    res.writeHead(405, { "Content-Type": "text/plain" });
+    res.end("Méthode non autorisée");
+    return;
+  }
 
-    // Si la route n'existe pas, renvoyer une erreur 404
-    if (!url) {
+  const url = route[req.url];
+
+  if (!url) {
+    res.writeHead(404, { "Content-Type": "text/plain" });
+    res.end("Page non trouvée");
+    return;
+  }
+
+  const filePath = path.join(__dirname, url.path);
+
+  fs.stat(filePath, (err, stats) => {
+    if (err || !stats.isFile()) {
       res.writeHead(404, { "Content-Type": "text/plain" });
-      res.end("Page non trouvée");
+      res.end("Fichier non trouvé");
       return;
     }
 
-    const filePath = path.join(__dirname, url.path); // Résolution correcte du chemin du fichier
-
     if (
-      url.contentType === "text/html" ||
-      url.contentType === "text/css" ||
-      url.contentType === "application/javascript"
+      ["text/html", "text/css", "application/javascript"].includes(
+        url.contentType
+      )
     ) {
-      // Lecture du fichier texte
-      fs.readFile(filePath, "utf8", (err, data) => {
-        if (err) {
-          res.writeHead(500, { "Content-Type": "text/plain" });
-          res.end("Erreur interne du serveur");
-        } else {
-          // Envoi de l'image sans compression
-          res.writeHead(200, { "Content-Type": url.contentType });
-          res.end(data);
-        }
+      res.writeHead(200, {
+        "Content-Type": url.contentType,
+        "Content-Encoding": "gzip",
       });
-    }
-
-    // Si le fichier est une image ou un autre fichier binaire (par exemple .png)
-    else if (url.contentType.startsWith("image")) {
-      // Lecture du fichier image
-      fs.readFile(filePath, (err, compressedData) => {
-        if (err) {
-          res.writeHead(500, { "Content-Type": "text/plain" });
-          res.end("Erreur de compression");
-        } else {
-          // Envoi des données compressées avec l'encodage gzip
-          res.writeHead(200, {
-            "Content-Type": url.contentType,
-          });
-          res.end(compressedData);
-        }
-      });
+      const fileStream = fs.createReadStream(filePath);
+      fileStream.pipe(zlib.createGzip()).pipe(res);
+    } else if (url.contentType.startsWith("image")) {
+      res.writeHead(200, { "Content-Type": url.contentType });
+      fs.createReadStream(filePath).pipe(res);
     } else {
-      // Si le type de fichier est non pris en charge (exemple : fichier audio ou vidéo), renvoyer 415
-      res.writeHead(415, { "Content-Type": "text/plain" }); // Unsupported media type
+      res.writeHead(415, { "Content-Type": "text/plain" });
       res.end("Type de fichier non supporté");
     }
-  } else {
-    // Si la méthode HTTP n'est pas GET, renvoyer une erreur 405 (Method Not Allowed)
-    res.writeHead(405, { "Content-Type": "text/plain" }); // Method Not Allowed
-    res.end("Méthode non autorisée");
-  }
+  });
 });
 
-// Démarre le serveur sur le port 3000
 const PORT = 3000;
 server.listen(PORT, () => {
   console.log(`Serveur en écoute sur http://localhost:${PORT}`);

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>About</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbarIndex">
+        <ul>
+          <a href="http://localhost:3000">HOME</a>
+        </ul>
+        <ul>
+          <a href="http://localhost:3000/admin">ADMIN</a>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <form id="formAdmin" action="" method="post">
+        <div class="formBox">
+          <input
+            type="text"
+            name="nom"
+            value=""
+            placeholder="Entrez votre nom"
+            required
+          />
+          <input
+            type="text"
+            name="prenom"
+            value=""
+            placeholder="Entrez votre prénom"
+            required
+          />
+          <input
+            type="number"
+            id="age"
+            name="age"
+            min="0"
+            max="120"
+            placeholder="Age"
+            required
+          />
+          <button>Submit</button>
+        </div>
+      </form>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

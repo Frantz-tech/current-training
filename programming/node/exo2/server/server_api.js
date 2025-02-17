@@ -1,42 +1,122 @@
-const http = require("http"); // Module HTTP de Node.js pour créer le serveur
-const fs = require("fs"); // Module FS pour lire les fichiers
-const path = require("path"); // Module Path pour manipuler les chemins de fichiers
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
 
-// Définition des routes et des fichiers à servir
-// Création du serveur API JSON
+const filePath = path.join(__dirname, "..", "data", "database.json");
+
 const server = http.createServer((req, res) => {
-  // Vérifie si la requête est une requête GET et que l'URL demandée est "/api/data"
-  if (req.method === "GET" && req.url === "/api/data") {
-    // Lecture du fichier database.json en utilisant un chemin absolu
-    fs.readFile(
-      path.join(__dirname, "..", "data", "database.json"),
-      "utf8",
-      (err, data) => {
-        // Si une erreur se produit lors de la lecture du fichier
-        if (err) {
-          console.log("Erreur lors de la lecture du fichier JSON : " + err); // Affichage de l'erreur dans la console
+  console.log(`Requête reçue : ${req.method} ${req.url}`);
 
-          // Renvoie une réponse HTTP avec un code 500 (Erreur interne du serveur)
-          res.writeHead(500, { "Content-Type": "text/plain" });
-          res.end("Erreur interne du serveur");
-          return;
-        }
+  // 🔹 CORS Headers
+  res.setHeader("Content-Type", "application/json");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-        // Si la lecture du fichier réussit, envoie une réponse HTTP 200 avec le JSON
-        res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(data); // Envoie le contenu du fichier JSON comme réponse
+  // 🔹 Gérer les requêtes OPTIONS pour CORS
+  if (req.method === "OPTIONS") {
+    res.writeHead(204);
+    res.end();
+    return;
+  }
 
-        // Affiche les données JSON dans la console (utile pour le débogage)
-        console.log(data);
+  // 🔹 GET : Lire le fichier JSON
+  if (req.method === "GET" && req.url === "/data") {
+    fs.readFile(filePath, "utf8", (err, data) => {
+      if (err) {
+        console.log("Erreur de lecture JSON :", err);
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end("Erreur interne du serveur");
+        return;
       }
-    );
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(data);
+    });
+
+    // 🔹 POST : Ajouter un utilisateur avec un ID unique
+  } else if (req.method === "POST" && req.url === "/data") {
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk.toString();
+    });
+    req.on("end", () => {
+      try {
+        const newUser = JSON.parse(body);
+        newUser.id = Date.now().toString(); // Génération d'un ID unique
+
+        fs.readFile(filePath, "utf8", (err, data) => {
+          if (err) {
+            res.writeHead(500, { "Content-Type": "text/plain" });
+            res.end("Erreur interne du serveur");
+            return;
+          }
+
+          const database = JSON.parse(data);
+          database["user"].push(newUser);
+
+          fs.writeFile(filePath, JSON.stringify(database, null, 2), (err) => {
+            if (err) {
+              res.writeHead(500, { "Content-Type": "text/plain" });
+              res.end("Erreur lors de l'écriture du fichier");
+            } else {
+              res.writeHead(201, { "Content-Type": "application/json" });
+              res.end(
+                JSON.stringify({
+                  message: "Utilisateur ajouté avec succès",
+                  user: newUser,
+                })
+              );
+            }
+          });
+        });
+      } catch (error) {
+        res.writeHead(400, { "Content-Type": "text/plain" });
+        res.end("Format JSON invalide");
+      }
+    });
+
+    // 🔹 DELETE : Supprimer un utilisateur par son ID
+  } else if (req.method === "DELETE" && req.url.startsWith("/data/{userid}")) {
+    const id = req.url.split("/")[2];
+
+    fs.readFile(filePath, "utf8", (err, data) => {
+      if (err) {
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end("Erreur interne du serveur");
+        return;
+      }
+
+      let dataJson = JSON.parse(data);
+      const userIndex = dataJson.user.findIndex((user) => user.id === id);
+
+      if (userIndex === 0) {
+        res.writeHead(404, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ message: "Utilisateur non trouvé" }));
+        return;
+      }
+
+      // 🔹 Suppression de l'utilisateur
+      dataJson.user.splice(userIndex, 1);
+
+      fs.writeFile(filePath, JSON.stringify(dataJson, null, 2), (err) => {
+        if (err) {
+          res.writeHead(500, { "Content-Type": "text/plain" });
+          res.end("Erreur lors de la suppression");
+        } else {
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.end(
+            JSON.stringify({ message: "Utilisateur supprimé avec succès" })
+          );
+        }
+      });
+    });
   } else {
-    // Si l'URL demandée ne correspond pas à "/api/data", renvoie une erreur 404 (Non trouvé)
-    res.writeHead(404, { "Content-Type": "text/plain" });
-    res.end("Erreur de route");
+    res.writeHead(405, { "Content-Type": "text/plain" });
+    res.end("Méthode non autorisée");
   }
 });
-// Démarre le serveur sur le port 3000
+
+// Démarre le serveur sur le port 4000
 const PORT_API = 4000;
 server.listen(PORT_API, () => {
   console.log(`Serveur en écoute sur http://localhost:${PORT_API}`);
