@@ -3,12 +3,38 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((response) => response.json())
     .then((data) => {
       console.log(data.saisons);
-      displaySaisons(data.saisons);
+      // displaySaisons(data.saisons);
+      addNavList(data);
+    })
+    .catch((error) => console.error("Erreur de chargement du JSON :", error));
+});
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:4000/data")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data.items);
+      addNavList(data.items);
     })
     .catch((error) => console.error("Erreur de chargement du JSON :", error));
 });
 const spansBtn = document.getElementById("spansBtn");
 const menuBg = document.getElementById("menuBg");
+
+function addNavList(data) {
+  const menuBg = document.getElementById("menuBg");
+  data.items.forEach((itemData) => {
+    const navLi = document.createElement("li");
+    const navLink = document.createElement("a");
+
+    navLink.textContent = itemData.text;
+    navLink.href = itemData.href;
+    navLink.id = itemData.id;
+
+    navLi.appendChild(navLink);
+    menuBg.appendChild(navLi);
+  });
+  console.log("navBar est chargé | : ", item);
+}
 spansBtn.addEventListener("click", (event) => {
   menuBg.classList.toggle("navBarSlide");
 });
