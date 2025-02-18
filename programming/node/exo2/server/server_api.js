@@ -43,6 +43,7 @@ const server = http.createServer((req, res) => {
       try {
         const newUser = JSON.parse(body);
         newUser.id = Date.now().toString(); // Génération d'un ID unique
+        console.log(newUser.id);
 
         fs.readFile(filePath, "utf8", (err, data) => {
           if (err) {
@@ -73,42 +74,6 @@ const server = http.createServer((req, res) => {
         res.writeHead(400, { "Content-Type": "text/plain" });
         res.end("Format JSON invalide");
       }
-    });
-
-    // 🔹 DELETE : Supprimer un utilisateur par son ID
-  } else if (req.method === "DELETE" && req.url.startsWith("/data/{userid}")) {
-    const id = req.url.split("/")[2];
-
-    fs.readFile(filePath, "utf8", (err, data) => {
-      if (err) {
-        res.writeHead(500, { "Content-Type": "text/plain" });
-        res.end("Erreur interne du serveur");
-        return;
-      }
-
-      let dataJson = JSON.parse(data);
-      const userIndex = dataJson.user.findIndex((user) => user.id === id);
-
-      if (userIndex === 0) {
-        res.writeHead(404, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ message: "Utilisateur non trouvé" }));
-        return;
-      }
-
-      // 🔹 Suppression de l'utilisateur
-      dataJson.user.splice(userIndex, 1);
-
-      fs.writeFile(filePath, JSON.stringify(dataJson, null, 2), (err) => {
-        if (err) {
-          res.writeHead(500, { "Content-Type": "text/plain" });
-          res.end("Erreur lors de la suppression");
-        } else {
-          res.writeHead(200, { "Content-Type": "application/json" });
-          res.end(
-            JSON.stringify({ message: "Utilisateur supprimé avec succès" })
-          );
-        }
-      });
     });
   } else {
     res.writeHead(405, { "Content-Type": "text/plain" });
