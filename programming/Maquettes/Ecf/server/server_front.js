@@ -15,6 +15,14 @@ const routes = {
     path: "../public/script.js",
     contentType: "application/javascript",
   },
+  "/404": {
+    path: "../public/404.html",
+    contentType: "text/html",
+  },
+  "/style404.css": {
+    path: "../public/style404.css",
+    contentType: "text/css",
+  },
 };
 
 const server = createServer((req, res) => {
@@ -77,8 +85,19 @@ const server = createServer((req, res) => {
 
   const route = routes[req.url];
   if (!route) {
-    res.writeHead(404, { "Content-type": "application/json" });
-    res.end(JSON.stringify({ error: "Page non trouvée" }));
+    // Si la route n'est pas bonne, on lit le fichier 404
+    const errorPagePath = path.join(__dirname, "..", "public", "404.html");
+    fs.readFile(errorPagePath, "utf8", (err, data404) => {
+      if (err) {
+        // Si le fichier 404 n'existe pas on lance une page classique de 404;
+        res.writeHead(404, { "Content-type,": "text/plain" });
+        res.end("404 - Page non trouvée");
+        return;
+      }
+      // si le fichier 404 existe, on lance une 404 dédiée soit ( 404.html)
+      res.writeHead(404, { "content-type": "text/html" });
+      res.end(data404);
+    });
     return;
   }
 
