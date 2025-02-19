@@ -3,41 +3,44 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((response) => response.json())
     .then((data) => {
       console.log(data.saisons);
-      // displaySaisons(data.saisons);
-      addNavList(data);
-    })
-    .catch((error) => console.error("Erreur de chargement du JSON :", error));
-});
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("http://localhost:4000/data")
-    .then((response) => response.json())
-    .then((data) => {
       console.log(data.items);
       addNavList(data.items);
+      displaySaisons(data.saisons);
     })
     .catch((error) => console.error("Erreur de chargement du JSON :", error));
 });
+// document.addEventListener("DOMContentLoaded", () => {
+//   fetch("http://localhost:4000/data")
+//     .then((response) => response.json())
+//     .then((data) => {
+//       console.log(data.items);
+//       addNavList(data);
+//     })
+//     .catch((error) => console.error("Erreur de chargement du JSON :", error));
+// });
 const spansBtn = document.getElementById("spansBtn");
 const menuBg = document.getElementById("menuBg");
 
+spansBtn.addEventListener("click", (event) => {
+  menuBg.classList.toggle("navBarSlide");
+});
+
 function addNavList(data) {
   const menuBg = document.getElementById("menuBg");
-  data.items.forEach((itemData) => {
+  data.forEach((itemData) => {
     const navLi = document.createElement("li");
     const navLink = document.createElement("a");
 
     navLink.textContent = itemData.text;
     navLink.href = itemData.href;
-    navLink.id = itemData.id;
+    navLink.id = itemData.idtext;
 
     navLi.appendChild(navLink);
     menuBg.appendChild(navLi);
   });
-  console.log("navBar est chargé | : ", item);
+  console.log("navBar est chargé | : ", data);
 }
-spansBtn.addEventListener("click", (event) => {
-  menuBg.classList.toggle("navBarSlide");
-});
+
 function displaySaisons(saisons) {
   const containerSaison = document.getElementById("saisons-container");
 
@@ -60,6 +63,8 @@ function displaySaisons(saisons) {
     const footerP = document.getElementById("footerP");
     h1.textContent = "Liste des Saisons";
     saisonBtn.addEventListener("click", () => {
+      console.log("Au click : ");
+
       window.scrollTo({ top: 0, behavior: "smooth" });
       setTimeout(() => {
         main.style.display = "flex";
@@ -83,6 +88,8 @@ function displaySaisons(saisons) {
 
     // Ajouter un événement pour afficher les épisodes
     saisonCard.addEventListener("click", () => {
+      console.log("click d'une saison :| ", saison);
+
       window.scrollTo({ top: 0, behavior: "smooth" });
       containerSaison.style.animation = "fadeOut 1s";
       h1.style.animation = "fadeOut 1s";
@@ -123,6 +130,8 @@ function displayEpisodes(episodes) {
     // Ajouter un événement pour ouvrir le modal avec l'épisode
 
     episodeCard.addEventListener("click", () => {
+      console.log("Apparition de la modal : |");
+
       window.scrollTo({ top: 0, behavior: "smooth" });
       const episodeModal = document.getElementById("episodeModal");
       episodeModal.style.animation = "fadeIn 1s";

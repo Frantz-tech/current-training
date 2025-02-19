@@ -3,12 +3,14 @@
     {
       "text": "Accueil",
       "href": "#",
-      "id": "9"
+      "id": 9,
+      "idtext": "accueilBtn"
     },
     {
       "text": "Saison",
       "href": "#",
-      "id": 10
+      "id": 10,
+      "idtext": "saisonBtn"
     }
   ],
 
