@@ -3,7 +3,7 @@ const { createServer } = require("http");
 const path = require("path");
 const fs = require("fs");
 
-const dataPath = path.join(__dirname, "..", "data", "saisons.json");
+const dataPath = path.join(__dirname, "..", "data", "database.json");
 const server = createServer((req, res) => {
   // Cors Headers
   res.setHeader("Content-type", "application/json");
@@ -16,7 +16,7 @@ const server = createServer((req, res) => {
     res.end();
     return;
   }
-  // Lecture des donnés du JSON Saisons.json
+  // Lecture des donnés du JSON Database.json
   if (req.method === "GET" && req.url === "/data") {
     fs.readFile(dataPath, "utf8", (err, data) => {
       if (err) {
@@ -24,7 +24,7 @@ const server = createServer((req, res) => {
         res.writeHead(500);
         res.end(
           JSON.stringify({
-            error: "Impossible de lire le fichier saisons.json",
+            error: "Impossible de lire le fichier Database.json",
           })
         );
         return;
