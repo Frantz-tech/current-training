@@ -92,6 +92,60 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(500, { "Content-Type": "application/json" });
       return res.end(JSON.stringify({ error: "Erreur serveur" }));
     }
+  } else if (req.url.match(/\/articles\/\d+$/) && req.method === "PUT") {
+    try {
+      // 1️⃣ Extraire l'ID de l'article depuis l'URL que l'on veut modifier
+      const id = parseInt(req.url.split("/").pop(), 10);
+      console.log("ID à modifier :", id);
+
+      // 2️⃣ Lire les articles existants depuis le fichier JSON
+      let updateArticles = await readArticles();
+      console.log("Articles avant modification :", updateArticles);
+
+      // 3️⃣ Trouver l'index de l'article à modifier dans le tableau
+      const indexId = updateArticles.findIndex((article) => article.id === id);
+
+      // 4️⃣ Vérifier si l'article existe
+      if (indexId === -1) {
+        res.writeHead(404, { "Content-Type": "application/json" });
+        return res.end(JSON.stringify({ error: "Article non trouvé" }));
+      }
+
+      // 5️⃣ Lire le corps de la requête pour obtenir les nouvelles données de l'article
+      let body = "";
+      req.on("data", (chunk) => (body += chunk));
+      req.on("end", async () => {
+        try {
+          // Parse les nouvelles données de l'article
+          const updateData = JSON.parse(body);
+
+          // 6️⃣ Mettre à jour l'article avec les nouvelles données
+          updateArticles[indexId] = {
+            ...updateArticles[indexId],
+            ...updateData,
+          };
+
+          // 7️⃣ Réécrire le fichier JSON avec l'article modifié
+          await writeArticles(updateArticles);
+          console.log("Articles après modification :", updateArticles);
+
+          // 8️⃣ Envoyer une réponse de succès
+          res.writeHead(200, { "Content-Type": "application/json" });
+          return res.end(
+            JSON.stringify({ message: `Article ${id} modifié avec succès` })
+          );
+        } catch (error) {
+          // Erreur dans le corps de la requête
+          res.writeHead(400, { "Content-Type": "application/json" });
+          return res.end(JSON.stringify({ error: "Données invalides" }));
+        }
+      });
+    } catch (error) {
+      // 9️⃣ Gérer les erreurs serveur
+      console.error("Erreur lors de la modification :", error);
+      res.writeHead(500, { "Content-Type": "application/json" });
+      return res.end(JSON.stringify({ error: "Erreur serveur" }));
+    }
   } else {
     res.writeHead(404);
     res.end(JSON.stringify({ error: "Not found" }));
