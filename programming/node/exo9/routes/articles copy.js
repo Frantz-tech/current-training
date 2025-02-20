@@ -2,23 +2,14 @@ import fs from "fs/promises";
 const ARTICLES_FILE = "./data/articles.json";
 
 export async function handleRequest(req, res) {
-  // Methods
+  // Method GET
   if (req.method === "GET" && req.url.startsWith("/articles")) {
     try {
       const allArticles = await getAllArticles();
       res.writeHead(200, { "content-type": "application/json" });
       return res.end(JSON.stringify(allArticles));
     } catch (error) {
-      res.writeHead(500, { "content-type": "application/json" });
-      res.end(
-        JSON.stringify({ error: "Erreur lors de la lecture des articles" })
-      );
-    }
-  } else if (req.method === "POST" && req.url.startsWith("/articles")) {
-    try {
-      return createArticle(req, res);
-    } catch (error) {
-      res.writeHead(500, { "content-type": "application/json" });
+      res.writeHead(500, { "content-  type": "application/json" });
       res.end(
         JSON.stringify({ error: "Erreur lors de la lecture des articles" })
       );
@@ -31,7 +22,7 @@ export async function handleRequest(req, res) {
 
 async function writeArticles(articles) {
   // Ecrire dans le fichier JSON
-  await fs.writeFile(ARTICLES_FILE, JSON.stringify(articles, null, 2));
+  await fs.writeFile("articles.json", JSON.stringify(articles, null, 2));
 }
 async function getAllArticles() {
   // Lecture des données du JSON
@@ -45,6 +36,9 @@ async function getAllArticles() {
 
 async function getArticleById(req, id) {
   // Récupération de l'ID
+  // if (req.url.startsWith("/articles/id"))
+  const id = parsentInt(req.url.split("/").pop(), 10);
+  console.log("Id que je veux récuperer : ", id);
 
   let articlesId = await getAllArticles();
   console.log(articlesId);
@@ -60,31 +54,22 @@ async function getArticleById(req, id) {
 
 async function createArticle(req, res) {
   // Method POST
-
   let body = "";
   req.on("data", (chunk) => (body += chunk));
-
   req.on("end", async () => {
     try {
       const article = JSON.parse(body);
-      const data = await getAllArticles();
+      const articles = await getAllArticles();
       article.id = Date.now();
       console.log("articles", article.id);
-      console.log(article);
-      console.log(data);
 
-      data.articles.push(article);
-      console.log(("Object articles :", data));
+      articles.push(article);
+      console.log(("Object articles :", articles));
 
-      await writeArticles(data);
-      res.writeHead(201, { "content-type": "application/json" });
-      res.end(JSON.stringify(article));
-      console.log("push réussit avec succès");
+      await writeArticles(articles);
     } catch (error) {
       res.writeHead(400);
-      res.end(
-        JSON.stringify({ error: "Impossible d'envoyer le nouvel article" })
-      );
+      res.end(JSON.stringify({ error: "Impossible de lire les articles" }));
     }
   });
 }

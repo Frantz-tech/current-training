@@ -1,6 +1,6 @@
 import http from "http";
 import { handleRequest as handleArticleRequest } from "./routes/articles.js";
-import { logError, logRequest } from "./utils/logger.js";
+import { logError } from "./utils/logger.js";
 
 const server = http.createServer(async (req, res) => {
   // CORS headers
@@ -16,7 +16,7 @@ const server = http.createServer(async (req, res) => {
   }
 
   // Log la requête
-  await logRequest(req.method, req.url);
+  // await logRequest(req.method, req.url);
 
   try {
     if (req.url.startsWith("/articles")) {
