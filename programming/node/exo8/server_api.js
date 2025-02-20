@@ -40,7 +40,6 @@ const server = http.createServer(async (req, res) => {
     req.on("end", async () => {
       try {
         const article = JSON.parse(body);
-        console.log("article", article);
         const articles = await readArticles();
         article.id = Date.now(); // Simple ID unique
         console.log("article", article.id);
