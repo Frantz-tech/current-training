@@ -8,6 +8,15 @@ async function readArticles() {
   return JSON.parse(data);
 }
 
+async function logtoFile(message) {
+  const logMessage = `${new Date().toISOString()} - ${message}\n`;
+  try {
+    await fs.appendFile("server-log", logMessage);
+  } catch (err) {
+    console.log("erreur lors de l'écriture du log: ", err);
+  }
+}
+
 // Écriture dans le fichier JSON
 async function writeArticles(articles) {
   await fs.writeFile("articles.json", JSON.stringify(articles, null, 2));
@@ -27,6 +36,10 @@ const server = http.createServer(async (req, res) => {
   }
 
   // Logging des requêtes
+  const logMessage = `${req.method} ${req.url}`;
+  console.log(logMessage);
+  await logtoFile(logMessage); // ajout le log dans le fichier
+
   console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
 
   // Routes API
@@ -118,6 +131,31 @@ const server = http.createServer(async (req, res) => {
           // Parse les nouvelles données de l'article
           const updateData = JSON.parse(body);
 
+          // Vérifie que les champs existent
+          console.log(updateData.content);
+          console.log(updateData.title);
+
+          if (!updateData.content || !updateData.title) {
+            // l'un des champs est manquant alors on n'accepte pas les changements
+
+            res.writeHead(400, { "content-type": "application/json" });
+            return res.end(
+              JSON.stringify({ error: " Il manque le titre ou le content " })
+            );
+          }
+          // Vérifie qu'aucun champ supplémentaire n'est présent
+          // const allowedKeys = ["title", "content", "id"];
+          // const extraKeys = Object.keys(newArticle).filter(
+          //   (key) => !allowedKeys.includes(key)
+          // );
+          // if (extraKeys.length > 0) {
+          //   res.writeHead(400, { "content-type": "appication/json" });
+          //   return res.end(
+          //     JSON.stringify({
+          //       error: `Invalid fields: ${extraKeys.join(", ")}`,
+          //     })
+          //   );
+          // }
           // 6️⃣ Mettre à jour l'article avec les nouvelles données
           updateArticles[indexId] = {
             ...updateArticles[indexId],
