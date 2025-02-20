@@ -16,7 +16,10 @@ export async function handleRequest(req, res) {
     }
   } else if (req.method === "POST" && req.url.startsWith("/articles")) {
     try {
-      return createArticle(req, res);
+      const article = await createArticle(req, res);
+      res.writeHead(201, { "content-type": "application/json" });
+      console.log("push réussit avec succès");
+      return res.end(JSON.stringify(article));
     } catch (error) {
       res.writeHead(500, { "content-type": "application/json" });
       res.end(
@@ -77,9 +80,6 @@ async function createArticle(req, res) {
       console.log(("Object articles :", data));
 
       await writeArticles(data);
-      res.writeHead(201, { "content-type": "application/json" });
-      res.end(JSON.stringify(article));
-      console.log("push réussit avec succès");
     } catch (error) {
       res.writeHead(400);
       res.end(
