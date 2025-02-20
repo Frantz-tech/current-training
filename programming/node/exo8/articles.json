@@ -1,19 +1,32 @@
-{
-  "articles": [
-    {
-      "id": 1,
-      "title": "Premier article",
-      "content": "Contenu du premier article"
-    },
-    {
-      "id": 2,
-      "title": "Deuxième article",
-      "content": "Contenu du deuxième article"
-    },
-    {
-      "id": 3,
-      "title": "Troisième article",
-      "content": "Contenu du troisième article"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "title": "Premier article",
+    "content": "Contenu du premier article"
+  },
+  {
+    "id": 2,
+    "title": "Deuxième article",
+    "content": "Contenu du deuxième article"
+  },
+  {
+    "id": 3,
+    "title": "Troisième article",
+    "content": "Contenu du troisième article"
+  },
+  {
+    "title": "Quatrième article",
+    "content": "Contenu du quatrième article",
+    "id": 1740043268435
+  },
+  {
+    "title": "Cinquième article",
+    "content": "Contenu du Cinquième article",
+    "id": 1740043282627
+  },
+  {
+    "title": "Sixième article",
+    "content": "Contenu du Sixième article",
+    "id": 1740043289748
+  }
+]

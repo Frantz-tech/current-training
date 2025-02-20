@@ -1,3 +1,4 @@
+const { error } = require("console");
 const http = require("http");
 const fs = require("fs").promises;
 
@@ -39,9 +40,12 @@ const server = http.createServer(async (req, res) => {
     req.on("end", async () => {
       try {
         const article = JSON.parse(body);
+        console.log("article", article);
         const articles = await readArticles();
         article.id = Date.now(); // Simple ID unique
+        console.log("article", article.id);
         articles.push(article);
+        console.log("objet articles : ", articles);
         await writeArticles(articles);
         res.writeHead(201, { "Content-Type": "application/json" });
         res.end(JSON.stringify(article));
@@ -52,8 +56,33 @@ const server = http.createServer(async (req, res) => {
     });
   } else if (req.url.match(/\/articles\/\d+$/) && req.method === "DELETE") {
     //Code
-  } else if (req.url.match(/\/articles\/\d+$/) && req.method === "PUT") {
-    //Code
+    try {
+      const id = parseInt(req.url.split("/").pop(), 10);
+      console.log("Id a supprimé :|", id);
+
+      let articles = await readArticles();
+      console.log("Articles a supprimer :", articles[2]);
+
+      const indexId = articles.findIndex((articles) => articles.id === id);
+      if (indexId === -1) {
+        res.writeHead(404, { "content-type": "application/json" });
+        res.end(JSON.stringify({ error: "Article non trouvé" }));
+      }
+      articles.splice(indexId, 1);
+
+      await writeArticles(articles);
+      console.log("Articles après suppression :", articles);
+
+      // 6️⃣ Envoyer une réponse de succès
+      res.writeHead(200, { "Content-Type": "application/json" });
+      return res.end(
+        JSON.stringify({ message: `Article ${id} supprimé avec succès` })
+      );
+    } catch (error) {
+      console.error("Erreur lors de la suppression :", error);
+      res.writeHead(500, { "Content-Type": "application/json" });
+      return res.end(JSON.stringify({ error: "Erreur serveur" }));
+    }
   } else {
     res.writeHead(404);
     res.end(JSON.stringify({ error: "Not found" }));
@@ -61,5 +90,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(4000, () => {
-  console.log("API Server running on port 4000");
+  console.log("API Server running on port http://localhost:4000");
 });
