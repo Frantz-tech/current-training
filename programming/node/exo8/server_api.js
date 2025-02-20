@@ -54,31 +54,40 @@ const server = http.createServer(async (req, res) => {
         res.end(JSON.stringify({ error: "Invalid data" }));
       }
     });
-  } else if (req.url.match(/\/articles\/\d+$/) && req.method === "DELETE") {
-    //Code
+  } // Vérifie si l'URL correspond à "/articles/{id}" et si la méthode HTTP est DELETE
+  else if (req.url.match(/\/articles\/\d+$/) && req.method === "DELETE") {
     try {
+      // 1️⃣ Extraire l'ID de l'article depuis l'URL
       const id = parseInt(req.url.split("/").pop(), 10);
-      console.log("Id a supprimé :|", id);
+      console.log("Id à supprimer :", id);
 
+      // 2️⃣ Lire les articles existants depuis le fichier JSON
       let articles = await readArticles();
-      console.log("Articles a supprimer :", articles[2]);
+      console.log("Articles avant suppression :", articles);
 
-      const indexId = articles.findIndex((articles) => articles.id === id);
+      // 3️⃣ Trouver l'index de l'article à supprimer dans le tableau
+      const indexId = articles.findIndex((article) => article.id === id);
+
+      // 4️⃣ Vérifier si l'article existe
       if (indexId === -1) {
-        res.writeHead(404, { "content-type": "application/json" });
-        res.end(JSON.stringify({ error: "Article non trouvé" }));
+        res.writeHead(404, { "Content-Type": "application/json" });
+        return res.end(JSON.stringify({ error: "Article non trouvé" }));
       }
+
+      // 5️⃣ Supprimer l'article du tableau
       articles.splice(indexId, 1);
 
+      // 6️⃣ Réécrire le fichier JSON sans l'article supprimé
       await writeArticles(articles);
       console.log("Articles après suppression :", articles);
 
-      // 6️⃣ Envoyer une réponse de succès
+      // 7️⃣ Envoyer une réponse de succès
       res.writeHead(200, { "Content-Type": "application/json" });
       return res.end(
         JSON.stringify({ message: `Article ${id} supprimé avec succès` })
       );
     } catch (error) {
+      // 8️⃣ Gérer les erreurs serveur
       console.error("Erreur lors de la suppression :", error);
       res.writeHead(500, { "Content-Type": "application/json" });
       return res.end(JSON.stringify({ error: "Erreur serveur" }));
