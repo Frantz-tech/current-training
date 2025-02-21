@@ -30,11 +30,24 @@ export async function handleRequest(req, res) {
     try {
       const changeArticle = await updateArticle(req, res);
       res.writeHead(200, { "Content-Type": "application/json" });
+      console.log("update réussit avec succès ");
       return res.end(JSON.stringify(changeArticle));
     } catch (error) {
       res.writeHead(500, { "Content-Type": "application/json" });
       res.end(
         JSON.stringify({ error: "Erreur lors de la modification des articles" })
+      );
+    }
+  } else if (req.method === "DELETE" && req.url.match(/\/articles\/\d+$/)) {
+    try {
+      const suppArticle = await deleteArticle(req, res);
+      res.writeHead(200, { "Content-Type": "application/json" });
+      console.log("delete réussit avec succès");
+      return res.end(JSON.stringify(suppArticle));
+    } catch (error) {
+      res.writeHead(500, { "Content-Type": "application/json" });
+      res.end(
+        JSON.stringify({ error: "Erreur lors de la suppression des articles" })
       );
     }
   } else {
@@ -75,7 +88,7 @@ async function createArticle(req, res) {
       article.id = Date.now();
       console.log("articles", article.id);
 
-      data.articles.push(article);
+      data.push(article);
       console.log("nouvelle données ", article);
       console.log("Data apres l'ajout de la nouvelle donnée ", data);
 
@@ -96,6 +109,8 @@ async function updateArticle(req, res) {
     res.writeHead(400, { "Content-Type": "application/json" });
     return res.end(JSON.stringify({ error: "Id Invalide" }));
   }
+  let articles = await getAllArticles();
+  const idArticle = articles.findIndex((article) => article.id === idArt);
 
   if (idArticle === -1) {
     res.writeHead(404, { "Content-Type": "application/json" });
@@ -106,8 +121,6 @@ async function updateArticle(req, res) {
   req.on("end", async () => {
     try {
       const updateData = JSON.parse(body);
-      let articles = await getAllArticles();
-      const idArticle = articles.findIndex((article) => article.id === idArt);
       console.log("voici le contenu modifié ", updateData.content);
       console.log("voici le contenu 2 modifié", updateData.title);
       if (!updateData.title || !updateData.content) {
@@ -121,15 +134,7 @@ async function updateArticle(req, res) {
         ...updateData,
       };
       await writeArticles(articles);
-      console.log("Fichier JSON apres avoir été modifié : ", articles);
-      res.writeHead(200, { "Content-Type": "application/json" });
-      return res.end(
-        JSON.stringify({
-          message: `Article ${idArt} modifié avec succès`,
-        })
-      );
     } catch (error) {
-      console.error("Erreur lors de la modification :", error);
       res.writeHead(400, { "Content-Type": "application/json" });
       return res.end(
         JSON.stringify({ error: "Impossible de modifier le fichier" })
@@ -138,8 +143,29 @@ async function updateArticle(req, res) {
   });
 }
 
-async function deleteArticle(req, res, id) {
+async function deleteArticle(req, res) {
   // Method DELETE
+
+  const idDelete = parseInt(req.url.split("/").pop(), 10);
+  console.log("id a supprimer : ", idDelete);
+  let articles = await getAllArticles();
+  console.log("articles avant la suppression : ", articles);
+
+  const indexId = articles.findIndex(
+    (articledelete) => articledelete.id === idDelete
+  );
+
+  if (indexId === -1) {
+    res.writeHead(404, { "Content-Type": "application/json" });
+    return res.end(
+      JSON.stringify({ error: "Article non trouvé pour suppression" })
+    );
+  }
+
+  articles.splice(indexId, 1);
+
+  await writeArticles(articles);
+  console.log("articles apres la suppression :", articles);
 }
 
 export {

@@ -82,7 +82,7 @@ async function createArticle(req, res) {
 
       await writeArticles(data);
     } catch (error) {
-      res.writeHead(400);
+      res.writeHead(400, { "Content-Type": "application/json" });
       return res.end(
         JSON.stringify({ error: "Impossible d'envoyer le nouvel article" })
       );
@@ -124,11 +124,6 @@ async function updateArticle(req, res) {
       await writeArticles(articles);
       console.log("Fichier JSON apres avoir été modifié : ", articles);
       res.writeHead(200, { "Content-Type": "application/json" });
-      return res.end(
-        JSON.stringify({
-          message: `Article ${idArt} modifié avec succès`,
-        })
-      );
     } catch (error) {
       console.error("Erreur lors de la modification :", error);
       res.writeHead(400, { "Content-Type": "application/json" });
