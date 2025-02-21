@@ -1,19 +1,24 @@
 {
   "articles": [
     {
-      "id": 1,
-      "title": "Premier article",
-      "content": "Contenu du premier article"
+      "title": "First article",
+      "content": "Contenu du 1st article",
+      "id": 1740127823348
     },
     {
-      "id": 2,
-      "title": "Deuxième article",
-      "content": "Contenu du deuxième article"
+      "title": "Second article",
+      "content": "Contenu du 2nd article",
+      "id": 1740127833981
     },
     {
-      "id": 3,
-      "title": "Troisième article",
-      "content": "Contenu du troisième article"
+      "title": "Third article",
+      "content": "Contenu du 3rd article",
+      "id": 1740127843164
+    },
+    {
+      "title": "Fouth article",
+      "content": "Contenu du 4th article",
+      "id": 1740128242382
     }
   ]
 }

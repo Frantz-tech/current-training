@@ -23,10 +23,10 @@ export async function handleRequest(req, res) {
     } catch (error) {
       res.writeHead(500, { "Content-Type": "application/json" });
       res.end(
-        JSON.stringify({ error: "Erreur lors de la lecture des articles" })
+        JSON.stringify({ error: "Erreur lors de la l'envoie des articles" })
       );
     }
-  } else if (req.method === "PUT" && req.url.match(/\/articles\/\d+$/)) {
+  } else if (req.method === "PUT" && req.url.startsWith("/articles")) {
     try {
       const changeArticle = await updateArticle(req, res);
       res.writeHead(200, { "Content-Type": "application/json" });
@@ -34,7 +34,7 @@ export async function handleRequest(req, res) {
     } catch (error) {
       res.writeHead(500, { "Content-Type": "application/json" });
       res.end(
-        JSON.stringify({ error: "Erreur lors de la Lecture des Articles" })
+        JSON.stringify({ error: "Erreur lors de la modification des articles" })
       );
     }
   } else {
@@ -59,7 +59,7 @@ async function getAllArticles() {
 
 async function getArticleById(id) {
   let articles = await getAllArticles();
-  return articles.find((article) => article.id === id) || null;
+  return articles.find((article) => Number(article.id) === id) || null;
 }
 
 async function createArticle(req, res) {
@@ -74,15 +74,14 @@ async function createArticle(req, res) {
       const data = await getAllArticles();
       article.id = Date.now();
       console.log("articles", article.id);
-      console.log(article);
-      console.log(data);
 
       data.articles.push(article);
-      console.log(("Object articles :", data));
+      console.log("nouvelle données ", article);
+      console.log("Data apres l'ajout de la nouvelle donnée ", data);
 
       await writeArticles(data);
     } catch (error) {
-      res.writeHead(400);
+      res.writeHead(400, { "Content-Type": "application/json" });
       return res.end(
         JSON.stringify({ error: "Impossible d'envoyer le nouvel article" })
       );
@@ -97,20 +96,20 @@ async function updateArticle(req, res) {
     res.writeHead(400, { "Content-Type": "application/json" });
     return res.end(JSON.stringify({ error: "Id Invalide" }));
   }
-  let articles = await getAllArticles();
-  const idArticle = articles.findIndex((article) => article.id === idArt);
+
   if (idArticle === -1) {
-    res.writeHead(404, { "COntent-Type": "application/json" });
-    return res.end(JSON.stringify({ error: "Article introuvable" }));
+    res.writeHead(404, { "Content-Type": "application/json" });
+    return res.end(JSON.stringify({ error: "Articlé introuvable" }));
   }
   let body = "";
   req.on("data", (chunk) => (body += chunk));
   req.on("end", async () => {
     try {
       const updateData = JSON.parse(body);
-
-      console.log(updateData.content);
-      console.log(updateData.title);
+      let articles = await getAllArticles();
+      const idArticle = articles.findIndex((article) => article.id === idArt);
+      console.log("voici le contenu modifié ", updateData.content);
+      console.log("voici le contenu 2 modifié", updateData.title);
       if (!updateData.title || !updateData.content) {
         res.writeHead(400, { "Content-Type": "application/json" });
         return res.end(
