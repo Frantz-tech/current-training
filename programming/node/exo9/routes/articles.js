@@ -6,10 +6,10 @@ export async function handleRequest(req, res) {
   if (req.method === "GET" && req.url.startsWith("/articles")) {
     try {
       const allArticles = await getAllArticles();
-      res.writeHead(200, { "content-type": "application/json" });
+      res.writeHead(200, { "Content-Type": "application/json" });
       return res.end(JSON.stringify(allArticles));
     } catch (error) {
-      res.writeHead(500, { "content-type": "application/json" });
+      res.writeHead(500, { "Content-Type": "application/json" });
       res.end(
         JSON.stringify({ error: "Erreur lors de la lecture des articles" })
       );
@@ -17,17 +17,28 @@ export async function handleRequest(req, res) {
   } else if (req.method === "POST" && req.url.startsWith("/articles")) {
     try {
       const article = await createArticle(req, res);
-      res.writeHead(201, { "content-type": "application/json" });
+      res.writeHead(201, { "Content-Type": "application/json" });
       console.log("push réussit avec succès");
       return res.end(JSON.stringify(article));
     } catch (error) {
-      res.writeHead(500, { "content-type": "application/json" });
+      res.writeHead(500, { "Content-Type": "application/json" });
       res.end(
         JSON.stringify({ error: "Erreur lors de la lecture des articles" })
       );
     }
+  } else if (req.method === "PUT" && req.url.match(/\/articles\/\d+$/)) {
+    try {
+      const changeArticle = await updateArticle(req, res);
+      res.writeHead(200, { "Content-Type": "application/json" });
+      return res.end(JSON.stringify(changeArticle));
+    } catch (error) {
+      res.writeHead(500, { "Content-Type": "application/json" });
+      res.end(
+        JSON.stringify({ error: "Erreur lors de la Lecture des Articles" })
+      );
+    }
   } else {
-    res.writeHead(404, { "content-type": "application/json" });
+    res.writeHead(404, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ error: "Route not found" }));
   }
 }
@@ -46,19 +57,9 @@ async function getAllArticles() {
   }
 }
 
-async function getArticleById(req, id) {
-  // Récupération de l'ID
-
-  let articlesId = await getAllArticles();
-  console.log(articlesId);
-
-  const indexId = articlesId.findIndex((article) => article.id === id);
-  console.log(indexId);
-
-  if (indexId === -1) {
-    res.writeHead(404, { "content-type": "application/json" });
-    res.end(JSON.stringify({ error: " Id non trouvé" }));
-  }
+async function getArticleById(id) {
+  let articles = await getAllArticles();
+  return articles.find((article) => article.id === id) || null;
 }
 
 async function createArticle(req, res) {
@@ -82,15 +83,60 @@ async function createArticle(req, res) {
       await writeArticles(data);
     } catch (error) {
       res.writeHead(400);
-      res.end(
+      return res.end(
         JSON.stringify({ error: "Impossible d'envoyer le nouvel article" })
       );
     }
   });
 }
 
-async function updateArticle(req, res, id) {
+async function updateArticle(req, res) {
   // Method PUT
+  const idArt = parseInt(req.url.split("/").pop(), 10);
+  if (isNaN(idArt)) {
+    res.writeHead(400, { "Content-Type": "application/json" });
+    return res.end(JSON.stringify({ error: "Id Invalide" }));
+  }
+  let articles = await getAllArticles();
+  const idArticle = articles.findIndex((article) => article.id === idArt);
+  if (idArticle === -1) {
+    res.writeHead(404, { "COntent-Type": "application/json" });
+    return res.end(JSON.stringify({ error: "Article introuvable" }));
+  }
+  let body = "";
+  req.on("data", (chunk) => (body += chunk));
+  req.on("end", async () => {
+    try {
+      const updateData = JSON.parse(body);
+
+      console.log(updateData.content);
+      console.log(updateData.title);
+      if (!updateData.title || !updateData.content) {
+        res.writeHead(400, { "Content-Type": "application/json" });
+        return res.end(
+          JSON.stringify({ error: "Il manque le content ou le title" })
+        );
+      }
+      articles[idArticle] = {
+        ...articles[idArticle],
+        ...updateData,
+      };
+      await writeArticles(articles);
+      console.log("Fichier JSON apres avoir été modifié : ", articles);
+      res.writeHead(200, { "Content-Type": "application/json" });
+      return res.end(
+        JSON.stringify({
+          message: `Article ${idArt} modifié avec succès`,
+        })
+      );
+    } catch (error) {
+      console.error("Erreur lors de la modification :", error);
+      res.writeHead(400, { "Content-Type": "application/json" });
+      return res.end(
+        JSON.stringify({ error: "Impossible de modifier le fichier" })
+      );
+    }
+  });
 }
 
 async function deleteArticle(req, res, id) {
