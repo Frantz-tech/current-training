@@ -122,7 +122,7 @@ async function updateArticle(req, res) {
     try {
       const updateData = JSON.parse(body);
       console.log("voici le contenu modifié ", updateData.content);
-      console.log("voici le contenu 2 modifié", updateData.title);
+      console.log("voici le titre modifié", updateData.title);
       if (!updateData.title || !updateData.content) {
         res.writeHead(400, { "Content-Type": "application/json" });
         return res.end(

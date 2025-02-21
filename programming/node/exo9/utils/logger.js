@@ -1,3 +1,4 @@
+import { appendFile } from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -9,4 +10,11 @@ const ERROR_LOG = path.join(__dirname, "../logs/error.log");
 
 export async function logRequest(method, url) {}
 
-export async function logError(error) {}
+export async function logError(message) {
+  const logMessage = `${new Date().toISOString()} - ${message}\n`;
+  try {
+    await appendFile("server-log", logMessage);
+  } catch (err) {
+    console.log("erreur lors de l'écriture du log: ", err);
+  }
+}
