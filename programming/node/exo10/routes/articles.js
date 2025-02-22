@@ -4,12 +4,12 @@ import { openDb } from "../utils/db.js";
 export async function handleRequest(req, res) {
   // Methods
   // mettre la fonction pour récup l'id
-  console.log("", req.method);
-  console.log(req.url);
-  const db = await openDb();
-  const idMatch = req.url.match(/^\/articles\/(\d+)$/);
-  const id = idMatch ? parseInt(idMatch[1], 10) : null;
   try {
+    console.log("", req.method);
+    console.log(req.url);
+    const db = await openDb();
+    const idMatch = req.url.match(/^\/articles\/(\d+)$/);
+    const id = idMatch ? parseInt(idMatch[1], 10) : null;
     if (req.method === "GET" && req.url === "/articles") {
       // Method GET
       console.log("Je passe dans la method 'GET' ");
@@ -67,7 +67,7 @@ async function getAllArticles(db) {
   try {
     return await db.all("SELECT * FROM articles");
   } catch (error) {
-    throw new Error("Impossible de lire le fichier 'article.json' ");
+    throw new Error("Impossible de récupérer tous les fichiers", error);
   }
 }
 
@@ -118,4 +118,37 @@ async function updateArticles(req, res) {
         res.end(JSON.stringify, { error: "Impossible de modifier l'article" });
       }
     };
+}
+
+async function deleteArticles(req, res) {
+  try {
+    const db = await openDb();
+    const idMatch = req.url.match(/^\/articles\/(\d+)$/);
+    const id = idMatch ? parseInt(idMatch[1], 10) : null;
+    if (isNaN(id) || !id) {
+      res.writeHead(400, { "Content-Type": "application/json" });
+      return res.end(JSON.stringify({ message: "ID de l'article requis" }));
+    }
+    const deleteArt = await db.run("DELETE FROM articles WHERE id = ?", [id]);
+
+    if (deleteArt.changes === 0) {
+      res.writeHead(404, { "Content-Type": "application/json" });
+      return res.end(
+        JSON.stringify({ message: "Articlé non trouvé pour la suppression" })
+      );
+    }
+    res.writeHead(200, { "Content-Type": "application/json" });
+    return res.end(
+      JSON.stringify({
+        message: `Article supprimé avec succès`,
+        id,
+      })
+    );
+  } catch (error) {
+    console.error(error);
+    res.writeHead(500, { "Content-Type": "application/json" });
+    return res.end(
+      JSON.stringify({ message: "Impossible de supprimer l'article" })
+    );
+  }
 }
