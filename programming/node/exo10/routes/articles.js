@@ -4,12 +4,12 @@ import { openDb } from "../utils/db.js";
 export async function handleRequest(req, res) {
   // Methods
   // mettre la fonction pour récup l'id
+  console.log("Methode utilisée | : ", req.method);
+  console.log("Url utilisée | :", req.url);
+  // const db = await openDb();
+  const idMatch = req.url.match(/^\/articles\/(\d+)$/);
+  const id = idMatch ? parseInt(idMatch[1], 10) : null;
   try {
-    console.log("", req.method);
-    console.log(req.url);
-    const db = await openDb();
-    const idMatch = req.url.match(/^\/articles\/(\d+)$/);
-    const id = idMatch ? parseInt(idMatch[1], 10) : null;
     if (req.method === "GET" && req.url === "/articles") {
       // Method GET
       console.log("Je passe dans la method 'GET' ");
