@@ -27,7 +27,6 @@ export async function handleRequest(req, res) {
       }
     } else if (req.method === "GET" && id !== null) {
       // Method GET avec ID
-
       const articles = await getAllArticles();
       const article = articles.find((a) => a.id === id);
       if (!article) {
