@@ -1,6 +1,6 @@
 1.1 : SELECT * FROM produits WHERE prix <100;
-1.2 : SELECT * FROM produits WHERE stock <10;
-1.3 : SELECT * FROM categories WHERE id = 1;
+1.2 : SELECT nom, stock FROM produits WHERE stock <10
+1.3 : SELECT nom, prix FROM produits WHERE categorie_id=1;
 2.1 : SELECT * FROM produits ORDER BY prix DESC; 
 2.1 : SELECT * FROM produits ORDER BY prix ASC;
 2.2 : SELECT * FROM produits WHERE stock >20 ORDER BY stock ;
@@ -31,3 +31,5 @@ JOIN produits p ON cp.produit_id = p.id GROUP BY cl.id ;
       /// OU ////
       UPDATE produit SET prix = *1.5 WHERE nom = 'Téléphone';
       SELECT * FROM produits WHERE nom = 'Téléphone',
+
+6.2 : DELETE * FROM produits WHERE id = number; 
