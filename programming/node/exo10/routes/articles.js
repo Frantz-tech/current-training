@@ -6,7 +6,7 @@ export async function handleRequest(req, res) {
   // mettre la fonction pour récup l'id
   console.log("Methode utilisée | : ", req.method);
   console.log("Url utilisée | :", req.url);
-  // const db = await openDb();
+  const db = await openDb();
   const idMatch = req.url.match(/^\/articles\/(\d+)$/);
   const id = idMatch ? parseInt(idMatch[1], 10) : null;
   try {
@@ -101,22 +101,38 @@ async function createArticle(req, res) {
   });
 }
 
-async function updateArticles(req, res) {
+async function updateArticles(req, res, id) {
   // Method PUT
   let body = "";
-
   req.on("data", (chunk) => (body += chunk));
-  req.on("end"),
-    async () => {
-      try {
-        const updateArticle = JSON.parse(body);
-        const newdataArticle = await getAllArticles();
-        console.log("Données de la DB avant l'update", updateArticle);
-      } catch (error) {
-        res.writeHead(400, { "Content-Type": "application/json" });
-        res.end(JSON.stringify, { error: "Impossible de modifier l'article" });
+  req.on("end", async () => {
+    try {
+      const newArticle = JSON.parse(body);
+      const db = await openDb();
+      const result = await db.run(
+        "UPDATE articles SET title = ?, content = ? WHERE id = ?",
+        [newArticle.title, newArticle.content, id]
+      );
+
+      if (result.changes === 0) {
+        res.writeHead(404, { "Content-Type": "application/json" });
+        return res.end(JSON.stringify({ error: "Article non trouvé " }));
       }
-    };
+      console.log("Données de la DB après l'update", newArticle);
+      res.writeHead(202, { "Content-Type": "application/json" });
+      return res.end(
+        JSON.stringify({
+          message: `Article modifié avec succès,`,
+          id: id,
+        })
+      );
+    } catch (error) {
+      res.writeHead(400, { "Content-Type": "application/json" });
+      return res.end(
+        JSON.stringify({ error: "Impossible de modifier l'article" })
+      );
+    }
+  });
 }
 
 async function deleteArticles(req, res) {
