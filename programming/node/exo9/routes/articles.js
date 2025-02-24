@@ -3,6 +3,7 @@ const ARTICLES_FILE = "./data/articles.json";
 
 export async function handleRequest(req, res) {
   // Methods
+  console.log("Je suis ici");
   if (req.method === "GET" && req.url.startsWith("/articles")) {
     try {
       const allArticles = await getAllArticles();
