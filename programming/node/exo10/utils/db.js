@@ -1,6 +1,6 @@
 // utils/db.js
-import sqlite3 from "sqlite3";
 import { open } from "sqlite";
+import sqlite3 from "sqlite3";
 import { logError } from "./logger.js";
 
 /**
@@ -35,7 +35,8 @@ async function initDb(db) {
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 title TEXT NOT NULL,
                 content TEXT NOT NULL,
-                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                
             )
         `);
   } catch (error) {

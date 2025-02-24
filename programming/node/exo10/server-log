@@ -1,1 +1,7 @@
 2025-02-24T08:35:50.278Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-02-24T09:42:24.338Z - Error: SQLITE_ERROR: near ")": syntax error
+2025-02-24T09:42:24.340Z - Error: Failed to initialize database
+2025-02-24T09:42:24.341Z - Error: Failed to open database
+2025-02-24T09:42:44.668Z - Error: SQLITE_ERROR: near ")": syntax error
+2025-02-24T09:42:44.670Z - Error: Failed to initialize database
+2025-02-24T09:42:44.671Z - Error: Failed to open database

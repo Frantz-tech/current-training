@@ -1,6 +1,7 @@
 Introduction à SQLite
 
 https://sql.sh/cours/update
+https://sqliteonline.com/
 
 💡 Objectifs
 
