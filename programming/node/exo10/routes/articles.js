@@ -43,7 +43,7 @@ export async function handleRequest(req, res) {
       await updateArticles(req, res, id);
     } else if (req.method === "DELETE" && id !== null) {
       //Method DELETE
-      await deleteArticles(req, res, id);
+      await deleteArticles(res, id);
     } else {
       // Route inconnue
       res.writeHead(404, { "Content-Type": "application/json" });
@@ -66,7 +66,9 @@ async function getAllArticles(db) {
   try {
     return await db.all("SELECT * FROM articles");
   } catch (error) {
-    throw new Error("Impossible de récupérer tous les fichiers", error);
+    throw new Error(
+      `Impossible de récupérer tous les fichiers", ${error.message}`
+    );
   }
 }
 
@@ -88,7 +90,7 @@ async function createArticle(req, res) {
       res.writeHead(201, { "Content-Type": "application/json" });
       return res.end(
         JSON.stringify({
-          message: `Nouvel article envoyé avec succès,`,
+          message: `Nouvel article envoyé avec succès`,
           id: newArticle.id,
         })
       );
@@ -135,11 +137,11 @@ async function updateArticles(req, res, id) {
   });
 }
 
-async function deleteArticles(req, res) {
+async function deleteArticles(res, id) {
   try {
     const db = await openDb();
-    const idMatch = req.url.match(/^\/articles\/(\d+)$/);
-    const id = idMatch ? parseInt(idMatch[1], 10) : null;
+    // const idMatch = req.url.match(/^\/articles\/(\d+)$/);
+    // const id = idMatch ? parseInt(idMatch[1], 10) : null;
     if (isNaN(id) || !id) {
       res.writeHead(400, { "Content-Type": "application/json" });
       return res.end(JSON.stringify({ message: "ID de l'article requis" }));
