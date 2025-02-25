@@ -1,0 +1,44 @@
+2025-02-25T08:14:43.105Z - Error: SQLITE_ERROR: near ")": syntax error
+2025-02-25T08:14:43.108Z - Error: Failed to initialize database
+2025-02-25T08:14:43.108Z - Error: Failed to open database
+2025-02-25T08:16:27.771Z - Error: SQLITE_ERROR: near ")": syntax error
+2025-02-25T08:16:27.773Z - Error: Failed to initialize database
+2025-02-25T08:16:27.774Z - Error: Failed to open database
+2025-02-25T08:17:46.877Z - Error: SQLITE_ERROR: near ")": syntax error
+2025-02-25T08:17:46.879Z - Error: Failed to initialize database
+2025-02-25T08:17:46.880Z - Error: Failed to open database
+2025-02-25T08:18:01.107Z - Error: SQLITE_ERROR: near ")": syntax error
+2025-02-25T08:18:01.108Z - Error: Failed to initialize database
+2025-02-25T08:18:01.109Z - Error: Failed to open database
+2025-02-25T08:18:15.385Z - Error: SQLITE_ERROR: near ")": syntax error
+2025-02-25T08:18:15.388Z - Error: Failed to initialize database
+2025-02-25T08:18:15.389Z - Error: Failed to open database
+2025-02-25T08:19:39.836Z - Error: SQLITE_ERROR: near ")": syntax error
+2025-02-25T08:19:39.838Z - Error: Failed to initialize database
+2025-02-25T08:19:39.838Z - Error: Failed to open database
+2025-02-25T08:19:48.360Z - Error: SQLITE_ERROR: near ")": syntax error
+2025-02-25T08:19:48.363Z - Error: Failed to initialize database
+2025-02-25T08:19:48.363Z - Error: Failed to open database
+2025-02-25T08:25:32.606Z - Error: SQLITE_ERROR: near ")": syntax error
+2025-02-25T08:25:32.607Z - Error: Failed to initialize database
+2025-02-25T08:25:32.607Z - Error: Failed to open database
+2025-02-25T08:26:08.852Z - Error: SQLITE_ERROR: near ")": syntax error
+2025-02-25T08:26:08.854Z - Error: Failed to initialize database
+2025-02-25T08:26:08.855Z - Error: Failed to open database
+2025-02-25T08:27:13.185Z - Error: SQLITE_ERROR: near ")": syntax error
+2025-02-25T08:27:13.187Z - Error: Failed to initialize database
+2025-02-25T08:27:13.188Z - Error: Failed to open database
+2025-02-25T08:28:22.800Z - Error: SQLITE_ERROR: near ")": syntax error
+2025-02-25T08:28:22.802Z - Error: Failed to initialize database
+2025-02-25T08:28:22.803Z - Error: Failed to open database
+2025-02-25T08:29:54.381Z - Error: SQLITE_ERROR: near ")": syntax error
+2025-02-25T08:29:54.383Z - Error: Failed to initialize database
+2025-02-25T08:29:54.384Z - Error: Failed to open database
+2025-02-25T08:31:07.460Z - Error: SQLITE_ERROR: near ")": syntax error
+2025-02-25T08:31:07.462Z - Error: Failed to initialize database
+2025-02-25T08:31:07.463Z - Error: Failed to open database
+2025-02-25T08:32:08.515Z - Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: articles.user_id
+2025-02-25T08:33:12.017Z - Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: articles.user_id
+2025-02-25T08:33:37.004Z - Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: articles.user_id
+2025-02-25T08:36:07.444Z - Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: articles.user_id
+2025-02-25T08:36:48.323Z - Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: articles.user_id
