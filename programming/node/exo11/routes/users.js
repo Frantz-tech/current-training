@@ -8,6 +8,10 @@ export async function handleUserRequest(req, res) {
   const db = await openDb();
   const idMatch = req.url.match(/^\/users\/(\d+)$/);
   const id = idMatch ? parseInt(idMatch[1], 10) : null;
+  const idMatchUser = req.url.match(/^\/users\/(\d+)\/articles$/);
+  const userId = idMatchUser ? parseInt(idMatchUser[1], 10) : null;
+  console.log("User ID récupéré :", userId);
+
   try {
     if (req.method === "GET" && req.url === "/users") {
       try {
@@ -35,7 +39,6 @@ export async function handleUserRequest(req, res) {
       const offset = parseInt(urlObj.searchParams.get("offset"), 10) || 0;
 
       try {
-        // const { user, total } = await getPaginatedArticles(db, limit, offset);
         const resPaginated = await getPaginatedArticles(db, limit, offset);
         console.log("Je récupère les paginated articles :| ", resPaginated);
 
@@ -49,6 +52,15 @@ export async function handleUserRequest(req, res) {
           })
         );
       }
+    } else if (
+      req.method === "GET" &&
+      req.url.match(/^\/users\/(\d+)\/articles$/)
+    ) {
+      // Method GET avec ID & article
+      const users = await getAllArticlesId(db, userId);
+
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify(users));
     } else if (req.method === "GET" && id !== null) {
       // Method GET avec ID
       const users = await getAllArticlesId(db, id);
@@ -106,6 +118,14 @@ async function createArticle(req, res) {
     try {
       const newUsers = JSON.parse(body);
       const db = await openDb();
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      function IsValidEmail(email) {
+        return emailRegex.test(email);
+      }
+      if (!IsValidEmail(newUsers.email)) {
+        res.writeHead(400, { "Content-Type": "application/json" });
+        return res.end(JSON.stringify({ error: "Email invalide" }));
+      }
       const result = await db.run(
         "INSERT INTO users (name, email) VALUES (?, ?)",
         [newUsers.name, newUsers.email]
@@ -137,7 +157,14 @@ async function updateArticles(req, res, id) {
     try {
       const newUsers = JSON.parse(body);
       const db = await openDb();
-      console.log("bonjour");
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      function IsValidEmail(email) {
+        return emailRegex.test(email);
+      }
+      if (!IsValidEmail(newUsers.email)) {
+        res.writeHead(400, { "Content-Type": "application/json" });
+        return res.end(JSON.stringify({ error: "Email invalide" }));
+      }
       const result = await db.run(
         "UPDATE users SET name = ?, email = ? WHERE id = ?",
         [newUsers.name, newUsers.email, id]
