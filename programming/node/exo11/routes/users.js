@@ -11,9 +11,9 @@ export async function handleUserRequest(req, res) {
   try {
     if (req.method === "GET" && req.url === "/users") {
       try {
-        const articles = await getAllArticles(db);
+        const user = await getAllArticles(db);
         res.writeHead(200, { "Content-Type": "application/json" });
-        return res.end(JSON.stringify(articles));
+        return res.end(JSON.stringify(user));
       } catch (error) {
         res.writeHead(500, { "Content-Type": "application/json" });
         return res.end(
@@ -22,7 +22,7 @@ export async function handleUserRequest(req, res) {
           })
         );
       }
-    } else if (req.method === "GET" && req.url.startsWith("/users")) {
+    } else if (req.method === "GET" && req.url.startsWith("/users?")) {
       // Method GET avec pagination
       if (!req.headers.host) {
         res.writeHead(400, { "Content-Type": "application/json" });
@@ -34,21 +34,13 @@ export async function handleUserRequest(req, res) {
       const limit = parseInt(urlObj.searchParams.get("limit"), 10) || 10;
       const offset = parseInt(urlObj.searchParams.get("offset"), 10) || 0;
 
-      console.log("Get avec Pagination | limit :", limit, " | offset:", offset);
-
       try {
-        const { articles, total } = await getPaginatedArticles(
-          db,
-          limit,
-          offset
-        );
-        console.log("Je récupère les paginated articles :| ", {
-          articles,
-          total,
-        });
+        // const { user, total } = await getPaginatedArticles(db, limit, offset);
+        const resPaginated = await getPaginatedArticles(db, limit, offset);
+        console.log("Je récupère les paginated articles :| ", resPaginated);
 
         res.writeHead(200, { "Content-Type": "application/json" });
-        return res.end(JSON.stringify({ total, articles }));
+        return res.end(JSON.stringify(resPaginated));
       } catch (error) {
         res.writeHead(500, { "Content-Type": "application/json" });
         return res.end(
@@ -59,14 +51,11 @@ export async function handleUserRequest(req, res) {
       }
     } else if (req.method === "GET" && id !== null) {
       // Method GET avec ID
-      const articles = await getAllArticles();
-      const article = articles.find((a) => a.id === id);
-      if (!article) {
-        res.writeHead(404, { "Content-Type": "application/json" });
-        return res.end(JSON.stringify({ error: "Article non trouvé" }));
-      }
+      const users = await getAllArticlesId(db, id);
+      console.log("User id :", users);
+
       res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify(article));
+      res.end(JSON.stringify(users));
     } else if (req.method === "POST" && req.url === "/users") {
       //Method POST
       await createArticle(req, res);
@@ -92,6 +81,16 @@ async function getAllArticles(db) {
   // Lecture des données du JSON
   try {
     return await db.all("SELECT * FROM users");
+  } catch (error) {
+    throw new Error(
+      `Impossible de récupérer tous les fichiers", ${error.message}`
+    );
+  }
+}
+async function getAllArticlesId(db, id) {
+  // Lecture des données du JSON
+  try {
+    return await db.all("SELECT * FROM users WHERE id = ?", [id]);
   } catch (error) {
     throw new Error(
       `Impossible de récupérer tous les fichiers", ${error.message}`
@@ -203,13 +202,12 @@ async function getPaginatedArticles(db, limit, offset) {
     // récupère les articles avec pagination
     const user = await db.all(
       // "SELECT * FROM articles ORDER BY id DESC LIMIT ? OFFSET ?", --> Autre option avec descendant
-      "SELECT * FROM user ORDER BY id ASC LIMIT ? OFFSET ?",
+      "SELECT * FROM users ORDER BY id ASC LIMIT ? OFFSET ?",
       [limit, offset]
     );
-    console.log(("user récup pour la pagination : | ", user));
 
     // récupere le nombre total d'articles
-    const totalRow = await db.get("SELECT COUNT (*) as total FROM user");
+    const totalRow = await db.get("SELECT COUNT (*) as total FROM users");
     const total = totalRow.total;
     console.log("Nombre total d'user :|", total);
 
