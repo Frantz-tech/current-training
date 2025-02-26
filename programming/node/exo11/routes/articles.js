@@ -173,8 +173,17 @@ async function updateArticles(req, res, id) {
       const db = await openDb();
       const result = await db.run(
         "UPDATE articles SET title = ?, content = ? WHERE id = ?",
-        [newArticle.title, newArticle.content, newArticle.user_id]
+        [newArticle.title, newArticle.content, newArticle.id]
       );
+      const errorArticle = validateArticle(newArticle);
+
+      if (Array.isArray(errorArticle) && errorArticle.length > 0) {
+        console.log(" Obligatoire pour envoyer les données", errorArticle);
+        res.writeHead(400, { "Content-Type": "application/json" });
+        return res.end(
+          JSON.stringify({ error: "Les données sont incorrectes " })
+        );
+      }
 
       if (result.changes === 0) {
         res.writeHead(404, { "Content-Type": "application/json" });
