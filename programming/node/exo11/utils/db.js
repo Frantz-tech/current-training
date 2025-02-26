@@ -13,7 +13,7 @@ export async function openDb() {
       filename: "./database.db",
       driver: sqlite3.Database,
     });
-
+    await db.exec("PRAGMA foreign_keys = ON;");
     // S'assurer que la table existe
     await initDb(db);
 

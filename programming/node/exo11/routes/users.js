@@ -15,14 +15,14 @@ export async function handleUserRequest(req, res) {
   try {
     if (req.method === "GET" && req.url === "/users") {
       try {
-        const user = await getAllArticles(db);
+        const user = await getAllUser(db);
         res.writeHead(200, { "Content-Type": "application/json" });
         return res.end(JSON.stringify(user));
       } catch (error) {
         res.writeHead(500, { "Content-Type": "application/json" });
         return res.end(
           JSON.stringify({
-            error: "Erreur lors de la lecture de getAllArticles",
+            error: "Erreur lors de la lecture de getAllUsers",
           })
         );
       }
@@ -39,8 +39,8 @@ export async function handleUserRequest(req, res) {
       const offset = parseInt(urlObj.searchParams.get("offset"), 10) || 0;
 
       try {
-        const resPaginated = await getPaginatedArticles(db, limit, offset);
-        console.log("Je récupère les paginated articles :| ", resPaginated);
+        const resPaginated = await getPaginatedUsers(db, limit, offset);
+        console.log("Je récupère les paginated users :| ", resPaginated);
 
         res.writeHead(200, { "Content-Type": "application/json" });
         return res.end(JSON.stringify(resPaginated));
@@ -48,35 +48,32 @@ export async function handleUserRequest(req, res) {
         res.writeHead(500, { "Content-Type": "application/json" });
         return res.end(
           JSON.stringify({
-            error: " Erreur lors de la récupération des articles paginés",
+            error: " Erreur lors de la récupération des users paginés",
           })
         );
       }
-    } else if (
-      req.method === "GET" &&
-      req.url.match(/^\/users\/(\d+)\/articles$/)
-    ) {
+    } else if (req.method === "GET" && idMatchUser) {
       // Method GET avec ID & article
-      const users = await getAllArticlesId(db, userId);
+      const userArticle = await getUserArticles(db, userId);
 
       res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify(users));
+      res.end(JSON.stringify(userArticle));
+      console.log("User id :", userArticle);
     } else if (req.method === "GET" && id !== null) {
       // Method GET avec ID
-      const users = await getAllArticlesId(db, id);
-      console.log("User id :", users);
+      const users = await getAllUserId(db, id);
 
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify(users));
     } else if (req.method === "POST" && req.url === "/users") {
       //Method POST
-      await createArticle(req, res);
+      await createUser(req, res);
     } else if (req.method === "PUT" && id !== null) {
       //Method PUT
-      await updateArticles(req, res, id);
+      await updateUsers(req, res, id);
     } else if (req.method === "DELETE" && id !== null) {
       //Method DELETE
-      await deleteArticles(res, id);
+      await deleteUsers(res, id);
     } else {
       // Route inconnue
       res.writeHead(404, { "Content-Type": "application/json" });
@@ -89,7 +86,7 @@ export async function handleUserRequest(req, res) {
   }
 }
 
-async function getAllArticles(db) {
+async function getAllUser(db) {
   // Lecture des données du JSON
   try {
     return await db.all("SELECT * FROM users");
@@ -99,7 +96,17 @@ async function getAllArticles(db) {
     );
   }
 }
-async function getAllArticlesId(db, id) {
+async function getUserArticles(db, user_id) {
+  // Lecture des données du JSON
+  try {
+    return await db.all("SELECT * FROM articles WHERE user_id = ?", [user_id]);
+  } catch (error) {
+    throw new Error(
+      `Impossible de récupérer tous les fichiers", ${error.message}`
+    );
+  }
+}
+async function getAllUserId(db, id) {
   // Lecture des données du JSON
   try {
     return await db.all("SELECT * FROM users WHERE id = ?", [id]);
@@ -110,7 +117,7 @@ async function getAllArticlesId(db, id) {
   }
 }
 
-async function createArticle(req, res) {
+async function createUser(req, res) {
   // Method POST
   let body = "";
   req.on("data", (chunk) => (body += chunk));
@@ -149,7 +156,7 @@ async function createArticle(req, res) {
   });
 }
 
-async function updateArticles(req, res, id) {
+async function updateUsers(req, res, id) {
   // Method PUT
   let body = "";
   req.on("data", (chunk) => (body += chunk));
@@ -191,20 +198,15 @@ async function updateArticles(req, res, id) {
   });
 }
 
-async function deleteArticles(res, id) {
+async function deleteUsers(res, id) {
   try {
     const db = await openDb();
-    // const idMatch = req.url.match(/^\/articles\/(\d+)$/);
-    // const id = idMatch ? parseInt(idMatch[1], 10) : null;
+
     if (isNaN(id) || !id) {
       res.writeHead(400, { "Content-Type": "application/json" });
       return res.end(JSON.stringify({ message: "ID de l'user requis" }));
     }
     const deleteUser = await db.run("DELETE FROM users WHERE id = ?", [id]);
-    const deleteArticle = await db.run(
-      "DELETE FROM articles WHERE user_id = ?",
-      [id]
-    );
 
     if (deleteUser.changes === 0 && deleteArticle.changes === 0) {
       res.writeHead(404, { "Content-Type": "application/json" });
@@ -228,16 +230,16 @@ async function deleteArticles(res, id) {
   }
 }
 
-async function getPaginatedArticles(db, limit, offset) {
+async function getPaginatedUsers(db, limit, offset) {
   try {
-    // récupère les articles avec pagination
+    // récupère les users avec pagination
     const user = await db.all(
-      // "SELECT * FROM articles ORDER BY id DESC LIMIT ? OFFSET ?", --> Autre option avec descendant
+      // "SELECT * FROM users ORDER BY id DESC LIMIT ? OFFSET ?", --> Autre option avec descendant
       "SELECT * FROM users ORDER BY id ASC LIMIT ? OFFSET ?",
       [limit, offset]
     );
 
-    // récupere le nombre total d'articles
+    // récupere le nombre total d'users
     const totalRow = await db.get("SELECT COUNT (*) as total FROM users");
     const total = totalRow.total;
     console.log("Nombre total d'user :|", total);
