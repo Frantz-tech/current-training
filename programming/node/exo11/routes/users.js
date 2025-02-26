@@ -201,8 +201,12 @@ async function deleteArticles(res, id) {
       return res.end(JSON.stringify({ message: "ID de l'user requis" }));
     }
     const deleteUser = await db.run("DELETE FROM users WHERE id = ?", [id]);
+    const deleteArticle = await db.run(
+      "DELETE FROM articles WHERE user_id = ?",
+      [id]
+    );
 
-    if (deleteUser.changes === 0) {
+    if (deleteUser.changes === 0 && deleteArticle.changes === 0) {
       res.writeHead(404, { "Content-Type": "application/json" });
       return res.end(
         JSON.stringify({ message: "Articlé non trouvé pour la suppression" })

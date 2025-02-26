@@ -107,6 +107,28 @@ async function createArticle(req, res) {
     try {
       const newArticle = JSON.parse(body);
       const db = await openDb();
+
+      // Vérifier si user_id est un nombre
+
+      const userId = parseInt(newArticle.user_id, 10);
+      if (isNaN(userId)) {
+        res.writeHead(400, { "Content-Type": "application/json" });
+        return res.end(
+          JSON.stringify({ error: "User ID n'est pas un nombre " })
+        );
+      }
+
+      const userExist = await db.get("SELECT * FROM users WHERE id = ? ", [
+        newArticle.user_id,
+      ]);
+      if (!userExist) {
+        res.writeHead(400, { "Content-Type": "application/json" });
+        return res.end(
+          JSON.stringify({
+            error: "L'user avec cet Id n'existe pas",
+          })
+        );
+      }
       const result = await db.run(
         "INSERT INTO articles (title, content, user_id) VALUES (?, ?, ?)",
         [newArticle.title, newArticle.content, newArticle.user_id]
