@@ -1,4 +1,5 @@
 import { openDb } from "../utils/db.js";
+import { validateEmail } from "../utils/validator.js";
 
 export async function handleUserRequest(req, res) {
   // Methods
@@ -125,11 +126,7 @@ async function createUser(req, res) {
     try {
       const newUsers = JSON.parse(body);
       const db = await openDb();
-      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      function IsValidEmail(email) {
-        return emailRegex.test(email);
-      }
-      if (!IsValidEmail(newUsers.email)) {
+      if (!validateEmail(newUsers.email)) {
         res.writeHead(400, { "Content-Type": "application/json" });
         return res.end(JSON.stringify({ error: "Email invalide" }));
       }

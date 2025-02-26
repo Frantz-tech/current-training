@@ -1,4 +1,5 @@
 import { openDb } from "../utils/db.js";
+import { validateArticle } from "../utils/validator.js";
 
 export async function handleRequest(req, res) {
   // Methods
@@ -107,7 +108,17 @@ async function createArticle(req, res) {
     try {
       const newArticle = JSON.parse(body);
       const db = await openDb();
+      // Vérifie que le titre fait au moins 3 characters et que le content fait au moins 10 charaters
 
+      const errorArticle = validateArticle(newArticle);
+
+      if (Array.isArray(errorArticle) && errorArticle.length > 0) {
+        console.log(" Obligatoire pour envoyer les données", errorArticle);
+        res.writeHead(400, { "Content-Type": "application/json" });
+        return res.end(
+          JSON.stringify({ error: "Les données sont incorrectes " })
+        );
+      }
       // Vérifier si user_id est un nombre
 
       const userId = parseInt(newArticle.user_id, 10);
