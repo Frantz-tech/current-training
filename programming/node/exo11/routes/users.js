@@ -161,7 +161,7 @@ async function updateUsers(req, res, id) {
     try {
       const newUsers = JSON.parse(body);
       const db = await openDb();
-      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      v;
       function IsValidEmail(email) {
         return emailRegex.test(email);
       }
