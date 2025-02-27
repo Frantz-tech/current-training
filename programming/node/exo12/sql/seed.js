@@ -33,7 +33,7 @@ async function seedDatabase() {
 
     // Insère les données de test
     for (const user of sampleUsers) {
-      await db.run("INSERT INTO users (name,email) VALUES (?, ?)", [
+      await db.run("INSERT INTO users (name, email) VALUES (?, ?)", [
         user.name,
         user.email,
       ]);
@@ -55,5 +55,3 @@ async function seedDatabase() {
 }
 
 seedDatabase();
-
-console.log("Sezegerge");
