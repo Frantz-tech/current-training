@@ -1,13 +1,14 @@
 import http from "node:http";
-import { handleArticlesRequest as handleArtrequest } from "./routes/articles.js";
+import { handleArticlesRequest as handleArtRequest } from "./routes/articles.js";
 import { handleUsersRequest as handleUsRequest } from "./routes/users.js";
 import { logError } from "./utils/logger.js";
-const server = http.createServer(async (res, req) => {
+const server = http.createServer(async (req, res) => {
+  // Cors Headers
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-METHOD", "GET", "POST", "PUT", "DELETE");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  if (req.method === "OPTION") {
+  if (req.method === "OPTIONS") {
     res.writeHead(204); // 204 est une requete no content
     return res.end();
   }
@@ -15,7 +16,8 @@ const server = http.createServer(async (res, req) => {
   try {
     if (req.url.startsWith("/articles")) {
       console.log("Je passe par la route : '/articles' ");
-      await handleArtrequest(res, req);
+      await handleArtRequest(res, req);
+      console.log("bjr");
     } else if (req.url.startsWith("/users")) {
       console.log("Je passe par la route : '/users' ");
       await handleUsRequest(req, res);
