@@ -47,6 +47,7 @@ export async function handleArticle(req, res) {
           const parseArticle = JSON.parse(body);
           const newArticle = await ServiceCreateArticles(db, parseArticle);
           res.writeHead(201, { "Content-Type": "application/json" });
+          console.log("Article crée avec succès");
           res.end(JSON.stringify(newArticle));
         } catch (error) {
           throw new Error(
@@ -68,6 +69,7 @@ export async function handleArticle(req, res) {
             id
           );
           res.writeHead(202, { "Content-Type": "application/json" });
+          console.log("Article modifié avec succès");
 
           return res.end(JSON.stringify(updateArticle));
         } catch (error) {
