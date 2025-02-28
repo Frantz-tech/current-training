@@ -25,3 +25,7 @@
 2025-02-27T18:33:50.317Z - Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed
 2025-02-27T18:37:33.397Z - Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed
 2025-02-27T18:43:11.994Z - Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed
+2025-02-28T07:58:48.173Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-02-28T08:28:45.109Z - ReferenceError: openDb is not defined
+2025-02-28T08:29:03.212Z - ReferenceError: openDb is not defined
+2025-02-28T09:26:39.219Z - ReferenceError: handleRequestUser is not defined

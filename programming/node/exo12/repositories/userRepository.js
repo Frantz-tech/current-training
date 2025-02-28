@@ -1,25 +1,19 @@
-export async function getallUser(res, db) {
+export async function getallUser(db) {
   try {
     return await db.all("SELECT * FROM users");
   } catch (error) {
-    res.writeHead(400, { "Content-Type": "application/json" });
-    return res.end(
-      JSON.stringify({ error: "impossible de récuperer tous les users" })
-    );
+    throw new Error(error);
   }
 }
-export async function getUserById(res, db) {
+export async function getUserById(db) {
   try {
     return await db.all("SELECT * FROM users");
   } catch (error) {
-    res.writeHead(400, { "Content-Type": "application/json" });
-    res.end(
-      JSON.stringify({ error: "Impossible de récupérer l'id de l'user " })
-    );
+    throw new Error(error);
   }
 }
 
-export async function createUser(res, db) {
+export async function createUser(db) {
   try {
     const newUser = await db.run(
       "INSERT INTO users (name, email) VALUES (?, ?)",
@@ -27,14 +21,11 @@ export async function createUser(res, db) {
     );
     console.log(newUser);
   } catch (error) {
-    res.writeHead(400, { "Content-Type": "application/json" });
-    return res.end(
-      JSON.stringify({ error: "impossible d'envoyer le nouvel user" })
-    );
+    throw new Error(error);
   }
 }
 
-export async function updateUser(res, db) {
+export async function updateUser(db) {
   try {
     const updateUser = await db.run(
       "UPDATE INTO users (name, email) VALUES (?, ?)",
@@ -42,17 +33,15 @@ export async function updateUser(res, db) {
     );
     console.log(updateUser);
   } catch (error) {
-    res.writeHead(400, { "Content-Type": "application/json" });
-    return res.end(JSON.stringify({ error: "impossible de modifier l'user" }));
+    throw new Error(error);
   }
 }
 
-export async function deleteUser(res, db) {
+export async function deleteUser(db) {
   try {
     const deleteUser = await db.run("DELETE FROM users WHERE id = ?", [id]);
     console.log(deleteUser);
   } catch (error) {
-    res.writeHead(400, { "Content-Type": "application/json" });
-    return res.end(JSON.stringify({ error: "Impossible de supprimer l'user" }));
+    throw new Error(error);
   }
 }

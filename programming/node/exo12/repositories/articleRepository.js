@@ -1,58 +1,38 @@
-export async function getallArticle(db) {
+export async function getAllArticles(db) {
+  // Lecture des données du JSON
   try {
-    const articles = await db.all("SELECT * FROM articles");
-    return articles;
+    return await db.all("SELECT * FROM articles");
   } catch (error) {
-    res.writeHead(400, { "Content-Type": "application/json" });
-    return res.end(
-      JSON.stringify({ error: "impossible de récuperer tous les articles" })
-    );
-  }
-}
-export async function getArticleById(db, id) {
-  try {
-    const getArticleId = await db.all("SELECT * FROM articles WHERE id =?", [
-      id,
-    ]);
-    console.log(getArticleId);
-    return getArticleId;
-  } catch (error) {
-    res.writeHead(400, { "Content-Type": "application/json" });
-    res.end(
-      JSON.stringify({ error: "Impossible de récupérer l'id de l'article " })
+    throw new Error(
+      `Impossible de récupérer tous les fichiers", ${error.message}`
     );
   }
 }
 
-export async function createArticle(res, db) {
+export async function createArticle(db, body) {
   try {
-    const newArticle = await db.run(
-      "INSERT INTO articles (title, content, user_id) VALUES (?, ?, ?)",
-      [newArticle.title, newArticle.content, newArticle.user_id]
+    await db.run(
+      "INSERT INTO articles ( title, content, user_id) VALUES(?, ?, ?)",
+      [body.title, body.content, body.user_id]
     );
-    console.log(newArticle);
-    return newArticle;
+
+    console.log("repository | createArticle | données de l'ajout  | : ", body);
+    return { id: result.lastID, ...body };
   } catch (error) {
-    res.writeHead(400, { "Content-Type": "application/json" });
-    return res.end(
-      JSON.stringify({ error: "impossible d'envoyer le nouvel article" })
-    );
+    throw new Error(`Impossible de créer un nouvel article ${error.message}`);
   }
 }
 
-export async function updateArticle(res, db, id) {
+export async function updateArticle(db, id) {
   try {
     const updateResult = await db.run(
       "UPDATE articles SET title = ?, content =?, user_id =? WHERE id = ?",
       [newArticle.title, newArticle.content, newArticle.user_id, id]
     );
-    return updateResult;
     console.log(updateResult);
+    return updateResult;
   } catch (error) {
-    res.writeHead(400, { "Content-Type": "application/json" });
-    return res.end(
-      JSON.stringify({ error: "impossible de modifier l'article" })
-    );
+    throw new Error(error);
   }
 }
 
@@ -63,9 +43,6 @@ export async function deleteArticle(db, id) {
     ]);
     console.log(deleteResult);
   } catch (error) {
-    res.writeHead(400, { "Content-Type": "application/json" });
-    return res.end(
-      JSON.stringify({ error: "Impossible de supprimer l'article" })
-    );
+    throw new Error(error);
   }
 }

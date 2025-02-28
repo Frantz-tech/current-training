@@ -1,6 +1,6 @@
-export function errorServer(res) {
+export function errorServer(res, message) {
   res.writeHead(500, { "Content-Type": "application/json" });
-  return res.end(JSON.stringify({ error: "Error server" }));
+  return res.end(JSON.stringify(message));
 }
 
 export function errorJson(res) {
