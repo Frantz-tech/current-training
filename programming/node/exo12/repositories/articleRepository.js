@@ -43,7 +43,8 @@ export async function deleteArticle(db, id) {
       id,
     ]);
     console.log(deleteResult);
+    return id;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(`${error.message}`);
   }
 }

@@ -1,5 +1,6 @@
 import {
-  ServiceCreateArticle,
+  ServiceCreateArticles,
+  ServiceDeleteArticles,
   ServiceGetAllArticles,
   ServiceUpdateArticles,
 } from "../services/articleService.js";
@@ -43,7 +44,7 @@ export async function handleArticle(req, res) {
       req.on("end", async () => {
         try {
           const parseArticle = JSON.parse(body);
-          const newArticle = await ServiceCreateArticle(db, parseArticle);
+          const newArticle = await ServiceCreateArticles(db, parseArticle);
           res.writeHead(201, { "Content-Type": "application/json" });
           res.end(JSON.stringify(newArticle));
         } catch (error) {
@@ -74,7 +75,9 @@ export async function handleArticle(req, res) {
       console.log(typeof body);
     } else if (req.method === "DELETE" && id !== null) {
       //Method DELETE
-      await deleteArticles(res, id);
+      const deleteArt = await ServiceDeleteArticles(db, id);
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify(deleteArt));
     } else {
       // Route inconnue
       res.writeHead(404, { "Content-Type": "application/json" });

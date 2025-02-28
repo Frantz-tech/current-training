@@ -1,5 +1,6 @@
 import {
   createArticle,
+  deleteArticle,
   getAllArticles,
   updateArticle,
 } from "../repositories/articleRepository.js";
@@ -11,7 +12,7 @@ export async function ServiceGetAllArticles(db) {
   return article;
 }
 
-export async function ServiceCreateArticle(db, body) {
+export async function ServiceCreateArticles(db, body) {
   // Method POST
   try {
     const errorArticle = validateArticle(body);
@@ -40,35 +41,11 @@ export async function ServiceUpdateArticles(db, body, id) {
   }
 }
 
-export async function deleteArticles(res, id) {
+export async function ServiceDeleteArticles(db, id) {
   try {
-    const db = await openDb();
-    // const idMatch = req.url.match(/^\/articles\/(\d+)$/);
-    // const id = idMatch ? parseInt(idMatch[1], 10) : null;
-    if (isNaN(id) || !id) {
-      res.writeHead(400, { "Content-Type": "application/json" });
-      return res.end(JSON.stringify({ message: "ID de l'article requis" }));
-    }
-    const deleteArt = await db.run("DELETE FROM articles WHERE id = ?", [id]);
-
-    if (deleteArt.changes === 0) {
-      res.writeHead(404, { "Content-Type": "application/json" });
-      return res.end(
-        JSON.stringify({ message: "Articlé non trouvé pour la suppression" })
-      );
-    }
-    res.writeHead(200, { "Content-Type": "application/json" });
-    return res.end(
-      JSON.stringify({
-        message: `Article supprimé avec succès`,
-        id,
-      })
-    );
+    const deleteArt = await deleteArticle(db, id);
+    return deleteArt;
   } catch (error) {
-    console.error(error);
-    res.writeHead(500, { "Content-Type": "application/json" });
-    return res.end(
-      JSON.stringify({ message: "Impossible de supprimer l'article" })
-    );
+    console.log(`Impossible de supprimer l'article`);
   }
 }
