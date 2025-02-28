@@ -1,7 +1,8 @@
+import { openDb } from "../utils/db.js";
+import { errorServer } from "../utils/errors/errorHandler.js";
+
 export async function handleUsersRequest(req, res) {
   try {
-    console.log("Methode utilisée | : ", req.method);
-    console.log("Url utilisée | :", req.url);
     const db = await openDb();
     const idMatch = req.url.match(/^\/users\/(\d+)$/);
     const id = idMatch ? parseInt(idMatch[1], 10) : null;
@@ -16,6 +17,6 @@ export async function handleUsersRequest(req, res) {
     } else {
     }
   } catch (error) {
-    throw new Error(" pas de données");
+    return errorServer;
   }
 }

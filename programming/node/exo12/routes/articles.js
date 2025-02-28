@@ -1,20 +1,36 @@
-import { getArticle } from "../repositories/articleRepository.js";
-import { succesRequest } from "../utils/errors/succesReq.js";
+import {
+  createArticle,
+  getallArticle,
+} from "../repositories/articleRepository.js";
+import { errorServer } from "../utils/errors/errorHandler.js";
+import { errorNotFound } from "../utils/errors/notFoundError.js";
 
 export async function handleArticlesRequest(req, res) {
   try {
+    console.log("hello");
     if (req.method === "GET") {
-      console.log("je suis dans le handle");
+      try {
+        const articles = await getallArticle(db);
+        res.writeHead(200, { "Content-Type": "application/json" });
+        return res.end(JSON.stringify(articles));
+      } catch {
+        return errorNotFound(res);
+      }
+    } else if (req.method === "POST") {
+      try {
+        console.log("je suis en post ", typeof articles);
+        const articles = await createArticle(db);
+        res.writeHead(200, { "Content-Type": "application/json" });
 
-      await getArticle(req, res, db);
-      await succesRequest(message);
+        return res.end(JSON.stringify(articles));
+      } catch {
+        return errorNotFound(res);
+      }
+    } else if (req.method === "PUT") {
+    } else if (req.method === "DELETE") {
+    } else {
     }
-    // else if (req.method === "POST") {
-    // } else if (req.method === "PUT") {
-    // } else if (req.method === "DELETE") {
-    // } else {
-    // }
   } catch (error) {
-    throw new Error();
+    return errorServer(res);
   }
 }
