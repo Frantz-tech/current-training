@@ -4,7 +4,7 @@ import {
   getAllArticles,
   updateArticle,
 } from "../repositories/articleRepository.js";
-import { validateArticle } from "../utils/validator/emailValidator.js";
+import { validateArticle } from "../utils/validator/articleValidator.js";
 
 export async function ServiceGetAllArticles(db) {
   // Lecture des données du JSON

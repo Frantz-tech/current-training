@@ -61,13 +61,13 @@ export async function handleArticle(req, res) {
       req.on("end", async () => {
         try {
           const parseArticle = JSON.parse(body);
-          const updateArticlerticle = await ServiceUpdateArticles(
+          const updateArticle = await ServiceUpdateArticles(
             db,
             parseArticle,
             id
           );
           res.writeHead(202, { "Content-Type": "application/json" });
-          return res.end(JSON.stringify(updateArticlerticle));
+          return res.end(JSON.stringify(updateArticle));
         } catch (error) {
           throw new Error(`${error.message}`);
         }

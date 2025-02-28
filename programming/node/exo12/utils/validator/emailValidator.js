@@ -1,10 +1,8 @@
-export function validateArticle(article) {
-  const errors = [];
-  if (!article.title || article.title.length < 3) {
-    errors.push("Title must be at least 3 characters");
-  }
-  if (!article.content || article.content.length < 10) {
-    errors.push("Content must be at least 10 characters");
-  }
-  return errors;
+export function validateEmail(email) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const errorUser = [];
+  if (!email.match(regex)) errorUser.push("Email must respect syntax");
+
+  return errorUser;
 }

@@ -1,47 +1,49 @@
-export async function getallUser(db) {
+export async function getAllUser(db) {
+  // Lecture des données du JSON
   try {
     return await db.all("SELECT * FROM users");
   } catch (error) {
-    throw new Error(error);
-  }
-}
-export async function getUserById(db) {
-  try {
-    return await db.all("SELECT * FROM users");
-  } catch (error) {
-    throw new Error(error);
-  }
-}
-
-export async function createUser(db) {
-  try {
-    const newUser = await db.run(
-      "INSERT INTO users (name, email) VALUES (?, ?)",
-      [newUser.name, newUser.email]
+    throw new Error(
+      `Impossible de récupérer tous les users", ${error.message}`
     );
-    console.log(newUser);
-  } catch (error) {
-    throw new Error(error);
   }
 }
 
-export async function updateUser(db) {
+export async function createUser(db, body) {
   try {
-    const updateUser = await db.run(
-      "UPDATE INTO users (name, email) VALUES (?, ?)",
-      [updateUser.name, updateUser.email]
-    );
-    console.log(updateUser);
+    await db.run("INSERT INTO users ( name,email) VALUES(?, ?)", [
+      body.name,
+      body.email,
+    ]);
+
+    console.log("repository | createUser | données de l'ajout  | : ", body);
+    return body;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(`Impossible de créer un nouvel user ${error.message}`);
   }
 }
 
-export async function deleteUser(db) {
+export async function updateUser(db, body, id) {
+  console.log("user repository | id :", id);
   try {
-    const deleteUser = await db.run("DELETE FROM users WHERE id = ?", [id]);
-    console.log(deleteUser);
+    await db.run("UPDATE users SET name = ?, email =? WHERE id = ?", [
+      body.name,
+      body.email,
+      id,
+    ]);
+    console.log("repository | updateUser | données modifié  | : ", body);
+    return body;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(` ${error.message}`);
+  }
+}
+
+export async function deleteUser(db, id) {
+  try {
+    const deleteResult = await db.run("DELETE FROM users WHERE id = ?", [id]);
+
+    return id;
+  } catch (error) {
+    throw new Error(`${error.message}`);
   }
 }

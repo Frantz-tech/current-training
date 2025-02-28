@@ -1,5 +1,6 @@
 import http from "node:http";
 import { handleArticle as handleArticleRequest } from "./routes/articles.js";
+import { handleUsers as handleUserRequest } from "./routes/users.js";
 import { logError } from "./utils/logger.js";
 const server = http.createServer(async (req, res) => {
   // Cors Headers
@@ -18,7 +19,7 @@ const server = http.createServer(async (req, res) => {
       await handleArticleRequest(req, res);
     } else if (req.url.startsWith("/users")) {
       console.log("Je passe bien par /users");
-      await handleRequestUser(req, res);
+      await handleUserRequest(req, res);
     } else {
       res.writeHead(404, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ error: "Page non trouvée" }));
