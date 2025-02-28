@@ -19,7 +19,7 @@ export async function createUser(db, body) {
     console.log("repository | createUser | données de l'ajout  | : ", body);
     return body;
   } catch (error) {
-    throw new Error(`Impossible de créer un nouvel user ${error.message}`);
+    throw new Error(`${error.message}`);
   }
 }
 

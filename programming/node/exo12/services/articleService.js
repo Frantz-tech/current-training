@@ -23,7 +23,7 @@ export async function ServiceCreateArticles(db, body) {
     const newArticle = await createArticle(db, body);
     return newArticle;
   } catch (error) {
-    throw new Error(`Impossible de créer l'article : ${error.message}`);
+    throw new Error(`${error.message}`);
   }
 }
 

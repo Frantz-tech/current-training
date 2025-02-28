@@ -20,6 +20,7 @@ export async function handleArticle(req, res) {
       try {
         const articles = await ServiceGetAllArticles(db);
         res.writeHead(200, { "Content-Type": "application/json" });
+        console.log("Articles trouvé avec succès");
         return res.end(JSON.stringify(articles));
       } catch (error) {
         return errorServer();
@@ -28,7 +29,6 @@ export async function handleArticle(req, res) {
       // Method GET avec ID
       console.log("Method utilisée | : ", req.method, "avec ID");
       const articles = await ServiceGetAllArticles(db);
-      console.log(typeof articles);
 
       const article = articles.find((a) => a.id === id);
       if (!article) {
@@ -36,7 +36,8 @@ export async function handleArticle(req, res) {
         return res.end(JSON.stringify({ error: "Article non trouvé" }));
       }
       res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify(article));
+      console.log("Article avec id trouvé avec succès");
+      return res.end(JSON.stringify(article));
     } else if (req.method === "POST" && req.url === "/articles") {
       //Method POST
       let body = "";
@@ -67,6 +68,7 @@ export async function handleArticle(req, res) {
             id
           );
           res.writeHead(202, { "Content-Type": "application/json" });
+
           return res.end(JSON.stringify(updateArticle));
         } catch (error) {
           throw new Error(`${error.message}`);
@@ -77,7 +79,8 @@ export async function handleArticle(req, res) {
       //Method DELETE
       const deleteArt = await ServiceDeleteArticles(db, id);
       res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify(deleteArt));
+      console.log("Article supprimé avec succès");
+      return res.end(JSON.stringify(deleteArt));
     } else {
       // Route inconnue
       res.writeHead(404, { "Content-Type": "application/json" });

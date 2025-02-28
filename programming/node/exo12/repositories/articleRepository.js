@@ -19,7 +19,7 @@ export async function createArticle(db, body) {
     console.log("repository | createArticle | données de l'ajout  | : ", body);
     return body;
   } catch (error) {
-    throw new Error(`Impossible de créer un nouvel article ${error.message}`);
+    throw new Error(`${error.message}`);
   }
 }
 

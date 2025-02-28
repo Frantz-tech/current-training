@@ -1,6 +1,6 @@
-import { ServiceDeleteArticles } from "../services/articleService.js";
 import {
   ServiceCreateUser,
+  ServiceDeleteUser,
   ServiceGetAllUser,
   ServiceUpdateUser,
 } from "../services/userService.js";
@@ -24,6 +24,7 @@ export async function handleUsers(req, res) {
       try {
         const users = await ServiceGetAllUser(db);
         res.writeHead(200, { "Content-Type": "application/json" });
+        console.log("Users trouvé avec succès");
         return res.end(JSON.stringify(users));
       } catch (error) {
         return errorServer();
@@ -40,7 +41,8 @@ export async function handleUsers(req, res) {
         return res.end(JSON.stringify({ error: "User non trouvé" }));
       }
       res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify(user));
+      console.log("Users avec ID trouvé avec succès");
+      return res.end(JSON.stringify(user));
     } else if (req.method === "POST" && req.url === "/users") {
       //Method POST
       let body = "";
@@ -50,7 +52,8 @@ export async function handleUsers(req, res) {
           const parseUser = JSON.parse(body);
           const newUser = await ServiceCreateUser(db, parseUser);
           res.writeHead(201, { "Content-Type": "application/json" });
-          res.end(JSON.stringify(newUser));
+          console.log("Users crée avec succès");
+          return res.end(JSON.stringify(newUser));
         } catch (error) {
           throw new Error(
             `Impossible de créer un nouvel user, ${error.message}`
@@ -67,6 +70,7 @@ export async function handleUsers(req, res) {
           const parseUser = JSON.parse(body);
           const updateUser = await ServiceUpdateUser(db, parseUser, id);
           res.writeHead(202, { "Content-Type": "application/json" });
+          console.log("User modifié avec succès");
           return res.end(JSON.stringify(updateUser));
         } catch (error) {
           throw new Error(`${error.message}`);
@@ -75,9 +79,12 @@ export async function handleUsers(req, res) {
       console.log(typeof body);
     } else if (req.method === "DELETE" && id !== null) {
       //Method DELETE
-      const deleteArt = await ServiceDeleteArticles(db, id);
+      const deleteUs = await ServiceDeleteUser(db, id);
+      console.log("ici", deleteUs);
+
       res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify(deleteArt));
+      console.log("User supprimé avec succès");
+      return res.end(JSON.stringify(deleteUs));
     } else {
       // Route inconnue
       res.writeHead(404, { "Content-Type": "application/json" });
