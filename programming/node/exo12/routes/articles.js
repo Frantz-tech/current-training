@@ -1,6 +1,7 @@
 import {
   ServiceCreateArticle,
   ServiceGetAllArticles,
+  ServiceUpdateArticles,
 } from "../services/articleService.js";
 import { openDb } from "../utils/db.js";
 import { errorServer } from "../utils/errors/errorHandler.js";
@@ -54,7 +55,23 @@ export async function handleArticle(req, res) {
       console.log(typeof body);
     } else if (req.method === "PUT" && id !== null) {
       //Method PUT
-      await updateArticles(req, res, id);
+      let body = "";
+      req.on("data", (chunk) => (body += chunk));
+      req.on("end", async () => {
+        try {
+          const parseArticle = JSON.parse(body);
+          const updateArticlerticle = await ServiceUpdateArticles(
+            db,
+            parseArticle,
+            id
+          );
+          res.writeHead(202, { "Content-Type": "application/json" });
+          return res.end(JSON.stringify(updateArticlerticle));
+        } catch (error) {
+          throw new Error(`${error.message}`);
+        }
+      });
+      console.log(typeof body);
     } else if (req.method === "DELETE" && id !== null) {
       //Method DELETE
       await deleteArticles(res, id);

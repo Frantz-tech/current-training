@@ -23,16 +23,17 @@ export async function createArticle(db, body) {
   }
 }
 
-export async function updateArticle(db, id) {
+export async function updateArticle(db, body, id) {
+  console.log("article repository | id :", id);
   try {
-    const updateResult = await db.run(
+    await db.run(
       "UPDATE articles SET title = ?, content =?, user_id =? WHERE id = ?",
-      [newArticle.title, newArticle.content, newArticle.user_id, id]
+      [body.title, body.content, body.user_id, id]
     );
-    console.log(updateResult);
-    return updateResult;
+    console.log("repository | updateArticle | données modifié  | : ", body);
+    return body;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(` ${error.message}`);
   }
 }
 
