@@ -42,7 +42,7 @@ export async function deleteArticle(db, id) {
     const deleteResult = await db.run("DELETE FROM articles WHERE id = ?", [
       id,
     ]);
-    console.log(deleteResult);
+
     return id;
   } catch (error) {
     throw new Error(`${error.message}`);
