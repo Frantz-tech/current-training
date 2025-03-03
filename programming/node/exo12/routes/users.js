@@ -25,7 +25,7 @@ export async function handleUsers(req, res) {
         const users = await ServiceGetAllUser(db);
         res.writeHead(200, { "Content-Type": "application/json" });
         console.log("Users trouvé avec succès");
-        return res.end(JSON.stringify(users));
+        return res.end(JSON.stringify({ message: "Info", data: users }));
       } catch (error) {
         return errorServer();
       }
@@ -33,7 +33,6 @@ export async function handleUsers(req, res) {
       // Method GET avec ID
       console.log("Method utilisée | : ", req.method, "avec ID");
       const users = await ServiceGetAllUser(db);
-      console.log(typeof users);
 
       const user = users.find((a) => a.id === id);
       if (!user) {
@@ -52,15 +51,13 @@ export async function handleUsers(req, res) {
           const parseUser = JSON.parse(body);
           const newUser = await ServiceCreateUser(db, parseUser);
           res.writeHead(201, { "Content-Type": "application/json" });
-          console.log("Users crée avec succès");
-          return res.end(JSON.stringify(newUser));
+          return res.end(JSON.stringify({ message: "Info", data: newUser }));
         } catch (error) {
           throw new Error(
             `Impossible de créer un nouvel user, ${error.message}`
           );
         }
       });
-      console.log(typeof body);
     } else if (req.method === "PUT" && id !== null) {
       //Method PUT
       let body = "";
@@ -70,21 +67,28 @@ export async function handleUsers(req, res) {
           const parseUser = JSON.parse(body);
           const updateUser = await ServiceUpdateUser(db, parseUser, id);
           res.writeHead(202, { "Content-Type": "application/json" });
-          console.log("User modifié avec succès");
-          return res.end(JSON.stringify(updateUser));
+          return res.end(
+            JSON.stringify({
+              message: "Info",
+              data: updateUser,
+            })
+          );
         } catch (error) {
           throw new Error(`${error.message}`);
         }
       });
-      console.log(typeof body);
     } else if (req.method === "DELETE" && id !== null) {
       //Method DELETE
       const deleteUs = await ServiceDeleteUser(db, id);
       console.log("ici", deleteUs);
 
       res.writeHead(200, { "Content-Type": "application/json" });
-      console.log("User supprimé avec succès");
-      return res.end(JSON.stringify(deleteUs));
+      return res.end(
+        JSON.stringify({
+          message: "Info",
+          data: deleteUs,
+        })
+      );
     } else {
       // Route inconnue
       res.writeHead(404, { "Content-Type": "application/json" });

@@ -39,3 +39,11 @@
 2025-03-03T07:52:47.631Z - Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed
 2025-03-03T07:53:33.100Z - Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed
 2025-03-03T07:55:20.173Z - Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed
+2025-03-03T14:16:09.134Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-03T14:16:20.967Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-03T14:16:45.982Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-03T14:17:24.720Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-03T14:17:32.226Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-03T14:17:45.181Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-03T14:17:49.408Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-03T14:18:35.660Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client

@@ -21,7 +21,7 @@ export async function handleArticle(req, res) {
         const articles = await ServiceGetAllArticles(db);
         res.writeHead(200, { "Content-Type": "application/json" });
         console.log("Articles trouvé avec succès");
-        return res.end(JSON.stringify(articles));
+        return res.end(JSON.stringify({ message: "Info", data: articles }));
       } catch (error) {
         return errorServer();
       }
@@ -48,7 +48,7 @@ export async function handleArticle(req, res) {
           const newArticle = await ServiceCreateArticles(db, parseArticle);
           res.writeHead(201, { "Content-Type": "application/json" });
           console.log("Article crée avec succès");
-          res.end(JSON.stringify(newArticle));
+          res.end(JSON.stringify({ message: "Info", data: newArticle }));
         } catch (error) {
           throw new Error(
             `Impossible de créer un nouvel article, ${error.message}`
@@ -71,7 +71,9 @@ export async function handleArticle(req, res) {
           res.writeHead(202, { "Content-Type": "application/json" });
           console.log("Article modifié avec succès");
 
-          return res.end(JSON.stringify(updateArticle));
+          return res.end(
+            JSON.stringify({ message: "Info", data: updateArticle })
+          );
         } catch (error) {
           throw new Error(`${error.message}`);
         }
@@ -82,7 +84,7 @@ export async function handleArticle(req, res) {
       const deleteArt = await ServiceDeleteArticles(db, id);
       res.writeHead(200, { "Content-Type": "application/json" });
       console.log("Article supprimé avec succès");
-      return res.end(JSON.stringify(deleteArt));
+      return res.end(JSON.stringify({ message: "Info", data: deleteArt }));
     } else {
       // Route inconnue
       res.writeHead(404, { "Content-Type": "application/json" });
