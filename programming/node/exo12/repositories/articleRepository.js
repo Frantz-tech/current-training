@@ -23,17 +23,17 @@ export async function createArticle(db, body) {
   }
 }
 
-export async function updateUser(db, body, id) {
+export async function updateArticle(db, body, id) {
   console.log("user repository | id :", id);
   try {
     const result = await db.run(
-      "UPDATE users SET name = ?, email = ? WHERE id = ?",
+      "UPDATE articles SET name = ?, email = ? WHERE id = ?",
       [body.name, body.email, id]
     );
     if (result.changes === 0) {
-      throw new Error(`No user found with this ID `); // Message modifié pour correspondre au test
+      throw new Error(`No articles found with this ID `); // Message modifié pour correspondre au test
     }
-    console.log("repository | updateUser | données modifiées | : ", body);
+    console.log("repository | updateArticle | données modifiées | : ", body);
     return body;
   } catch (error) {
     throw new Error(` ${error.message}`);
