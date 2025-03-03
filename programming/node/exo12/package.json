@@ -5,11 +5,13 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --test",
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "reset-db": "rm -f database.db && node sql/seed.js",
-    "init-db": "node sql/seed.js"
+    "reset-db": "del /f database.db && node sql/seed.js",
+    "reset-datab": "del /f database.db && node sql/seed2.js",
+    "init-db": "node sql/seed.js",
+    "init-datab": "node sql/seed2.js"
   },
   "keywords": [],
   "author": "",

@@ -30,6 +30,8 @@ async function seedDatabase() {
     // Supprime les données existantes
     await db.run("DELETE FROM articles");
     await db.run("DELETE FROM users");
+    await db.run("DELETE FROM sqlite_sequence WHERE name='users'");
+    await db.run("DELETE FROM sqlite_sequence WHERE name='articles'");
 
     // Insère les données de test
     for (const user of sampleUsers) {

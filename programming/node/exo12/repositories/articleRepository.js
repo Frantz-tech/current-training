@@ -23,14 +23,17 @@ export async function createArticle(db, body) {
   }
 }
 
-export async function updateArticle(db, body, id) {
-  console.log("article repository | id :", id);
+export async function updateUser(db, body, id) {
+  console.log("user repository | id :", id);
   try {
-    await db.run(
-      "UPDATE articles SET title = ?, content =?, user_id =? WHERE id = ?",
-      [body.title, body.content, body.user_id, id]
+    const result = await db.run(
+      "UPDATE users SET name = ?, email = ? WHERE id = ?",
+      [body.name, body.email, id]
     );
-    console.log("repository | updateArticle | données modifié  | : ", body);
+    if (result.changes === 0) {
+      throw new Error(`No user found with this ID `); // Message modifié pour correspondre au test
+    }
+    console.log("repository | updateUser | données modifiées | : ", body);
     return body;
   } catch (error) {
     throw new Error(` ${error.message}`);
@@ -42,6 +45,10 @@ export async function deleteArticle(db, id) {
     const deleteResult = await db.run("DELETE FROM articles WHERE id = ?", [
       id,
     ]);
+    console.log(
+      "repository | deleteArticle | données supprimées  | : ",
+      deleteResult
+    );
 
     return id;
   } catch (error) {

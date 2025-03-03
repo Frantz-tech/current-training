@@ -33,3 +33,9 @@
 2025-02-28T14:36:42.703Z - ReferenceError: handleRequestUser is not defined
 2025-02-28T16:19:17.457Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
 2025-02-28T16:20:03.213Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-03T07:50:51.095Z - Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed
+2025-03-03T07:51:58.025Z - Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed
+2025-03-03T07:52:09.840Z - Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed
+2025-03-03T07:52:47.631Z - Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed
+2025-03-03T07:53:33.100Z - Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed
+2025-03-03T07:55:20.173Z - Error: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed
