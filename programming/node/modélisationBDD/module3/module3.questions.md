@@ -69,6 +69,9 @@ id_auteur[PK,FK] && id_livre[PK,FK]
 
 - Comment représenteriez-vous le fait qu'un exemplaire ne peut être emprunté que par un seul membre à la fois?
 
+=> Pour qu'un exemplaire ne peux etre emprunté que par un seul membre a la fois, il faut rajouter un booléan par exemple avec un attribut statut
+" Emprunté " || " Disponible "
+
 **6. Normalisation des données**
 
 - Qu'est-ce que la normalisation et pourquoi est-elle importante?
