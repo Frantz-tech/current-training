@@ -3,19 +3,45 @@
 **1. Introduction au MCD**
 
 - Qu'est-ce qu'un Modèle Conceptuel de Données (MCD) et pourquoi est-il utile avant de créer une base de données?
+
+=> Un MCD est une représentation graphique des données qui permet de créer la structure des informations 
+sans parler d'implémentation.
+
 - Quelle est la différence entre une simple liste de tables et un MCD?
+
+=> Une liste de table est une simple liste dans laquelle va afficher les éléments principaux, cependant un MCD 
+est un shéma qui représente le fonctionnement logique de la BDD, il va permettre de montrer les relations, les cardinalités.
+C'est un outil qui permet de voir clairement la structure de la base de donnée
 
 **2. Entités et attributs**
 
 - Qu'est-ce qu'une entité dans un MCD? Comment la représente-t-on visuellement?
+
+=> Une entité dans un MCD ce sont les objet réels que nous voulons modéliser, chaque object est nommé avec un nom singulier
+et ils correspondront par la suite a une table dans la future BDD 
+
 - Quelles sont les entités principales que nous avons identifiées pour notre bibliothèque dans le Module 1?
+
+=> Dans le module 1 nous avons identifié 5 entités : Livre | Auteur | Catégories | Membre | Emprunt
+
 - Comment indique-t-on qu'un attribut est un identifiant (clé primaire) dans un MCD?
+
+=> On lui rajoute _id par exemple livre_id (PK) 
 
 **3. Associations entre entités**
 
 - Qu'est-ce qu'une association dans un MCD? Comment la représente-t-on visuellement?
+
+=> Une association dans un MCD est un lien logique entre plusieurs entités, ces associations sont nommés avec des verbes
+
 - Proposez une association entre l'entité LIVRE et l'entité AUTEUR. Comment la nommeriez-vous?
+
+=> L'association entre livre et auteur pourrait se nommer "ECRIS", (l'auteur écris le livre)
+
 - Peut-on ajouter des attributs à une association? Si oui, donnez un exemple dans le contexte de la bibliothèque.
+
+=> Oui il est possible d'ajouter un attribut a une association : par exemple, un livre peut être écris par plusieurs auteurs , 
+on peut donc mettre en attribut la date de leurs collaboration car elle n'appartient pas vraiment à livre ni à auteur
 
 **4. Cardinalités**
 
