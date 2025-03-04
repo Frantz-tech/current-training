@@ -72,8 +72,41 @@ id_auteur[PK,FK] && id_livre[PK,FK]
 **6. Normalisation des données**
 
 - Qu'est-ce que la normalisation et pourquoi est-elle importante?
+
+=> La normalisation conciste a éviter la redondance, elle est important car elle permet de séparer les informations en groupe pour
+avoir une meilleur lisibilité des tables
+
 - Expliquez brièvement ce qu'est la première forme normale (1NF).
+
+=> La première forme normale 1NF conciste à décomposer en plusieurs tables dans lesquels chacune représente une catégorie spécifique
+et contient qu'une seule valeur
+
 - Donnez un exemple de table non normalisée dans notre contexte de bibliothèque et montrez comment la mettre en première forme normale.
+
+=> Une table non normalisé serai par exemple :
+
+                 ///LIVRE\\\
+      -----------------------------------
+      Id_livre        ||        1
+      -----------------------------------
+      nom_Auteur      || Jean, Martin
+      -----------------------------------
+      Categorie       || S-F, Horreur
+      -----------------------------------
+
+=> Pour la normaliser, il faudrai décomposer les tables :
+
+Méthode 1NF
+Pour la table livre : Pour la table Auteur : Pour la table Categorie :
+
+      Livre_1NF_Livre            Livre_1NF_Auteur              Livre_1NF_Categorie
+      ----------------          ------------------            -----------------------
+        id_Livre [PK]              id_Livre [FK]                   id_Livre [FK]
+      ----------------          ------------------            -----------------------
+        n om_Livre                    Auteur                         Categorie
+      ----------------          ------------------            -----------------------
+           ISBN
+      ----------------
 
 **7. Exercice pratique**
 
