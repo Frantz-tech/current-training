@@ -1,0 +1,10 @@
+# Phase 1 - Cours - Modélisation des Bases de Données
+
+### Notre exemple fil rouge : gestion d'une bibliothèque
+
+Tout au long du cours, nous travaillerons sur un exemple concret : la création d'un système de gestion pour une bibliothèque. Ce cas d'usage nous permettra de :
+
+- Identifier des entités concrètes (livres, auteurs, membres, emprunts...)
+- Établir des relations variées entre ces entités
+- Rencontrer des problématiques réelles de modélisation
+- Voir l'évolution complète du projet, de la conception à l'implémentation

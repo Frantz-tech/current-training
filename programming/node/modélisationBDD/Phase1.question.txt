@@ -2,7 +2,8 @@
 
 **1. Découverte du concept**
 
-- Qu'est-ce qu'une base de données et pourquoi serait-elle utile pour gérer une bibliothèque par rapport à une liste sur papier ou un fichier Excel?
+- Qu'est-ce qu'une base de données et pourquoi serait-elle utile pour gérer une bibliothèque par rapport à une liste sur papier 
+ou un fichier Excel?
 
 => Une base de donnée c'est un ensemble d'informations qui sont structurées et stockées de manière stricte.
 
@@ -78,8 +79,12 @@ le but est d'optimiser les informations
 
 **7. Bonus : Réflexion sur l'organisation des données**
 
-- Si vous deviez noter dans quelle catégorie se trouve chaque livre, où placeriez-vous cette information: dans la table LIVRES ou dans la table CATEGORIES? Expliquez votre raisonnement.
+- Si vous deviez noter dans quelle catégorie se trouve chaque livre, où placeriez-vous cette information: dans la table LIVRES ou dans
+la table CATEGORIES? Expliquez votre raisonnement.
 
 => Dans la table livre, je rajouterai un attribut catégorie, que je lierai à la clé catégories_id 
 
 - Un livre peut-il appartenir à plusieurs catégories? Comment pourriez-vous gérer cette situation?
+
+=> Oui, un livre peut avoir plusieurs catégories, il faudrait créer une table pivot ( Livre_catégories ) 
+qui récupère le (livre_id & catégorie_id) pour ajouter autant de catégories que le livre possède
