@@ -1,0 +1,45 @@
+### Questions - Modèle Conceptuel de Données
+
+**1. Introduction au MCD**
+
+- Qu'est-ce qu'un Modèle Conceptuel de Données (MCD) et pourquoi est-il utile avant de créer une base de données?
+- Quelle est la différence entre une simple liste de tables et un MCD?
+
+**2. Entités et attributs**
+
+- Qu'est-ce qu'une entité dans un MCD? Comment la représente-t-on visuellement?
+- Quelles sont les entités principales que nous avons identifiées pour notre bibliothèque dans le Module 1?
+- Comment indique-t-on qu'un attribut est un identifiant (clé primaire) dans un MCD?
+
+**3. Associations entre entités**
+
+- Qu'est-ce qu'une association dans un MCD? Comment la représente-t-on visuellement?
+- Proposez une association entre l'entité LIVRE et l'entité AUTEUR. Comment la nommeriez-vous?
+- Peut-on ajouter des attributs à une association? Si oui, donnez un exemple dans le contexte de la bibliothèque.
+
+**4. Cardinalités**
+
+- Qu'est-ce qu'une cardinalité dans un MCD?
+- Expliquez la signification des cardinalités suivantes avec un exemple concret pour chacune dans le contexte de la bibliothèque:
+    - (0,1)
+    - (1,1)
+    - (0,N)
+    - (1,N)
+
+**5. La nouvelle entité EXEMPLAIRE**
+
+- Pourquoi serait-il utile de créer une entité EXEMPLAIRE distincte de l'entité LIVRE?
+- Quels attributs cette entité EXEMPLAIRE pourrait-elle avoir?
+- Quelle serait la relation entre LIVRE et EXEMPLAIRE? Précisez les cardinalités.
+
+**6. L'entité EMPRUNT**
+
+- Maintenant que nous avons nos entités de base, nous devons gérer les emprunts de livres.
+- Quels attributs seraient nécessaires pour une entité EMPRUNT?
+- Quelles associations cette entité aurait-elle avec les autres entités? Précisez les cardinalités.
+
+**7. Exercice pratique**
+
+- En utilisant draw.io, créez un MCD complet pour notre bibliothèque incluant au minimum les entités LIVRE, AUTEUR, CATEGORIE, MEMBRE, EXEMPLAIRE et EMPRUNT.
+- Représentez toutes les associations entre ces entités avec leurs cardinalités.
+- Pour chaque entité, incluez au moins trois attributs dont un identifiant.

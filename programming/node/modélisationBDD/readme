@@ -8,3 +8,10 @@ Tout au long du cours, nous travaillerons sur un exemple concret : la création 
 - Établir des relations variées entre ces entités
 - Rencontrer des problématiques réelles de modélisation
 - Voir l'évolution complète du projet, de la conception à l'implémentation
+
+## Ressources additionnelles
+
+- [SQL.sh](https://sql.sh/) - Tutoriels et référence SQL en français
+- [dbdiagram.io](https://dbdiagram.io/) - Outil en ligne pour la modélisation
+- [SQLiteBrowser](https://sqlitebrowser.org/) - Interface graphique pour manipuler des bases SQLite
+- [W3Schools SQL Tutorial](https://www.w3schools.com/sql/) - Tutoriel SQL interactif (en anglais)
