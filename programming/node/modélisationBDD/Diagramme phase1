@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36" version="26.0.16">
   <diagram name="Page-1" id="tjMzj4kS5-qTc39onzRA">
-    <mxGraphModel dx="2074" dy="1818" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1544" dy="1542" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -517,6 +517,31 @@
               <mxPoint x="1183" y="541" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="HSbfPMG7iN_X9bVfUNpo-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="HSbfPMG7iN_X9bVfUNpo-53" target="6gZiQVyZgLY98hQwimKA-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HSbfPMG7iN_X9bVfUNpo-53" value="LIVRE_EXEMPLAIRES" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;" vertex="1" parent="1">
+          <mxGeometry x="370" y="800" width="150" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="HSbfPMG7iN_X9bVfUNpo-54" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="HSbfPMG7iN_X9bVfUNpo-53">
+          <mxGeometry y="30" width="150" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="HSbfPMG7iN_X9bVfUNpo-55" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;ID_Exemplaires&amp;nbsp;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;[PK], [FK]&lt;/font&gt;&lt;/div&gt;" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;" vertex="1" parent="HSbfPMG7iN_X9bVfUNpo-54">
+          <mxGeometry width="150" height="65" as="geometry">
+            <mxRectangle width="150" height="65" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HSbfPMG7iN_X9bVfUNpo-56" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="HSbfPMG7iN_X9bVfUNpo-53">
+          <mxGeometry y="95" width="150" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="HSbfPMG7iN_X9bVfUNpo-57" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;Id_Livre [PK], [FK]&lt;/font&gt;" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;" vertex="1" parent="HSbfPMG7iN_X9bVfUNpo-56">
+          <mxGeometry width="150" height="65" as="geometry">
+            <mxRectangle width="150" height="65" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HSbfPMG7iN_X9bVfUNpo-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.018;entryY=0.638;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="HSbfPMG7iN_X9bVfUNpo-54" target="6gZiQVyZgLY98hQwimKA-35">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
