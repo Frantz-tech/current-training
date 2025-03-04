@@ -2,8 +2,8 @@
 
 **1. Découverte du concept**
 
-- Qu'est-ce qu'une base de données et pourquoi serait-elle utile pour gérer une bibliothèque par rapport à une liste sur papier 
-ou un fichier Excel?
+- Qu'est-ce qu'une base de données et pourquoi serait-elle utile pour gérer une bibliothèque par rapport à une liste sur papier
+  ou un fichier Excel?
 
 => Une base de donnée c'est un ensemble d'informations qui sont structurées et stockées de manière stricte.
 
@@ -19,10 +19,10 @@ ou un fichier Excel?
 - Proposez au moins 5 informations importantes à stocker pour chaque livre (par exemple: titre, nombre de pages, etc.)
 
 => Pour le livre : Titre du Livre | Nombre de pages | Nom de l'auteur | Année de publication | Editeur
- 
+
 - Comment feriez-vous pour identifier de façon unique chaque livre? Pourquoi est-ce important?
 
-=> J'identifierai chaque livre avec un Id, C'est important pour pouvoir relier chaque livre à une autre information qui est stocké 
+=> J'identifierai chaque livre avec un Id, C'est important pour pouvoir relier chaque livre à une autre information qui est stocké
 dans la base de donnée, par exemple le livre avec l'id = 1, pourra être relié à l'auteur qui à un id = 5
 
 **3. La table AUTEURS**
@@ -45,11 +45,9 @@ le but est d'optimiser les informations
 
 - Que pourrait-on stocker dans cette table à part le nom de la catégorie?
 
-=> CATEGORIES : Categorie_id | policier | romance | fiction | enfant | histoire | comédie | drame | poésie
-
+=> CATEGORIES : Categorie_id | Nom_genre | Description
 
 **5. La table MEMBRES**
-
 
 - Quelles informations personnelles seraient nécessaires pour inscrire un nouveau membre à la bibliothèque?
 
@@ -67,24 +65,24 @@ le but est d'optimiser les informations
 
 - En utilisant draw.io ou un outil similaire, dessinez quatre rectangles représentant les tables LIVRES, AUTEURS, CATEGORIES et MEMBRES.
 
-=> ok 
+=> ok
 
 - Dans chaque rectangle, listez les attributs que vous avez identifiés.
 
-=> ok 
+=> ok
 
 - Soulignez ou marquez d'une façon spéciale l'attribut qui servirait d'identifiant unique pour chaque table.
 
-=> ok 
+=> ok
 
 **7. Bonus : Réflexion sur l'organisation des données**
 
 - Si vous deviez noter dans quelle catégorie se trouve chaque livre, où placeriez-vous cette information: dans la table LIVRES ou dans
-la table CATEGORIES? Expliquez votre raisonnement.
+  la table CATEGORIES? Expliquez votre raisonnement.
 
-=> Dans la table livre, je rajouterai un attribut catégorie, que je lierai à la clé catégories_id 
+=> Dans la table livre, je rajouterai un attribut catégorie, que je lierai à la clé catégories_id
 
 - Un livre peut-il appartenir à plusieurs catégories? Comment pourriez-vous gérer cette situation?
 
-=> Oui, un livre peut avoir plusieurs catégories, il faudrait créer une table pivot ( Livre_catégories ) 
+=> Oui, un livre peut avoir plusieurs catégories, il faudrait créer une table pivot ( Livre_catégories )
 qui récupère le (livre_id & catégorie_id) pour ajouter autant de catégories que le livre possède
