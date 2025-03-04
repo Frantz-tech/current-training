@@ -85,7 +85,7 @@ et contient qu'une seule valeur
 
 => Une table non normalisé serai par exemple :
 
-                 ///LIVRE\\\
+                    LIVRE
       -----------------------------------
       Id_livre        ||        1
       -----------------------------------
