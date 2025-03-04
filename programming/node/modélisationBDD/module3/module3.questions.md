@@ -36,7 +36,7 @@
 
 - Prenez l'exemple de l'association entre LIVRE et CATEGORIE (en supposant qu'un livre appartient à une seule catégorie). Comment cette association se traduit-elle dans le MLD?
 
-=> Il faut rajouter dans la table LIVRE : Categorie_id[FK] pour lier un livre à la clé primaire Catégorie_id[PK] dans la table CATEGORIES
+=> Il faut rajouter dans la table LIVRE : Categorie_id[FK] pour lier un livre à la clé primaire Catégorie_id[PK] de la table CATEGORIES
 
 - Qu'est-ce qu'une clé étrangère et où est-elle placée dans une relation 1:N?
 
