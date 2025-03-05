@@ -142,7 +142,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="gLA9Vmcd5SNokh0GjbCU-38" value="AUTEUR" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;" parent="1" vertex="1">
-          <mxGeometry x="530" y="960" width="120" height="393" as="geometry" />
+          <mxGeometry x="530" y="960" width="120" height="320" as="geometry" />
         </mxCell>
         <mxCell id="gLA9Vmcd5SNokh0GjbCU-39" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="gLA9Vmcd5SNokh0GjbCU-38" vertex="1">
           <mxGeometry y="30" width="120" height="73" as="geometry" />
@@ -168,16 +168,8 @@
             <mxRectangle width="120" height="73" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gLA9Vmcd5SNokh0GjbCU-45" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="gLA9Vmcd5SNokh0GjbCU-38" vertex="1">
-          <mxGeometry y="248" width="120" height="73" as="geometry" />
-        </mxCell>
-        <mxCell id="gLA9Vmcd5SNokh0GjbCU-46" value="Prénom_Auteur" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;" parent="gLA9Vmcd5SNokh0GjbCU-45" vertex="1">
-          <mxGeometry width="120" height="73" as="geometry">
-            <mxRectangle width="120" height="73" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="gLA9Vmcd5SNokh0GjbCU-47" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;strokeColor=inherit;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="gLA9Vmcd5SNokh0GjbCU-38" vertex="1">
-          <mxGeometry y="321" width="120" height="72" as="geometry" />
+          <mxGeometry y="248" width="120" height="72" as="geometry" />
         </mxCell>
         <mxCell id="gLA9Vmcd5SNokh0GjbCU-48" value="Date_Naissance" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;strokeColor=inherit;overflow=hidden;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;" parent="gLA9Vmcd5SNokh0GjbCU-47" vertex="1">
           <mxGeometry width="120" height="72" as="geometry">
