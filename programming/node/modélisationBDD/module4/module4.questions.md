@@ -106,22 +106,26 @@ année_publication timestamp [default: `now()`]
 
   - La table EXEMPLAIRE avec ses attributs et relations
 
-  => Table EXEMPLAIRES {
+=>
+
+````Table EXEMPLAIRES {
   exemplaire_id integer [primary key]
   etat enum
   disponibilite boolean
   date_dachat timestamp [default:`now()`]
-  }
+  }```
 
   - La table EMPRUNT avec ses attributs et relations
 
-  => Table EMPRUNT {
+  =>
+
+  ```Table EMPRUNT {
   emprunt_id integer [pk]
   exemplaire_id integer [ref: > EXEMPLAIRES.exemplaire_id]
   date_emprunt timestamp [default: `now()`]
   date_retour_prévu timestamp
   date_retour_effective timestamp
-  }
+  }```
 
 - Comment ajouteriez-vous une contrainte pour vérifier qu'un exemplaire n'est pas emprunté s'il est marqué comme "indisponible"?
 
@@ -131,7 +135,7 @@ année_publication timestamp [default: `now()`]
 
 => Pour gerer les livres rares je rajoute une 2 conditions :
 
-Table LIVRE {
+```Table LIVRE {
 livre_id interger [primary key]
 titre text
 ISBN char(20)
@@ -139,7 +143,7 @@ nb_pages smallint(5000)
 année_publication timestamp [default: `now()`]
 uniquement_sur_place boolean ( oui ou non )
 disponible boolean (oui ou non )
-}
+}```
 
 **6. Fonctionnalités avancées de DBML**
 
@@ -153,3 +157,4 @@ disponible boolean (oui ou non )
 - Ajoutez au moins trois contraintes qui amélioreraient l'intégrité des données.
 - Définissez des index sur les champs qui seraient fréquemment utilisés pour des recherches.
 - Exportez votre schéma en format SQL et observez le code généré.
+````
