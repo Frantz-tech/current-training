@@ -1,4 +1,4 @@
-# Module 4 : Pratique avec dbdiagram.io et DBML
+ss# Module 4 : Pratique avec dbdiagram.io et DBML
 
 💡 **Conseil pratique** : Pour ce module, utilisez l'outil [dbdiagram.io](http://dbdiagram.io) qui vous permet de créer des schémas de base de données en utilisant la syntaxe DBML (Database Markup Language). Cet outil vous aidera à visualiser rapidement la structure de votre base de données et à générer du code SQL.
 
@@ -7,28 +7,84 @@
 **1. Introduction à DBML**
 
 - Qu'est-ce que DBML (Database Markup Language) et comment se compare-t-il aux outils de modélisation visuelle?
+
+=> DMBL est un outil qui permet de créer des diagrammes de base de donnés facilement avec un language simple.
+
+=> Il se compare aux autres outils de modélisation visuelle car : - Il permet de definir les tables et leurs relations - On a accès directement à un schéma visible de la base de donnée
+
 - Quels sont les avantages d'utiliser un langage comme DBML pour décrire une base de données?
+
+=> Les avantages : - L'interface est intuitive et il n'y a pas besoin d'installer de logiciel - Syntaxe simple - Resultats immédiats
+
 - Accédez à dbdiagram.io et familiarisez-vous avec l'interface. Quelles fonctionnalités vous semblent les plus utiles?
+
+=> On peut importer des données de plusieurs bases de données différentes,
+l'export en PDF || PNG est très utile également
 
 **2. Définition des tables en DBML**
 
 - Comment définit-on une table en DBML?
+
+=> Pour définir une table en DBML, il faut créer un objet que l'on nommera et dedans on listera tout les attributs qui lui seront lié, et
+pour chaque attribut on assignera un "TYPE"
+
 - Pour la table LIVRE, quels types de données seraient les plus appropriés pour: titre, ISBN, nombre de pages et année de publication?
+
+=> Types pour la table " LIVRE " :
+
+      - Livre : TEXT
+       -------------------------------
+      - ISBN : CHAR(20)
+      --------------------------------
+      - NB_Page : SMALLINT(2000)
+      --------------------------------
+      - Année_Publication : DATETIME
+      --------------------------------
+
 - Écrivez le code DBML pour définir la table LIVRE avec ces attributs et une clé primaire.
+
+=> Voici le code :
+
+/// LIVRE \\\
+
+Table livre {
+ID interger [primary key]
+titre varchar[not null]
+ISBN varchar [unique]
+nb_pages smallint(2000)
+année_publication timestamp [default: `now()`]
+}
 
 **3. Types de données et contraintes**
 
 - Quels sont les principaux types de données disponibles en DBML/SQL?
+
+=> Les principaux type des données disponibles en DMBL/SQL sont :
+
+- integer / varchar / text / boolean / date / timestamp / decimal
+
 - Pour chacun des attributs suivants, quel type de données choisiriez-vous et pourquoi?
-  - Nom d'un membre
+
+  - Nom d'un membre  
+     => CHAR : les noms dépassent rarement plus de 20 charactères mais VARCHAR pourrait aussi être utilisé
+
   - Date d'emprunt
+    => Timestamp [default: `now()`] pour avoir la date précise à laquelle le livre à été emprunté
+
   - Adresse email
+    => VARCHAR : les adresses email font entre X et X charactères en général
+
   - État d'un exemplaire (neuf, bon, abîmé)
+    => ENUM : il n'y a que 3 choix possible pour l'état d'un livre
+
 - Comment ajouter une contrainte pour s'assurer qu'un attribut est toujours positif ou non-vide?
+
+=> Les contraintes <span style="color:#26B260> sont ajoutées entre crochets </span> **[]**, et il faut ajouter "not null", pour que le champ soit toujours rempli
 
 **4. Définition des relations en DBML**
 
 - Comment définit-on une relation entre deux tables en DBML?
+
 - Écrivez le code DBML pour établir:
   - Une relation 1:N entre CATEGORIE et LIVRE
   - Une relation N:N entre AUTEUR et LIVRE (avec table de jonction)
