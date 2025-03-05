@@ -105,15 +105,15 @@ année_publication timestamp [default: `now()`]
 - En vous basant sur votre MLD, écrivez le code DBML pour définir:
 
   - La table EXEMPLAIRE avec ses attributs et relations
+  - La table EMPRUNT avec ses attributs et relations
 
-```Table EXEMPLAIRES {
+```
+Table EXEMPLAIRES {
   exemplaire_id integer [primary key]
   etat enum
   disponibilite boolean
   date_dachat timestamp [default:`now()`]
   }
-
-  - La table EMPRUNT avec ses attributs et relations
 
   Table EMPRUNT {
   emprunt_id integer [pk]
