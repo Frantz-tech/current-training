@@ -106,7 +106,7 @@ année_publication timestamp [default: `now()`]
 
   - La table EXEMPLAIRE avec ses attributs et relations
 
-=>
+  =>
 
 ````Table EXEMPLAIRES {
   exemplaire_id integer [primary key]
