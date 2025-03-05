@@ -1,4 +1,4 @@
-ss# Module 4 : Pratique avec dbdiagram.io et DBML
+# Module 4 : Pratique avec dbdiagram.io et DBML
 
 💡 **Conseil pratique** : Pour ce module, utilisez l'outil [dbdiagram.io](http://dbdiagram.io) qui vous permet de créer des schémas de base de données en utilisant la syntaxe DBML (Database Markup Language). Cet outil vous aidera à visualiser rapidement la structure de votre base de données et à générer du code SQL.
 
@@ -79,22 +79,37 @@ année_publication timestamp [default: `now()`]
 
 - Comment ajouter une contrainte pour s'assurer qu'un attribut est toujours positif ou non-vide?
 
-=> Les contraintes <span style="color: #26B260">sont ajoutées entre crochets </span> **[]**, et il faut ajouter "not null", pour que le champ soit toujours rempli
+=> Les contraintes sont ajoutées entre crochets **[]**, et il faut ajouter "not null", pour que le champ soit toujours rempli
+
 **4. Définition des relations en DBML**
-Texte normal suivi d’un <span style="color: #26B260">texte coloré en vert</span> dans un paragraphe.
 
 - Comment définit-on une relation entre deux tables en DBML?
 
+=> Pour faire des relations entre deux table en DBML, il faut utiliser la syntaxe **Ref**
+
 - Écrivez le code DBML pour établir:
   - Une relation 1:N entre CATEGORIE et LIVRE
-  - Une relation N:N entre AUTEUR et LIVRE (avec table de jonction)
+
+=> Ref : LIVRE.categorie_id > CATEGORIE.id
+
+- Une relation N:N entre AUTEUR et LIVRE (avec table de jonction)
+
+=> Ref : AUTEUR_LIVRE.livre_id > LIVRE.livre_id
+=> Ref : AUTEUR_LIVRE.auteur_id > AUTEUR.livre_id
+
 - Que signifie la notation `>` dans une relation DBML (ex: `ref: LIVRE.categorie_id > CATEGORIE.id`)?
 
+=> Cette notation signifie " appartient à "
 **5. Table EXEMPLAIRE et EMPRUNT en DBML**
 
 - En vous basant sur votre MLD, écrivez le code DBML pour définir:
+
   - La table EXEMPLAIRE avec ses attributs et relations
+
+  =>
+
   - La table EMPRUNT avec ses attributs et relations
+
 - Comment ajouteriez-vous une contrainte pour vérifier qu'un exemplaire n'est pas emprunté s'il est marqué comme "indisponible"?
 - Quelles contraintes ajouteriez-vous pour gérer les livres rares qui ne peuvent être consultés que sur place? Comment modéliseriez-vous cette restriction en DBML?
 
