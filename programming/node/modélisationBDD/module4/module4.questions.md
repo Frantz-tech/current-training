@@ -130,15 +130,16 @@ année_publication timestamp [default: `now()`]
 
 - Quelles contraintes ajouteriez-vous pour gérer les livres rares qui ne peuvent être consultés que sur place? Comment modéliseriez-vous cette restriction en DBML?
 
-=> Pour gerer les livres rares je rajoute une condition :
+=> Pour gerer les livres rares je rajoute une 2 conditions :
 
 Table LIVRE {
 livre_id interger [primary key]
 titre text
 ISBN char(20)
-nb_pages smallint(2000)
+nb_pages smallint(5000)
 année_publication timestamp [default: `now()`]
-condition enum('uniquement sur place', 'peux être emporté')
+uniquement_sur_place boolean ( oui ou non )
+disponible boolean (oui ou non )
 }
 
 **6. Fonctionnalités avancées de DBML**
