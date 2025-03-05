@@ -79,7 +79,7 @@ année_publication timestamp [default: `now()`]
 
 - Comment ajouter une contrainte pour s'assurer qu'un attribut est toujours positif ou non-vide?
 
-=> Les contraintes <span style="color:#26B260> sont ajoutées entre crochets </span> **[]**, et il faut ajouter "not null", pour que le champ soit toujours rempli
+=> Les contraintes <span style="color:#26B260">sont ajoutées entre crochets </span> **[]**, et il faut ajouter "not null", pour que le champ soit toujours rempli
 
 **4. Définition des relations en DBML**
 
