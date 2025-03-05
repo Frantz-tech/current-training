@@ -45,15 +45,14 @@ pour chaque attribut on assignera un "TYPE"
 
 => Voici le code :
 
-/// LIVRE \\\
-
-Table livre {
-ID interger [primary key]
+```Table livre {
+livre_id interger [primary key]
 titre varchar[not null]
 ISBN varchar [unique]
 nb_pages smallint(2000)
 année_publication timestamp [default: `now()`]
 }
+```
 
 **3. Types de données et contraintes**
 
