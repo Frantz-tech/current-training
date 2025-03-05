@@ -100,18 +100,46 @@ année_publication timestamp [default: `now()`]
 - Que signifie la notation `>` dans une relation DBML (ex: `ref: LIVRE.categorie_id > CATEGORIE.id`)?
 
 => Cette notation signifie " appartient à "
+
 **5. Table EXEMPLAIRE et EMPRUNT en DBML**
 
 - En vous basant sur votre MLD, écrivez le code DBML pour définir:
 
   - La table EXEMPLAIRE avec ses attributs et relations
 
-  =>
+  => Table EXEMPLAIRES {
+  exemplaire_id integer [primary key]
+  etat enum
+  disponibilite boolean
+  date_dachat timestamp [default:`now()`]
+  }
 
   - La table EMPRUNT avec ses attributs et relations
 
+  => Table EMPRUNT {
+  emprunt_id integer [pk]
+  exemplaire_id integer [ref: > EXEMPLAIRES.exemplaire_id]
+  date_emprunt timestamp [default: `now()`]
+  date_retour_prévu timestamp
+  date_retour_effective timestamp
+  }
+
 - Comment ajouteriez-vous une contrainte pour vérifier qu'un exemplaire n'est pas emprunté s'il est marqué comme "indisponible"?
+
+=> disponibilité boolean [not null, default: true]
+
 - Quelles contraintes ajouteriez-vous pour gérer les livres rares qui ne peuvent être consultés que sur place? Comment modéliseriez-vous cette restriction en DBML?
+
+=> Pour gerer les livres rares je rajoute une condition :
+
+Table LIVRE {
+livre_id interger [primary key]
+titre text
+ISBN char(20)
+nb_pages smallint(2000)
+année_publication timestamp [default: `now()`]
+condition enum('uniquement sur place', 'peux être emporté')
+}
 
 **6. Fonctionnalités avancées de DBML**
 
