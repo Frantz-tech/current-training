@@ -81,6 +81,7 @@ année_publication timestamp [default: `now()`]
 
 => Les contraintes <span style="color: #26B260">sont ajoutées entre crochets </span> **[]**, et il faut ajouter "not null", pour que le champ soit toujours rempli
 **4. Définition des relations en DBML**
+Texte normal suivi d’un <span style="color: #26B260">texte coloré en vert</span> dans un paragraphe.
 
 - Comment définit-on une relation entre deux tables en DBML?
 
