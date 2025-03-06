@@ -146,8 +146,19 @@ disponible boolean (oui ou non )
 **6. Fonctionnalités avancées de DBML**
 
 - Qu'est-ce qu'un index de base de données et pourquoi est-il utile?
+
+=> Un index dans une base de donnée permet de lister des mots clés, il est utile car il permet à l'utilisateur d'accèder plus rapidement
+à l'information
+
 - Comment définiriez-vous un index sur la table LIVRE pour accélérer les recherches par titre?
+
+=> Sur la colonne titre, il faudra définir un index "CREATE INDEX", et lorsque l'on va faire une requette SQL :
+SELECT \* FROM LIVRE WHERE titre = "Mot clé" , l'index va permettre de retrouvé rapidement l'information
+
 - Comment pourriez-vous générer automatiquement une date d'inscription pour un nouveau membre?
+
+=> Pour cela il faut qu'il y ai une colonne date_inscription coté back et que celle ci ai par défaut [`current_timestamp`]
+pour que lorsque l'utilisateur créer son compte elle se met a jour automatiquement à la date de la creation
 
 **7. Projet final**
 
