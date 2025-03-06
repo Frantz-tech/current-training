@@ -107,7 +107,9 @@ WHERE livre_id = 3;
 - Mettre à jour la nationalité d'un auteur
 
 =>
-UPDATE
+UPDATE AUTEUR
+SET id_pays = 3
+WHERE auteur_id = 1;
 
 ### 🔍 Points d'attention
 

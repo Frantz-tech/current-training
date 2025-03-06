@@ -12,7 +12,9 @@ CREATE TABLE IF NOT EXISTS AUTEUR (
   auteur_id INTEGER PRIMARY KEY,
   nom_auteur TEXT NOT NULL,
   prénom_auteur TEXT NOT NULL,
-  date_naissance TEXT NOT NULL
+  date_naissance TEXT NOT NULL,
+  id_pays TEXT,
+  FOREIGN KEY (id_pays) REFERENCES PAYS(id_pays) 
 );
 
 CREATE TABLE IF NOT EXISTS EXEMPLAIRES (
@@ -32,9 +34,8 @@ CREATE TABLE IF NOT EXISTS EMPRUNT (
 );
 
 CREATE TABLE IF NOT EXISTS PAYS (
-  id_pays TEXT,
-  nom_pays TEXT,
-  FOREIGN KEY (id_pays) REFERENCES AUTEUR(auteur_id)  -- Référence à AUTEUR pour le pays
+  id_pays INTEGER PRIMARY KEY,
+  nom_pays TEXT
 );
 
 CREATE TABLE IF NOT EXISTS MEMBRE (
