@@ -65,14 +65,49 @@ SELECT 3. **Requêtes de jointure**
 - Afficher les livres avec leurs auteurs et catégories
 
 =>
+SELECT LIVRE.titre, AUTEUR.nom_auteur, CATEGORIES.nom_genre // Données que l'ont veut récupérer
+FROM LIVRE // A partir de cette table, je fais les jointures
+JOIN AUTEUR_LIVRE ON LIVRE.livre_id = AUTEUR_LIVRE.livre_id // On joint la table auteur_livre à livre pour faire la connexion entre les auteurs et les livres
+JOIN AUTEUR ON AUTEUR_LIVRE.auteur_id = AUTEUR.auteur_id // On joint la table auteur à la table auteur_livre pour récupérer le nom du l'auteur qui à écrit le livre
+JOIN LIVRE_CATEGORIES ON LIVRE.livre_id = LIVRE_CATEGORIES.livre_id // On joint la table livre_categorien à la table livre pour faire la connexion entre les categories et les livres
+JOIN CATEGORIES ON LIVRE_CATEGORIES.categories_id = CATEGORIES.categories_id; // On joint la table Categorie à la table Livre_catégorie pour récuperer le genre en fonction du livre
 
 - Afficher le nombre de livres par catégorie
+
+=>
+SELECT CATEGORIES.nom_genre, COUNT(LIVRE_CATEGORIES.categories_id) AS total_livre_par_categories
+FROM CATEGORIES
+JOIN LIVRE_CATEGORIES ON CATEGORIES.categories_id = LIVRE_CATEGORIES.categories_id
+GROUP BY CATEGORIES.nom_genre;
+
 - Trouver l'auteur ayant écrit le plus de livres
+
+=>
+SELECT AUTEUR.nom_auteur, COUNT (AUTEUR_LIVRE.livre_id) AS nbr_livre_total
+FROM AUTEUR
+JOIN AUTEUR_LIVRE ON AUTEUR.auteur_id = AUTEUR_LIVRE.auteur_id
+GROUP BY AUTEUR.auteur_id
+ORDER BY nbr_livre_total DESC
+LIMIT 1;
 
 4. **Mise à jour et suppression**
    - Modifier le titre d'un livre
-   - Supprimer un livre
-   - Mettre à jour la nationalité d'un auteur
+
+=>
+UPDATE LIVRE
+SET titre = 'Blanche neiges et les 8 nains '
+WHERE livre_id = 2 ;
+
+- Supprimer un livre
+
+=>
+DELETE FROM LIVRE
+WHERE livre_id = 3;
+
+- Mettre à jour la nationalité d'un auteur
+
+=>
+UPDATE
 
 ### 🔍 Points d'attention
 
