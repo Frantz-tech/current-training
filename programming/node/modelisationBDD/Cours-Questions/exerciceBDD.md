@@ -63,6 +63,9 @@ SELECT AUTEUR.nom_auteur, AUTEUR.prénom_auteur FROM AUTEUR JOIN PAYS ON AUTEUR.
 SELECT 3. **Requêtes de jointure**
 
 - Afficher les livres avec leurs auteurs et catégories
+
+=>
+
 - Afficher le nombre de livres par catégorie
 - Trouver l'auteur ayant écrit le plus de livres
 
