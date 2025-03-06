@@ -1,8 +1,3 @@
-CREATE DATABASE IF NOT EXISTS bibliotheque
-
-USE bibliotheque
-
-
 CREATE TABLE `LIVRE` (
   `livre_id` integer PRIMARY KEY,
   `titre` text,
