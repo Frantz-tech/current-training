@@ -1,7 +1,7 @@
 import sqlite3 from "sqlite3";
 
 // Connexion à la base de données
-const db = new sqlite3.Database("biblio.db", (err) => {
+const db = new sqlite3.Database("bibliotheque.db", (err) => {
   if (err) {
     console.error(
       `Impossible de se connecter à la base de données: ${err.message}`
