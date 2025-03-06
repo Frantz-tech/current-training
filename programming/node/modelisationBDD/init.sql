@@ -1,101 +1,89 @@
-CREATE TABLE `LIVRE` (
-  `livre_id` integer PRIMARY KEY,
-  `titre` text,
-  `ISBN` char(20),
-  `nb_pages` smallint(2000),
-  `année_publication` timestamp DEFAULT (now()),
-  `uniquement_sur_place` boolean,
-  `disponible` boolean
+CREATE TABLE IF NOT EXISTS LIVRE (
+  livre_id INTEGER PRIMARY KEY,
+  titre TEXT,
+  ISBN CHAR(20),
+  nb_pages INTEGER,
+  année_publication TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  uniquement_sur_place BOOLEAN,
+  disponible BOOLEAN
 );
 
-CREATE TABLE `AUTEUR` (
-  `auteur_id` int PRIMARY KEY,
-  `nom_auteur` text NOT NULL,
-  `prénom_auteur` text NOT NULL,
-  `date_naissance` text NOT NULL
+CREATE TABLE IF NOT EXISTS AUTEUR (
+  auteur_id INTEGER PRIMARY KEY,
+  nom_auteur TEXT NOT NULL,
+  prénom_auteur TEXT NOT NULL,
+  date_naissance TEXT NOT NULL
 );
 
-CREATE TABLE `EXEMPLAIRES` (
-  `exemplaire_id` integer PRIMARY KEY,
-  `etat` enum,
-  `disponibilite` boolean NOT NULL DEFAULT true,
-  `date_dachat` timestamp DEFAULT (now())
+CREATE TABLE IF NOT EXISTS EXEMPLAIRES (
+  exemplaire_id INTEGER PRIMARY KEY,
+  etat TEXT,
+  disponibilite BOOLEAN NOT NULL DEFAULT true,
+  date_dachat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE `EMPRUNT` (
-  `emprunt_id` integer PRIMARY KEY,
-  `exemplaire_id` integer,
-  `date_emprunt` timestamp DEFAULT (now()),
-  `date_retour_prévu` timestamp,
-  `date_retour_effective` timestamp
+CREATE TABLE IF NOT EXISTS EMPRUNT (
+  emprunt_id INTEGER PRIMARY KEY,
+  exemplaire_id INTEGER,
+  date_emprunt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  date_retour_prévu TIMESTAMP,
+  date_retour_effective TIMESTAMP,
+  FOREIGN KEY (exemplaire_id) REFERENCES EXEMPLAIRES(exemplaire_id)
 );
 
-CREATE TABLE `PAYS` (
-  `id_pays` text,
-  `nom_pays` text
+CREATE TABLE IF NOT EXISTS PAYS (
+  id_pays TEXT,
+  nom_pays TEXT,
+  FOREIGN KEY (id_pays) REFERENCES AUTEUR(auteur_id)  -- Référence à AUTEUR pour le pays
 );
 
-CREATE TABLE `MEMBRE` (
-  `membre_id` integer PRIMARY KEY,
-  `nom_membre` varchar(255) NOT NULL,
-  `prenom_membre` varchar(255) NOT NULL,
-  `adresse_membre` text NOT NULL,
-  `email_membre` varchar(255) UNIQUE NOT NULL,
-  `date_inscription` timestamp DEFAULT (now())
+CREATE TABLE IF NOT EXISTS MEMBRE (
+  membre_id INTEGER PRIMARY KEY,
+  nom_membre VARCHAR(255) NOT NULL,
+  prenom_membre VARCHAR(255) NOT NULL,
+  adresse_membre TEXT NOT NULL,
+  email_membre VARCHAR(255) UNIQUE NOT NULL,
+  date_inscription TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE `CATEGORIES` (
-  `categories_id` int PRIMARY KEY,
-  `nom_genre` text NOT NULL,
-  `description` text
+CREATE TABLE IF NOT EXISTS CATEGORIES (
+  categories_id INTEGER PRIMARY KEY,
+  nom_genre TEXT NOT NULL,
+  description TEXT
 );
 
-CREATE TABLE `LIVRE_CATEGORIES` (
-  `livre_id` int,
-  `categories_id` int,
-  PRIMARY KEY (`livre_id`, `categories_id`)
+CREATE TABLE IF NOT EXISTS LIVRE_CATEGORIES (
+  livre_id INTEGER,
+  categories_id INTEGER,
+  PRIMARY KEY (livre_id, categories_id),
+  FOREIGN KEY (livre_id) REFERENCES LIVRE(livre_id),
+  FOREIGN KEY (categories_id) REFERENCES CATEGORIES(categories_id)
 );
 
-CREATE TABLE `LIVRE_EXEMPLAIRES` (
-  `exemplaire_id` integer,
-  `livre_id` integer,
-  PRIMARY KEY (`exemplaire_id`, `livre_id`)
+CREATE TABLE IF NOT EXISTS LIVRE_EXEMPLAIRES (
+  exemplaire_id INTEGER,
+  livre_id INTEGER,
+  PRIMARY KEY (exemplaire_id, livre_id),
+  FOREIGN KEY (exemplaire_id) REFERENCES EXEMPLAIRES(exemplaire_id),
+  FOREIGN KEY (livre_id) REFERENCES LIVRE(livre_id)
 );
 
-CREATE TABLE `MEMBRE_EMPRUNT` (
-  `membre_id` int,
-  `emprunt_id` int,
-  PRIMARY KEY (`membre_id`, `emprunt_id`)
+CREATE TABLE IF NOT EXISTS MEMBRE_EMPRUNT (
+  membre_id INTEGER,
+  emprunt_id INTEGER,
+  PRIMARY KEY (membre_id, emprunt_id),
+  FOREIGN KEY (membre_id) REFERENCES MEMBRE(membre_id),
+  FOREIGN KEY (emprunt_id) REFERENCES EMPRUNT(emprunt_id)
 );
 
-CREATE TABLE `AUTEUR_LIVRE` (
-  `auteur_id` int,
-  `livre_id` int,
-  PRIMARY KEY (`auteur_id`, `livre_id`)
+CREATE TABLE IF NOT EXISTS AUTEUR_LIVRE (
+  auteur_id INTEGER,
+  livre_id INTEGER,
+  PRIMARY KEY (auteur_id, livre_id),
+  FOREIGN KEY (auteur_id) REFERENCES AUTEUR(auteur_id),
+  FOREIGN KEY (livre_id) REFERENCES LIVRE(livre_id)
 );
 
-CREATE INDEX `LIVRE_index_0` ON `LIVRE` (`titre`);
-
-CREATE INDEX `AUTEUR_index_1` ON `AUTEUR` (`nom_auteur`);
-
-CREATE INDEX `MEMBRE_index_2` ON `MEMBRE` (`nom_membre`);
-
-ALTER TABLE `EMPRUNT` ADD FOREIGN KEY (`exemplaire_id`) REFERENCES `EXEMPLAIRES` (`exemplaire_id`);
-
-ALTER TABLE `LIVRE_CATEGORIES` ADD FOREIGN KEY (`livre_id`) REFERENCES `LIVRE` (`livre_id`);
-
-ALTER TABLE `LIVRE_CATEGORIES` ADD FOREIGN KEY (`categories_id`) REFERENCES `CATEGORIES` (`categories_id`);
-
-ALTER TABLE `LIVRE_EXEMPLAIRES` ADD FOREIGN KEY (`exemplaire_id`) REFERENCES `EXEMPLAIRES` (`exemplaire_id`);
-
-ALTER TABLE `LIVRE_EXEMPLAIRES` ADD FOREIGN KEY (`livre_id`) REFERENCES `LIVRE` (`livre_id`);
-
-ALTER TABLE `MEMBRE_EMPRUNT` ADD FOREIGN KEY (`membre_id`) REFERENCES `MEMBRE` (`membre_id`);
-
-ALTER TABLE `MEMBRE_EMPRUNT` ADD FOREIGN KEY (`emprunt_id`) REFERENCES `EMPRUNT` (`emprunt_id`);
-
-ALTER TABLE `AUTEUR_LIVRE` ADD FOREIGN KEY (`auteur_id`) REFERENCES `AUTEUR` (`auteur_id`);
-
-ALTER TABLE `AUTEUR_LIVRE` ADD FOREIGN KEY (`livre_id`) REFERENCES `LIVRE` (`livre_id`);
-
-ALTER TABLE `PAYS` ADD FOREIGN KEY (`id_pays`) REFERENCES `AUTEUR` (`auteur_id`);
+CREATE INDEX IF NOT EXISTS LIVRE_index_0 ON LIVRE (titre);
+CREATE INDEX IF NOT EXISTS AUTEUR_index_1 ON AUTEUR (nom_auteur);
+CREATE INDEX IF NOT EXISTS MEMBRE_index_2 ON MEMBRE (nom_membre);
