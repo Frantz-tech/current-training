@@ -5,8 +5,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "init-db": "node utils/init.js"
+    "init-db": "node utils/init.js",
+    "start": "node script.js",
+    "dev": "node --watch script.js"
   },
   "keywords": [],
   "author": "",
