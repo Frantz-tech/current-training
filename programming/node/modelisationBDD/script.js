@@ -21,9 +21,6 @@ async function runQueries() {
     await categLivre(db);
     await maxLivreAuteur(db);
     await vueFunction(db);
-    await updateTitle(db);
-    await deleteLivre(db);
-    await updateNationalite(db);
   } catch (error) {
     console.error("Erreur lors de l'exécution des requêtes:", error.message);
   } finally {
@@ -155,66 +152,11 @@ async function maxLivreAuteur(db) {
   }
 }
 
-// Mettre à jour le titre d'un livre
-async function updateTitle(db) {
-  try {
-    const updateT = await new Promise((resolve, reject) => {
-      db.run(
-        "UPDATE LIVRE SET titre = 'Blanche Neige et les 8 Nains' WHERE livre_id = 2",
-        function (err) {
-          if (err) reject(err);
-          resolve(this); // retourne l'objet contenant `this.changes` pour savoir combien de lignes ont été modifiées
-        }
-      );
-    });
-    console.table(updateT);
-  } catch (error) {
-    console.error(
-      `Impossible de modifier le titre d'un livre: ${error.message}`
-    );
-  }
-}
-
-// Supprimer un livre
-async function deleteLivre(db) {
-  try {
-    const deleteLivre = await new Promise((resolve, reject) => {
-      db.run("DELETE FROM LIVRE WHERE livre_id = 2", function (err) {
-        if (err) reject(err);
-        resolve(this);
-      });
-    });
-    console.table(deleteLivre);
-  } catch (error) {
-    console.error(`Impossible de supprimer un livre: ${error.message}`);
-  }
-}
-
-// Mettre à jour la nationalité d'un auteur
-async function updateNationalite(db) {
-  try {
-    const updateN = await new Promise((resolve, reject) => {
-      db.run(
-        "UPDATE AUTEUR SET id_pays = 3 WHERE auteur_id = 1",
-        function (err) {
-          if (err) reject(err);
-          resolve(this);
-        }
-      );
-    });
-    console.table(updateN);
-  } catch (error) {
-    console.error(
-      `Impossible de modifier la nationalité d'un auteur: ${error.message}`
-    );
-  }
-}
-
 async function vueFunction(db) {
   try {
     const vueF = await new Promise((resolve, reject) => {
       db.all(
-        "SELECT * FROM vue_livres_auteurs_categories;",
+        "SELECT * FROM vue_livres_auteurs_categories",
         function (err, rows) {
           if (err) reject(err);
           resolve(rows); // Récupération des lignes
