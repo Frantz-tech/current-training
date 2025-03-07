@@ -48,7 +48,6 @@ async function selectLivreAuteur(db) {
         resolve(rows);
       });
     });
-
     console.table(selectL);
   } catch (error) {
     console.error(`Impossible de récupérer tous les auteurs: ${error.message}`);
