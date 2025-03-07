@@ -3,6 +3,9 @@
 https://formation-dwwm.notion.site/phase-1-modelisation-bdd
 https://formation-dwwm.notion.site/phase-1-modelisation-bdd#1ab26ec923dc8177bb44f7dba75021ad
 https://formation-dwwm.notion.site/phase1-question-bdd
+https://formation-dwwm.notion.site/exemple-view-trigger
+https://formation-dwwm.notion.site/controleurs-et-modeles
+https://formation-dwwm.notion.site/Exercice-API-REST-1af26ec923dc8027bc79e5300cb3950b?pvs=73
 
 ### Notre exemple fil rouge : gestion d'une bibliothèque
 
