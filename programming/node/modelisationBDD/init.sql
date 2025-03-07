@@ -13,6 +13,8 @@ CREATE TABLE IF NOT EXISTS `AUTEUR` (
   `nom_auteur` TEXT NOT NULL,
   `prénom_auteur` TEXT NOT NULL,
   `date_naissance` TEXT NOT NULL
+  `id_pays` INTEGER,
+  FOREIGN KEY (`id_pays`) REFERENCES `PAYS` (`id_pays`)
 );
 
 CREATE TABLE IF NOT EXISTS `EXEMPLAIRES` (
@@ -36,8 +38,8 @@ CREATE TABLE IF NOT EXISTS `EMPRUNT` (
 );
 
 CREATE TABLE IF NOT EXISTS `PAYS` (
-  `id_pays` TEXT,
-  `nom_pays` TEXT
+  `id_pays` INTEGER PRIMARY KEY,
+  `nom_pays` TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS `MEMBRE` (
@@ -70,6 +72,13 @@ CREATE TABLE IF NOT EXISTS `AUTEUR_LIVRE` (
   FOREIGN KEY (`auteur_id`) REFERENCES `AUTEUR` (`auteur_id`),
   FOREIGN KEY (`livre_id`) REFERENCES `LIVRE` (`livre_id`)
 );
+CREATE VIEW IF NOT EXISTS vue_livres_auteurs_categories AS
+SELECT LIVRE.titre, AUTEUR.nom_auteur, CATEGORIES.nom_genre
+FROM LIVRE
+JOIN AUTEUR_LIVRE ON LIVRE.livre_id = AUTEUR_LIVRE.livre_id
+JOIN AUTEUR ON AUTEUR_LIVRE.auteur_id = AUTEUR.auteur_id
+JOIN LIVRE_CATEGORIES ON LIVRE.livre_id = LIVRE_CATEGORIES.livre_id
+JOIN CATEGORIES ON LIVRE_CATEGORIES.categories_id = CATEGORIES.categories_id;
 
 CREATE INDEX IF NOT EXISTS `LIVRE_index_0` ON `LIVRE` (`titre`);
 
