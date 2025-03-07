@@ -1,6 +1,8 @@
 # Phase 1 - Cours - Modélisation des Bases de Données
 
 https://formation-dwwm.notion.site/phase-1-modelisation-bdd
+https://formation-dwwm.notion.site/phase-1-modelisation-bdd#1ab26ec923dc8177bb44f7dba75021ad
+https://formation-dwwm.notion.site/phase1-question-bdd
 
 ### Notre exemple fil rouge : gestion d'une bibliothèque
 
@@ -10,6 +12,38 @@ Tout au long du cours, nous travaillerons sur un exemple concret : la création 
 - Établir des relations variées entre ces entités
 - Rencontrer des problématiques réelles de modélisation
 - Voir l'évolution complète du projet, de la conception à l'implémentation
+
+🧪 Commandes SQLite utiles
+
+# Ouvrir la base de données
+
+sqlite3 bibliotheque.db
+
+# Afficher toutes les tables
+
+.tables
+
+# Afficher le schéma d'une table
+
+.schema LIVRE
+
+# Afficher le schéma de toutes les tables
+
+.schema
+
+# Configurer l'affichage
+
+.mode column
+.mode table
+.headers on
+
+# Exécuter une requête
+
+SELECT \* FROM LIVRE;
+
+# Sortir de SQLite
+
+.quit || .exit
 
 ## Ressources additionnelles
 

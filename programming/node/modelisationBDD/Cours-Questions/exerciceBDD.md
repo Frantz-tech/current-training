@@ -35,7 +35,7 @@
    - Insérer au moins 10 nouveaux livres et les associer à leurs auteurs
 
    =>
-   INSERT INTO LIVRE (titre,ISBN,nb_pages,année_publication,uniquement_sur_place,disponible)
+   INSERT INTO LIVRE (titre, ISBN, nb_pages, année_publication, uniquement_sur_place, disponible)
    VALUES
    ('JavaScript Moderne', '987654321098765', 600, '2024-11-10', 0, 1),
    ('Introduction à Node.js', '564738291047562', 350, '2023-06-15', 1, 1),
@@ -43,7 +43,10 @@
    ('Python pour débutants', '963852741036258', 400, '2023-05-05', 0, 1),
    ('Pratique du développement web', '258147963025478', 700, '2022-07-30', 1, 1),
    ('Vue.js pour les développeurs', '159753486032159', 500, '2024-09-10', 0, 1),
-   ('Les secrets de React', '321654987753258', 650, '2023-12-12', 0, 0);
+   ('Les secrets de React', '321654987753258', 650, '2023-12-12', 0, 0),
+   ('Maîtriser TypeScript', '654321987012345', 550, '2024-02-20', 0, 1),
+   ('Guide complet SQL', '789456123078945', 480, '2023-08-25', 1, 1),
+   ('Développement Full Stack', '147258369014725', 720, '2024-01-15', 0, 1);
 
 2. **Requêtes de sélection**
    - Afficher tous les livres d'un auteur spécifique
@@ -119,3 +122,27 @@ WHERE auteur_id = 1;
 
 - Ajouter des index pour optimiser les performances des requêtes
 - Écrire un script Node.js qui exécute automatiquement toutes les requêtes et affiche les résultats
+
+INSERT INTO LIVRE_EXEMPLAIRE (exemplaire_id, livre_id)
+VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 2),
+(5, 2),
+(6, 3),
+(7, 3),
+(8, 3),
+(9, 4),
+(10, 5),
+
+(11, 6),
+(12, 6),
+(13, 6),
+(14, 7),
+(15, 7),
+(16, 8),
+(17, 8),
+(18, 8),
+(19, 9),
+(20,10);

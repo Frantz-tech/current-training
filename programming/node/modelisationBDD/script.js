@@ -20,6 +20,7 @@ async function runQueries() {
     await LivreAuteurCatg(db);
     await categLivre(db);
     await maxLivreAuteur(db);
+    await vueFunction(db);
     await updateTitle(db);
     await deleteLivre(db);
     await updateNationalite(db);
@@ -209,5 +210,23 @@ async function updateNationalite(db) {
   }
 }
 
+async function vueFunction(db) {
+  try {
+    const vueF = await new Promise((resolve, reject) => {
+      db.all(
+        "SELECT * FROM vue_livres_auteurs_categories;",
+        function (err, rows) {
+          if (err) reject(err);
+          resolve(rows); // Récupération des lignes
+        }
+      );
+    });
+    console.table(vueF);
+  } catch (error) {
+    console.error(`Impossible de selectionner la VIEW: ${error.message}`);
+  }
+}
 // Lancer les requêtes
 runQueries();
+
+// Db.all récupère en second argument les lignes donc il faut mettre (err, rows) et dans resolve(rows)
