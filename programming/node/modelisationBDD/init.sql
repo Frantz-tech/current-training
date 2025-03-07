@@ -30,9 +30,9 @@ CREATE TABLE IF NOT EXISTS `EMPRUNT` (
   `emprunt_id` INTEGER PRIMARY KEY,
   `membre_id` INTEGER,
   `exemplaire_id` INTEGER,
-  `date_emprunt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `date_retour_prévu` TIMESTAMP,
-  `date_retour_effective` TIMESTAMP,
+  `date_emprunt` DATE NOT NULL,
+  `date_retour_prévu` DATE,
+  `date_retour_effective` DATE,
   FOREIGN KEY (`exemplaire_id`) REFERENCES `EXEMPLAIRES` (`exemplaire_id`),
   FOREIGN KEY (`membre_id`) REFERENCES `MEMBRE` (`membre_id`)
 );
@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `AUTEUR_LIVRE` (
   FOREIGN KEY (`auteur_id`) REFERENCES `AUTEUR` (`auteur_id`),
   FOREIGN KEY (`livre_id`) REFERENCES `LIVRE` (`livre_id`)
 );
+
 CREATE VIEW IF NOT EXISTS vue_livres_auteurs_categories AS
 SELECT LIVRE.titre, AUTEUR.nom_auteur, CATEGORIES.nom_genre
 FROM LIVRE
@@ -79,6 +80,16 @@ JOIN AUTEUR_LIVRE ON LIVRE.livre_id = AUTEUR_LIVRE.livre_id
 JOIN AUTEUR ON AUTEUR_LIVRE.auteur_id = AUTEUR.auteur_id
 JOIN LIVRE_CATEGORIES ON LIVRE.livre_id = LIVRE_CATEGORIES.livre_id
 JOIN CATEGORIES ON LIVRE_CATEGORIES.categories_id = CATEGORIES.categories_id;
+
+
+CREATE TRIGGER update_date_retour_apres_emprunt
+AFTER INSERT ON EMPRUNT
+BEGIN 
+UPDATE EMPRUNT 
+SET date_retour_prévu = DATE(date_emprunt, '+15 days')
+WHERE emprunt_id = NEW.emprunt_id;
+END;
+
 
 CREATE INDEX IF NOT EXISTS `LIVRE_index_0` ON `LIVRE` (`titre`);
 

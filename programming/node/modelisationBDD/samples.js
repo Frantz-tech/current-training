@@ -147,36 +147,26 @@ const sampleEmprunt = [
     membre_id: 1,
     exemplaire_id: 3,
     date_emprunt: "2025-03-07",
-    date_retour_prévu: "2025-04-07",
-    date_retour_effective: null,
   },
   {
     membre_id: 2,
     exemplaire_id: 1,
     date_emprunt: "2024-05-22",
-    date_retour_prévu: "2024-06-22",
-    date_retour_effective: "2024-06-20",
   },
   {
     membre_id: 3,
     exemplaire_id: 5,
     date_emprunt: "2023-11-18",
-    date_retour_prévu: "2023-12-18",
-    date_retour_effective: "2023-12-16",
   },
   {
     membre_id: 4,
     exemplaire_id: 2,
     date_emprunt: "2022-08-10",
-    date_retour_prévu: "2022-09-10",
-    date_retour_effective: null,
   },
   {
     membre_id: 5,
     exemplaire_id: 4,
     date_emprunt: "2023-12-01",
-    date_retour_prévu: "2024-01-01",
-    date_retour_effective: null,
   },
 ];
 
@@ -507,14 +497,8 @@ export function seedDatabase() {
     }
     for (const Emprunt of sampleEmprunt) {
       db.run(
-        "INSERT INTO EMPRUNT(membre_id,exemplaire_id,date_emprunt,date_retour_prévu,date_retour_effective) VALUES (?,?,?,?,?)",
-        [
-          Emprunt.membre_id,
-          Emprunt.exemplaire_id,
-          Emprunt.date_emprunt,
-          Emprunt.date_retour_prévu,
-          Emprunt.date_retour_effective,
-        ]
+        "INSERT INTO EMPRUNT(membre_id,exemplaire_id,date_emprunt) VALUES (?,?,?)",
+        [Emprunt.membre_id, Emprunt.exemplaire_id, Emprunt.date_emprunt]
       );
     }
     for (const pays of samplePays) {
