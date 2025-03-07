@@ -1,3 +1,4 @@
+import sqlite3 from "sqlite3";
 const sampleLivres = [
   {
     titre: "JavaScript Moderne",
@@ -61,21 +62,25 @@ const sampleAuteur = [
     nom_auteur: "Sens",
     prénom_auteur: "George",
     date_naissance: "1965-05-15",
+    id_pays: 1,
   },
   {
     nom_auteur: "Spilberg",
     prénom_auteur: "Steven",
     date_naissance: "1959-08-02",
+    id_pays: 5,
   },
   {
     nom_auteur: "Roadman",
     prénom_auteur: "Dani",
     date_naissance: "1961-12-30",
+    id_pays: 3,
   },
   {
     nom_auteur: "Polak",
     prénom_auteur: "Zoelski",
     date_naissance: "1948-05-08",
+    id_pays: 4,
   },
 ];
 const sampleCategories = [
@@ -445,3 +450,107 @@ const sampleExemplaires = [
     date_dachat: "2021-09-15",
   },
 ];
+
+export function seedDatabase() {
+  const db = new sqlite3.Database("./bibliotheque.db");
+  try {
+    db.run("DELETE FROM LIVRE");
+    db.run("DELETE FROM AUTEUR_LIVRE");
+    db.run("DELETE FROM CATEGORIES");
+    db.run("DELETE FROM EMPRUNT");
+    db.run("DELETE FROM EXEMPLAIRES");
+    db.run("DELETE FROM LIVRE_CATEGORIES");
+    db.run("DELETE FROM MEMBRE");
+    db.run("DELETE FROM PAYS");
+    for (const livre of sampleLivres) {
+      db.run(
+        "INSERT INTO LIVRE (titre,ISBN,nb_pages,année_publication,uniquement_sur_place,disponible) VALUES (?,?,?,?,?,?)",
+        [
+          livre.titre,
+          livre.ISBN,
+          livre.nb_pages,
+          livre.année_publication,
+          livre.uniquement_sur_place,
+          livre.disponible,
+        ]
+      );
+    }
+
+    for (const auteur of sampleAuteur) {
+      db.run(
+        "INSERT INTO AUTEUR(nom_auteur, prénom_auteur, date_naissance, id_pays) VALUES (?,?,?,?)",
+        [
+          auteur.nom_auteur,
+          auteur.prénom_auteur,
+          auteur.date_naissance,
+          auteur.id_pays,
+        ]
+      );
+    }
+    for (const Categories of sampleCategories) {
+      db.run("INSERT INTO CATEGORIES (nom_genre,description) VALUES (?,?)", [
+        Categories.nom_genre,
+        Categories.description,
+      ]);
+    }
+    for (const Membres of sampleMembre) {
+      db.run(
+        "INSERT INTO MEMBRE(nom_membre, prenom_membre,adresse_membre,email_membre,date_inscription) VALUES (?,?,?,?,?)",
+        [
+          Membres.nom_membre,
+          Membres.prenom_membre,
+          Membres.adresse_membre,
+          Membres.email_membre,
+          Membres.date_inscription,
+        ]
+      );
+    }
+    for (const Emprunt of sampleEmprunt) {
+      db.run(
+        "INSERT INTO EMPRUNT(membre_id,exemplaire_id,date_emprunt,date_retour_prévu,date_retour_effective) VALUES (?,?,?,?,?)",
+        [
+          Emprunt.membre_id,
+          Emprunt.exemplaire_id,
+          Emprunt.date_emprunt,
+          Emprunt.date_retour_prévu,
+          Emprunt.date_retour_effective,
+        ]
+      );
+    }
+    for (const pays of samplePays) {
+      db.run("INSERT INTO PAYS (id_pays,nom_pays) VALUES (?,?)", [
+        pays.id_pays,
+        pays.nom_pays,
+      ]);
+    }
+
+    for (const AuteurLivre of sampleAuteurLivre) {
+      db.run("INSERT INTO AUTEUR_LIVRE(auteur_id,livre_id) VALUES (?,?)", [
+        AuteurLivre.auteur_id,
+        AuteurLivre.livre_id,
+      ]);
+    }
+    for (const LivreCategories of sampleLivreCategories) {
+      db.run(
+        "INSERT INTO LIVRE_CATEGORIES(livre_id,categories_id) VALUES (?,?)",
+        [LivreCategories.livre_id, LivreCategories.categories_id]
+      );
+    }
+    for (const exemplaires of sampleExemplaires) {
+      db.run(
+        "INSERT INTO EXEMPLAIRES(livre_id,etat,disponibilite,date_dachat) VALUES (?,?,?,?)",
+        [
+          exemplaires.livre_id,
+          exemplaires.etat,
+          exemplaires.disponibilite,
+          exemplaires.date_dachat,
+        ]
+      );
+    }
+  } catch (error) {
+    console.error("Error seeding database", error.message);
+    process.exit(1);
+  }
+}
+
+seedDatabase();

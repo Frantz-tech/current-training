@@ -2,7 +2,7 @@ import fs from "fs";
 import sqlite3 from "sqlite3";
 
 // Connexion à la base SQLite
-const sqliteDb = new sqlite3.Database("./bibliotheque.db");
+export const sqliteDb = new sqlite3.Database("./bibliotheque.db");
 
 // Fonction pour initialiser la base de données avec le fichier SQL
 async function initDB() {

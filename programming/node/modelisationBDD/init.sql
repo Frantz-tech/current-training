@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `AUTEUR` (
   `auteur_id` INTEGER PRIMARY KEY,
   `nom_auteur` TEXT NOT NULL,
   `prénom_auteur` TEXT NOT NULL,
-  `date_naissance` TEXT NOT NULL
+  `date_naissance` TEXT NOT NULL,
   `id_pays` INTEGER,
   FOREIGN KEY (`id_pays`) REFERENCES `PAYS` (`id_pays`)
 );
