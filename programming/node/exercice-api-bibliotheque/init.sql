@@ -3,15 +3,15 @@ CREATE TABLE IF NOT EXISTS `LIVRE` (
   `titre` TEXT,
   `ISBN` CHAR(20),
   `nb_pages` SMALLINT,
-  `année_publication` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `annee_publication` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `uniquement_sur_place` BOOLEAN,
-  `disponible` BOOLEAN
+  `disponible` BOOLEAN 
 );
 
 CREATE TABLE IF NOT EXISTS `AUTEUR` (
   `auteur_id` INTEGER PRIMARY KEY,
   `nom_auteur` TEXT NOT NULL,
-  `prénom_auteur` TEXT NOT NULL,
+  `prenom_auteur` TEXT NOT NULL,
   `date_naissance` TEXT NOT NULL,
   `id_pays` INTEGER,
   FOREIGN KEY (`id_pays`) REFERENCES `PAYS` (`id_pays`)
@@ -82,7 +82,7 @@ JOIN LIVRE_CATEGORIES ON LIVRE.livre_id = LIVRE_CATEGORIES.livre_id
 JOIN CATEGORIES ON LIVRE_CATEGORIES.categories_id = CATEGORIES.categories_id;
 
 
-CREATE TRIGGER update_date_retour_apres_emprunt
+CREATE TRIGGER if NOT EXISTS update_date_retour_apres_emprunt
 AFTER INSERT ON EMPRUNT
 BEGIN 
 UPDATE EMPRUNT 

@@ -1,25 +1,40 @@
-import { error } from "console";
-import fs from "fs/promises";
+import fs from "fs";
+import { open } from "sqlite";
 import sqlite3 from "sqlite3";
-export const sqliteDb = new sqlite3.Database(".api_biblio.db");
+import { logError } from "../utils/logger.js";
 
-async function initDb() {
+export async function openDb() {
   try {
-    const sql = fs.readfileSync("init.sql", "utf8");
-    sqliteDb.exec(sql, (err) => {
-      if (err) {
-        error("Erreur lors de l'exec du SQL :", error);
-        return;
-      }
-      console.log("Base de donnée initialisé avec succès !");
+    const db = await open({
+      filename: "./database.db",
+      driver: sqlite3.Database,
     });
+    await db.exec("PRAGMA foreign_keys = ON;");
+    // S'assurer que la table existe
+    await initDb(db);
+
+    return db;
   } catch (error) {
-    console.error("Erreur lors de l'initialisation de la base de donné");
-  } finally {
-    sqliteDb.close();
+    await logError(error);
+    throw new Error("Failed to open database");
+  }
+}
+
+async function initDb(db) {
+  try {
+    // Lecture fichier SQL
+    const sql = fs.readFileSync("init.sql", "utf8");
+    // Exec fichier sql pour créer les tables
+    await db.exec(sql);
+    console.log("Base de donnée initialisé avec succès !");
+  } catch (error) {
+    console.error(
+      "Erreur lors de l'initialisation de la base de donnée: ",
+      error
+    );
   }
 }
 
 //  Lancer l'initialisation de la bdd :
 
-initDb();
+openDb();
