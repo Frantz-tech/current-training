@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  },
+  "name": "exercice-api-bibliotheque",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "init-db": "node config/database.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
