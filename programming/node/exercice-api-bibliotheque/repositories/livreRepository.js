@@ -1,16 +1,23 @@
 import { openDb } from "../config/database.js";
-const db = await openDb();
 
-// verifier ici pour ajouter promesse
-// Method GET
+let db;
+
+async function getDbConnexion() {
+  if (!db) {
+    db = await openDb();
+  }
+  return db;
+}
+// Method GET pour récup tous les livres
 export async function getAllLivres() {
-  const livres = await db.all("SELECT * FROM LIVRE");
-  console.log(livres);
-  return livres;
+  const db = await getDbConnexion();
+
+  return await db.all("SELECT * FROM LIVRE");
 }
 
-// Method POST
+// Method POST pour ajouter un nouveau livre
 export async function createLivre(newLivre) {
+  const db = await getDbConnexion();
   const result = await db.run(
     "INSERT INTO LIVRE (titre, ISBN,nb_pages,annee_publication, uniquement_sur_place,disponible) VALUES(?,?,?,?,?,?)",
     [
@@ -25,17 +32,30 @@ export async function createLivre(newLivre) {
   return { id: result.lastID, ...newLivre }; // Retourne le livre avec son ID
 }
 
-// Method PUT
-export async function updateLivre() {
-  const updateLivre = await db.run(
-    "UPDATE LIVRE SET titre = ?, ISBN = ?, nb_page = ?, annee_publication = ? , uniquement_sur_place = ?, disponible = ?",
-    [
-      updateLivre.titre,
-      updateLivre.ISBN,
-      updateLivre.nb_pages,
-      updateLivre.annee_publication,
-      updateLivre.uniquement_sur_place,
-      updateLivre.disponible,
-    ]
+// Method PUT pour modifier un livre existant
+export async function livreUpdate(id, updateLivre) {
+  const db = await getDbConnexion();
+
+  const result = await db.run(
+    "UPDATE LIVRE SET titre = ?, ISBN = ?, nb_pages = ?, annee_publication = ? , uniquement_sur_place = ?, disponible = ? WHERE livre_id = ?",
+    [id]
   );
+  [
+    updateLivre.titre,
+    updateLivre.ISBN,
+    updateLivre.nb_pages,
+    updateLivre.annee_publication,
+    updateLivre.uniquement_sur_place,
+    updateLivre.disponible,
+    updateLivre.id,
+  ];
+
+  return result.changes > 0;
+}
+// Method DELETE pour supprimer un livre existant
+export async function deleteLivre(id) {
+  const db = await getDbConnexion();
+
+  const result = await db.run("DELETE FROM LIVRE WHERE livre_id = ?", [id]);
+  return result.changes > 0;
 }

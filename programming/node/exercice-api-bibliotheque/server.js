@@ -1,5 +1,5 @@
 import http from "node:http";
-import { handleLivre } from "./routes/routes.js";
+import { handleRoutes } from "./routes/routes.js";
 import { logError } from "./utils/logger.js";
 
 const server = http.createServer(async (req, res) => {
@@ -7,19 +7,13 @@ const server = http.createServer(async (req, res) => {
   res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  if (req.method === "OPTION") {
+  if (req.method === "OPTIONS") {
     res.writeHead(204);
     return res.end();
   }
 
   try {
-    if (req.url.startsWith("/livre")) {
-      console.log("Je passe par la route /livre");
-      await handleLivre(req, res);
-    } else {
-      res.writeHead(404, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ error: "Route non trouvée" }));
-    }
+    await handleRoutes(req, res);
   } catch (error) {
     await logError(error);
     console.log(error);
