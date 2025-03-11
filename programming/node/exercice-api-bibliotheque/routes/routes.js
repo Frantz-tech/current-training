@@ -1,4 +1,10 @@
 import {
+  createAuteurController,
+  deleteAuteurController,
+  getAllAuteurController,
+  updateAuteurController,
+} from "../controllers/auteurController.js";
+import {
   createLivreController,
   deleteLivreController,
   getAllLivreController,
@@ -24,6 +30,22 @@ export async function handleRoutes(req, res) {
     if (match) {
       const id = match[1];
       await deleteLivreController(res, id);
+    }
+  } else if (url === "/api/auteurs" && method === "GET") {
+    await getAllAuteurController(res);
+  } else if (url === "/api/auteurs" && method === "POST") {
+    await createAuteurController(req, res);
+  } else if (url.match(/^\/api\/auteurs\/(\d+)$/) && method === "PUT") {
+    const match = url.match(/^\/api\/auteurs\/(\d+)$/);
+    if (match) {
+      const id = match[1];
+      await updateAuteurController(req, res, id);
+    }
+  } else if (url.match(/^\/api\/auteurs\/(\d+)$/) && method === "DELETE") {
+    const match = url.match(/^\/api\/auteurs\/(\d+)$/);
+    if (match) {
+      const id = match[1];
+      await deleteAuteurController(res, id);
     }
   } else {
     logger.warn(`Route non trouvée : ${method} ${url}`);

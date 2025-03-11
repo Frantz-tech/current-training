@@ -42,3 +42,8 @@
 2025-03-11T08:58:11.192Z - ReferenceError: id is not defined
 2025-03-11T09:02:54.989Z - Error: Erreur lors de la modification du livre
 2025-03-11T09:12:42.067Z - TypeError [ERR_INVALID_HTTP_TOKEN]: Header name must be a valid HTTP token ["Content-Type "]
+2025-03-11T11:02:03.584Z - TypeError [ERR_INVALID_HTTP_TOKEN]: Header name must be a valid HTTP token ["Content-Type "]
+2025-03-11T11:03:06.137Z - TypeError: Cannot read properties of undefined (reading 'writeHead')
+2025-03-11T11:12:50.246Z - TypeError [ERR_INVALID_HTTP_TOKEN]: Header name must be a valid HTTP token ["Content-Type "]
+2025-03-11T11:15:37.469Z - TypeError [ERR_INVALID_HTTP_TOKEN]: Header name must be a valid HTTP token ["Content-Type "]
+2025-03-11T11:17:47.705Z - TypeError [ERR_INVALID_HTTP_TOKEN]: Header name must be a valid HTTP token ["Content-Type "]
