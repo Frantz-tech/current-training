@@ -35,20 +35,20 @@ export async function createLivre(newLivre) {
 // Method PUT pour modifier un livre existant
 export async function livreUpdate(id, updateLivre) {
   const db = await getDbConnexion();
-
+  console.log("livreUpdateRepository | id: ", id);
+  console.log("livreUpdateRepository | updatelivre:", updateLivre);
   const result = await db.run(
     "UPDATE LIVRE SET titre = ?, ISBN = ?, nb_pages = ?, annee_publication = ? , uniquement_sur_place = ?, disponible = ? WHERE livre_id = ?",
-    [id]
+    [
+      updateLivre.titre,
+      updateLivre.ISBN,
+      updateLivre.nb_pages,
+      updateLivre.annee_publication,
+      updateLivre.uniquement_sur_place,
+      updateLivre.disponible,
+      id,
+    ]
   );
-  [
-    updateLivre.titre,
-    updateLivre.ISBN,
-    updateLivre.nb_pages,
-    updateLivre.annee_publication,
-    updateLivre.uniquement_sur_place,
-    updateLivre.disponible,
-    updateLivre.id,
-  ];
 
   return result.changes > 0;
 }

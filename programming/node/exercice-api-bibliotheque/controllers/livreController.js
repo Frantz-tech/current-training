@@ -45,7 +45,7 @@ export async function handleLivre(req, res) {
             res.end(JSON.stringify({ message: "Livre mis a jour" }));
           } else {
             res.writeHead(400, { "Content-Type": "application/json" });
-            res.end(JSON.stringify({ error: "Livre non trouvé" }));
+            res.end(JSON.stringify({ error: "Controller : Livre non trouvé" }));
           }
         } catch (error) {
           console.error("Erreur lors de la modification du livre", error);

@@ -46,6 +46,7 @@ export async function updateLivreService(id, updateLivre) {
       !updateLivre.uniquement_sur_place ||
       !updateLivre.disponible
     ) {
+      console.log("update de livre | service:", updateLivre);
       throw new Error("données manquantes poour la modif");
     }
 
