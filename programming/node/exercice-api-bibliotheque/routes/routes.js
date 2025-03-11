@@ -21,18 +21,18 @@ import { logger } from "../utils/logger.js";
 export async function handleRoutes(req, res) {
   const url = req.url;
   const method = req.method;
-  if (url === "/livre" && method === "GET") {
+  if (url === "/api/livre" && method === "GET") {
     await getAllLivreController(res);
-  } else if (url === "/livre" && method === "POST") {
+  } else if (url === "/api/livre" && method === "POST") {
     await createLivreController(req, res);
-  } else if (url.match(/^\/livre\/(\d+)$/) && method === "PUT") {
-    const match = url.match(/^\/livre\/(\d+)$/);
+  } else if (url.match(/^\/api\/livre\/(\d+)$/) && method === "PUT") {
+    const match = url.match(/^\/api\/livre\/(\d+)$/);
     if (match) {
       const id = match[1];
       await updateLivreController(req, res, id);
     }
-  } else if (url.match(/^\/livre\/(\d+)$/) && method === "DELETE") {
-    const match = url.match(/^\/livre\/(\d+)$/);
+  } else if (url.match(/^\/api\/livre\/(\d+)$/) && method === "DELETE") {
+    const match = url.match(/^\/api\/livre\/(\d+)$/);
     if (match) {
       const id = match[1];
       await deleteLivreController(res, id);
