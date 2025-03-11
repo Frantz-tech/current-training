@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `EMPRUNT` (
   `emprunt_id` INTEGER PRIMARY KEY,
   `membre_id` INTEGER,
   `exemplaire_id` INTEGER,
-  `date_emprunt` DATE NOT NULL,
+  `date_emprunt` DATE DEFAULT (CURRENT_DATE),
   `date_retour_prévu` DATE,
   `date_retour_effective` DATE,
   FOREIGN KEY (`exemplaire_id`) REFERENCES `EXEMPLAIRES` (`exemplaire_id`),

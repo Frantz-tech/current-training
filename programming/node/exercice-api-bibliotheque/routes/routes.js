@@ -5,6 +5,12 @@ import {
   updateAuteurController,
 } from "../controllers/auteurController.js";
 import {
+  createEmpruntController,
+  deleteEmpruntController,
+  getAllEmpruntController,
+  updateEmpruntController,
+} from "../controllers/empruntController.js";
+import {
   createLivreController,
   deleteLivreController,
   getAllLivreController,
@@ -47,9 +53,25 @@ export async function handleRoutes(req, res) {
       const id = match[1];
       await deleteAuteurController(res, id);
     }
-  } else {
-    logger.warn(`Route non trouvée : ${method} ${url}`);
-    res.writeHead(404, { "Content-Type ": "application/json" });
-    res.end(JSON.stringify({ success: false, error: "Route non trouvée" }));
+  } else if (url === "/api/emprunts" && method === "GET") {
+    await getAllEmpruntController(res);
+  } else if (url === "/api/emprunts" && method === "POST") {
+    await createEmpruntController(req, res);
+  } else if (url.match(/^\/api\/emprunts\/(\d+)$/) && method === "PUT") {
+    const match = url.match(/^\/api\/emprunts\/(\d+)$/);
+    if (match) {
+      const id = match[1];
+      await updateEmpruntController(req, res, id);
+    }
+  } else if (url.match(/^\/api\/emprunts\/(\d+)$/) && method === "DELETE") {
+    const match = url.match(/^\/api\/emprunts\/(\d+)$/);
+    if (match) {
+      const id = match[1];
+      await deleteEmpruntController(res, id);
+    } else {
+      logger.warn(`Route non trouvée : ${method} ${url}`);
+      res.writeHead(404, { "Content-Type ": "application/json" });
+      res.end(JSON.stringify({ success: false, error: "Route non trouvée" }));
+    }
   }
 }
