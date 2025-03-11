@@ -38,20 +38,10 @@ export async function createLivreService(newLivre) {
 // Modification d'un livre avec son id
 export async function updateLivreService(id, updateLivre) {
   try {
-    if (
-      !updateLivre.titre ||
-      !updateLivre.ISBN ||
-      !updateLivre.nb_pages ||
-      !updateLivre.annee_publication ||
-      !updateLivre.uniquement_sur_place ||
-      !updateLivre.disponible
-    ) {
-      console.log("update de livre | service:", updateLivre);
-      throw new Error("données manquantes poour la modif");
+    if (!id) {
+      throw new Error("Id incorrect pour la suppression du livre");
     }
-
     const updatedLivre = await livreUpdate(id, updateLivre);
-    console.log(typeof updateLivre);
     return updatedLivre;
   } catch (error) {
     console.error("Erreur lors de la modification du livre", error);

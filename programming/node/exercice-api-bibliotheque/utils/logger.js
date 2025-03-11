@@ -8,3 +8,8 @@ export async function logError(message) {
     console.log("erreur lors de l'écriture du log: ", err);
   }
 }
+export const logger = {
+  warn(message) {
+    console.warn(`[WARN] ${new Date().toISOString()} - ${message}`);
+  },
+};
