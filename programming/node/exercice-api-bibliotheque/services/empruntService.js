@@ -1,14 +1,14 @@
 import {
-  createEmprunt,
-  deleteEmprunt,
-  empruntUpdate,
-  getAllEmprunt,
+  createEmpruntRepository,
+  deleteEmpruntRepository,
+  getAllEmpruntRepository,
+  updateEmpruntRepository,
 } from "../repositories/empruntRepository.js";
 
 // Récupération de tout les emprunts
 export async function getAllEmpruntService() {
   try {
-    return await getAllEmprunt();
+    return await getAllEmpruntRepository();
   } catch (error) {
     console.error("Erreur lors de la récupération des emprunts", error);
     throw new Error("Erreur lors de la récupération des emprunts");
@@ -18,7 +18,7 @@ export async function getAllEmpruntService() {
 // Création d'un emrpunt
 export async function createEmpruntService(newEmprunt) {
   try {
-    const createdEmprunt = await createEmprunt(newEmprunt);
+    const createdEmprunt = await createEmpruntRepository(newEmprunt);
     return createdEmprunt;
   } catch (error) {
     console.error("Erreur lors de la création de l'emprunt", error);
@@ -32,7 +32,7 @@ export async function updateEmpruntService(id, updateEmprunt) {
     if (!id) {
       throw new Error("Id incorrect pour la suppression de l'emprunt");
     }
-    const updatedEmprunt = await empruntUpdate(id, updateEmprunt);
+    const updatedEmprunt = await updateEmpruntRepository(id, updateEmprunt);
     return updatedEmprunt;
   } catch (error) {
     console.error("Erreur lors de la modification de l'emprunt", error);
@@ -46,8 +46,8 @@ export async function deleteEmpruntService(id) {
     if (!id) {
       throw new Error("Id incorrect pour la suppression de l'emprunt");
     }
-    const deletedEmprunt = await deleteEmprunt(id);
-    return deleteEmprunt;
+    const deletedEmprunt = await deleteEmpruntRepository(id);
+    return deletedEmprunt;
   } catch (error) {
     console.error("Erreur lors de la suppression de l'emprunt", error);
     throw new Error("Erreur lors de la suppression de l'emprunt ");

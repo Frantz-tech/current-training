@@ -70,3 +70,6 @@
 2025-03-12T09:10:33.454Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
 2025-03-12T09:10:43.088Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
 2025-03-12T09:23:07.860Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T10:09:29.016Z - ReferenceError: res is not defined
+2025-03-12T10:09:37.020Z - ReferenceError: res is not defined
+2025-03-12T10:09:49.205Z - TypeError: res.writeHead is not a function

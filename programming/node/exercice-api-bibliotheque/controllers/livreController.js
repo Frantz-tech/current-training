@@ -2,6 +2,7 @@ import {
   createLivreService,
   deleteLivreService,
   getAllLivreService,
+  paginatedLivreService,
   updateLivreService,
 } from "../services/livreService.js";
 import { parseRequestBody } from "../utils/httpHelper.js";
@@ -68,18 +69,27 @@ export async function deleteLivreController(res, id) {
   }
 }
 
-export async function getPaginatedLivre(db, limit, offset) {
+export async function getPaginatedLivreController(res, limit, offset) {
   try {
-    const livres = await db.all(
-      "SELECT * FROM LIVRE ORDER BY livre_id ASC LIMIT ? OFFSET ?",
-      [limit, offset]
+    const livres = await paginatedLivreService(limit, offset);
+    console.log(
+      "Get all livres avec pagination |limit, :",
+      limit,
+      "| offset :",
+      offset
     );
-    console.log("articles récup pour la pagination : | ", livres);
 
-    const totalRow = await db.get("SELECT COUNT (*) as total FROM LIVRE");
-    const total = totalRow.total;
-    return { livres, total };
+    console.log("Voici les livres paginées : | ", livres);
+
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify(livres));
+    console.log(typeof livres);
   } catch (error) {
-    throw new Error(`Erreur lors de la pagination : | ${error.message}`);
+    console.error("Erreur lors de la recup des livres", error);
+
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(
+      JSON.stringify({ error: "Erreur lors de la récupération des livres." })
+    );
   }
 }

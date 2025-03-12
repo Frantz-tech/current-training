@@ -1,23 +1,15 @@
 import { openDb } from "../config/database.js";
 
-let db;
-
-async function getDbConnexion() {
-  if (!db) {
-    db = await openDb();
-  }
-  return db;
-}
 // Method GET pour récup tous les livres
-export async function getAllLivres() {
-  const db = await getDbConnexion();
+export async function getAllLivresRepository() {
+  const db = await openDb();
 
   return await db.all("SELECT * FROM LIVRE");
 }
 
 // Method POST pour ajouter un nouveau livre
-export async function createLivre(newLivre) {
-  const db = await getDbConnexion();
+export async function createLivreRepository(newLivre) {
+  const db = await openDb();
   const result = await db.run(
     "INSERT INTO LIVRE (titre, ISBN,nb_pages,annee_publication, uniquement_sur_place,disponible) VALUES(?,?,?,?,?,?)",
     [
@@ -33,8 +25,8 @@ export async function createLivre(newLivre) {
 }
 
 // Method PUT pour modifier un livre existant
-export async function livreUpdate(id, updateLivre) {
-  const db = await getDbConnexion();
+export async function updateLivreRepository(id, updateLivre) {
+  const db = await openDb();
   console.log("livreUpdateRepository | id: ", id);
   console.log("livreUpdateRepository | updatelivre:", updateLivre);
   const result = await db.run(
@@ -53,9 +45,28 @@ export async function livreUpdate(id, updateLivre) {
   return result.changes > 0;
 }
 // Method DELETE pour supprimer un livre existant
-export async function deleteLivre(id) {
-  const db = await getDbConnexion();
+export async function deleteLivreRepository(id) {
+  const db = await openDb();
 
   const result = await db.run("DELETE FROM LIVRE WHERE livre_id = ?", [id]);
   return result.changes > 0;
+}
+
+export async function getPaginatedLivreRepository(limit, offset) {
+  const db = await openDb();
+  const livres = await db.all(
+    "SELECT * FROM LIVRE ORDER BY livre_id ASC LIMIT ? OFFSET ?",
+    [limit, offset]
+  );
+
+  return livres;
+}
+
+export async function getPaginatedLivreTotalRowsRepository() {
+  const db = await openDb();
+  const totalRow = await db.get("SELECT COUNT (*) as total FROM LIVRE");
+  const total = totalRow.total;
+  console.log("Total de livres dans la table : |", total);
+
+  return total;
 }
