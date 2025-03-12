@@ -13,16 +13,46 @@ import {
 import {
   createLivreController,
   deleteLivreController,
-  getAllLivreController,
+  getPaginatedLivre,
   updateLivreController,
 } from "../controllers/livreController.js";
+import { getAuteurId } from "../repositories/auteurRepository.js";
+import { getEmpruntId } from "../repositories/empruntRepository.js";
 import { logger } from "../utils/logger.js";
 
 export async function handleRoutes(req, res) {
   const url = req.url;
   const method = req.method;
+
   if (url === "/api/livre" && method === "GET") {
     await getAllLivreController(res);
+  } else if (url.startsWith("/api/livre") && method === "GET") {
+    const urlObj = new URL(req.url, `http://${req.headers.host}`);
+    const limit = parseInt(urlObj.searchParams.get("limit"), 10) || 10;
+    const offset = parseInt(urlObj.searchParams.get("offset"), 10) || 0;
+    try {
+      db = await getDbConnexion();
+      const { livres, total } = await getPaginatedLivre(db, limit, offset);
+      console.log(
+        "Get all livres avec pagination |limit, :",
+        limit,
+        "| offset :",
+        offset
+      );
+      console.log(typeof livres);
+
+      console.log("Voici les livres paginées : | ", livres, total);
+
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ livres, total }));
+    } catch (error) {
+      console.error("Erreur lors de la recup des livres", error);
+
+      res.writeHead(500, { "Content-Type": "application/json" });
+      res.end(
+        JSON.stringify({ error: "Erreur lors de la récupération des livres." })
+      );
+    }
   } else if (url === "/api/livre" && method === "POST") {
     await createLivreController(req, res);
   } else if (url.match(/^\/api\/livre\/(\d+)$/) && method === "PUT") {
@@ -39,6 +69,28 @@ export async function handleRoutes(req, res) {
     }
   } else if (url === "/api/auteurs" && method === "GET") {
     await getAllAuteurController(res);
+  } else if (url.match(/^\/api\/auteurs\/(\d+)$/) && method === "GET") {
+    const match = url.match(/^\/api\/auteurs\/(\d+)$/);
+    if (match) {
+      const id = match[1];
+      console.log(id);
+
+      try {
+        const auteur = await getAuteurId(id);
+        console.log(typeof auteur);
+        console.log(auteur);
+
+        if (!auteur) {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Auteur non trouvé" }));
+        }
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(auteur));
+      } catch (error) {
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Error serv 500" }));
+      }
+    }
   } else if (url === "/api/auteurs" && method === "POST") {
     await createAuteurController(req, res);
   } else if (url.match(/^\/api\/auteurs\/(\d+)$/) && method === "PUT") {
@@ -55,6 +107,28 @@ export async function handleRoutes(req, res) {
     }
   } else if (url === "/api/emprunts" && method === "GET") {
     await getAllEmpruntController(res);
+  } else if (url.match(/^\/api\/emprunts\/(\d+)$/) && method === "GET") {
+    const match = url.match(/^\/api\/emprunts\/(\d+)$/);
+    if (match) {
+      const id = match[1];
+      console.log(id);
+
+      try {
+        const emprunt = await getEmpruntId(id);
+        console.log(typeof emprunt);
+        console.log(emprunt);
+
+        if (!emprunt) {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Emprunt non trouvé" }));
+        }
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(emprunt));
+      } catch (error) {
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Error serv 500" }));
+      }
+    }
   } else if (url === "/api/emprunts" && method === "POST") {
     await createEmpruntController(req, res);
   } else if (url.match(/^\/api\/emprunts\/(\d+)$/) && method === "PUT") {

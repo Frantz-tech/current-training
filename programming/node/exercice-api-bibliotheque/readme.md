@@ -9,16 +9,16 @@
    - Implémenter le modèle, repository, service et controller pour les emprunts
    - Ajouter les routes manquantes dans routes.js
 2. **Endpoints API à créer**
-   - `GET /api/auteurs` → Liste tous les auteurs
-   - `GET /api/auteurs/:id` → Détails d'un auteur
-   - `POST /api/auteurs` → Crée un nouvel auteur
-   - `PUT /api/auteurs/:id` → Modifie un auteur
-   - `DELETE /api/auteurs/:id` → Supprime un auteur
-   - `GET /api/emprunts` → Liste tous les emprunts
-   - `GET /api/emprunts/:id` → Détails d'un emprunt
-   - `POST /api/emprunts` → Crée un nouvel emprunt
-   - `PUT /api/emprunts/:id` → Modifie un emprunt (ex: retour de livre)
-   - `DELETE /api/emprunts/:id` → Supprime un emprunt
+   - `GET /api/auteurs` → Liste tous les auteurs OK
+   - `GET /api/auteurs/:id` → Détails d'un auteur OK
+   - `POST /api/auteurs` → Crée un nouvel auteur OK
+   - `PUT /api/auteurs/:id` → Modifie un auteur OK
+   - `DELETE /api/auteurs/:id` → Supprime un auteur OK
+   - `GET /api/emprunts` → Liste tous les emprunts OK
+   - `GET /api/emprunts/:id` → Détails d'un emprunt OK
+   - `POST /api/emprunts` → Crée un nouvel emprunt OK
+   - `PUT /api/emprunts/:id` → Modifie un emprunt (ex: retour de livre) OK
+   - `DELETE /api/emprunts/:id` → Supprime un emprunt OK
 3. **Fonctionnalités avancées**
    - Ajouter le filtrage des livres par catégorie (`GET /api/livres?categorie=1`)
    - Ajouter le filtrage des livres par auteur (`GET /api/livres?auteur=2`)

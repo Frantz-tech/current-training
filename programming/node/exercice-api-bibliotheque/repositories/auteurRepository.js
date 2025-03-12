@@ -14,13 +14,23 @@ export async function getAllAuteurs() {
 
   return await db.all("SELECT * FROM AUTEUR");
 }
+export async function getAuteurId(id) {
+  const db = await getDbConnexion();
+  const auteur = await db.get("SELECT * FROM AUTEUR WHERE auteur_id = ?", [id]);
+  return auteur;
+}
 
 // Method POST pour ajouter un nouveau auteur
 export async function createAuteur(newAuteur) {
   const db = await getDbConnexion();
   const result = await db.run(
-    "INSERT INTO AUTEUR (nom_auteur,prenom_auteur,date_naissance) VALUES(?,?,?)",
-    [newAuteur.nom_auteur, newAuteur.prenom_auteur, newAuteur.date_naissance]
+    "INSERT INTO AUTEUR (nom_auteur,prenom_auteur,date_naissance, id_pays) VALUES(?,?,?,?)",
+    [
+      newAuteur.nom_auteur,
+      newAuteur.prenom_auteur,
+      newAuteur.date_naissance,
+      newAuteur.id_pays,
+    ]
   );
   return { id: result.lastID, ...newAuteur }; // Retourne l'auteur avec son ID
 }

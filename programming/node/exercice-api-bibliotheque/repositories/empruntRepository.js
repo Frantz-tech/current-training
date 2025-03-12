@@ -15,6 +15,13 @@ export async function getAllEmprunt() {
   return await db.all("SELECT * FROM EMPRUNT");
 }
 
+export async function getEmpruntId(id) {
+  const db = await getDbConnexion();
+  const emprunt = await db.get("SELECT * FROM EMPRUNT WHERE emprunt_id = ?", [
+    id,
+  ]);
+  return emprunt;
+}
 // Method POST pour ajouter un nouveau emprunt
 export async function createEmprunt(newEmprunt) {
   const db = await getDbConnexion();

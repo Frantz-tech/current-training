@@ -67,3 +67,19 @@ export async function deleteLivreController(res, id) {
     res.end(JSON.stringify({ error: "Erreur serveur lors de la suppression" }));
   }
 }
+
+export async function getPaginatedLivre(db, limit, offset) {
+  try {
+    const livres = await db.all(
+      "SELECT * FROM LIVRE ORDER BY livre_id ASC LIMIT ? OFFSET ?",
+      [limit, offset]
+    );
+    console.log("articles récup pour la pagination : | ", livres);
+
+    const totalRow = await db.get("SELECT COUNT (*) as total FROM LIVRE");
+    const total = totalRow.total;
+    return { livres, total };
+  } catch (error) {
+    throw new Error(`Erreur lors de la pagination : | ${error.message}`);
+  }
+}
