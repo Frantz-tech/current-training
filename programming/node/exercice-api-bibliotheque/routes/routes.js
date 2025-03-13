@@ -14,6 +14,8 @@ import {
   createLivreController,
   deleteLivreController,
   getAllLivreController,
+  getLivreAuteurByIdController,
+  getLivreCategorieController,
   getPaginatedLivreController,
   updateLivreController,
 } from "../controllers/livreController.js";
@@ -25,11 +27,25 @@ export async function handleRoutes(req, res) {
   const url = req.url;
   const method = req.method;
 
-  if (url === "/api/livre" && method === "GET") {
+  if (url.startsWith("/api/livre") && method === "GET") {
+    const urlObj = new URL(req.url, `http://${req.headers.host}`);
+    const idAuteur = parseInt(urlObj.searchParams.get("auteur"));
+    const idCategoriesLivre = parseInt(urlObj.searchParams.get("categories"));
+    if (idAuteur) {
+      console.log("Quest-ce qu'il y a dans nameAuteur: ", idAuteur);
+      return await getLivreAuteurByIdController(res, idAuteur);
+    } else if (idCategoriesLivre) {
+      console.log(
+        "Quest-ce qu'il y a dans categoriesLivre: ",
+        idCategoriesLivre
+      );
+      return await getLivreCategorieController(res, idCategoriesLivre);
+    }
     await getAllLivreController(res);
   } else if (url.startsWith("/api/livre") && method === "GET") {
     const urlObj = new URL(req.url, `http://${req.headers.host}`);
     const limit = parseInt(urlObj.searchParams.get("limit"), 10) || 10;
+    console.log("Param de limit : ", limit);
     const offset = parseInt(urlObj.searchParams.get("offset"), 10) || 0;
     await getPaginatedLivreController(res, limit, offset);
   } else if (url === "/api/livre" && method === "POST") {

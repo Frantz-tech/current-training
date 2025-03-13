@@ -2,6 +2,8 @@ import {
   createLivreRepository,
   deleteLivreRepository,
   getAllLivresRepository,
+  getLivreAuteurByIdRepository,
+  getLivreCategorieRepository,
   getPaginatedLivreRepository,
   getPaginatedLivreTotalRowsRepository,
   updateLivreRepository,
@@ -71,7 +73,31 @@ export async function paginatedLivreService(limit, offset) {
     const totalLivre = await getPaginatedLivreTotalRowsRepository();
     return { total: totalLivre, data: paginatedLivreRepo };
   } catch (error) {
-    console.error("Erreur lors de la récupération des livres paginés");
+    console.error("Erreur lors de la récupération des livres paginés", error);
     throw new Error("Erreur lors de la récup des livres paginés");
+  }
+}
+
+// Récupération d'un livre par auteur spécifique
+
+export async function getLivreAuteurByIdService(id) {
+  try {
+    const LivreAuteurById = await getLivreAuteurByIdRepository(id);
+    return LivreAuteurById;
+  } catch (error) {
+    console.error("Erreur lors de la récupération du livreAuteurById", error);
+    throw new Error("Erreur lors de la récupération du livreAuteurById");
+  }
+}
+
+// Récupération d'un livre par catégorie spécifique
+
+export async function getLivreCategorieService(id) {
+  try {
+    const livreCategories = await getLivreCategorieRepository(id);
+    return livreCategories;
+  } catch (error) {
+    console.error("Erreur lors de la récupération des livreCategories", error);
+    throw new Error("Erreur lors de la récupération des livresCategories");
   }
 }

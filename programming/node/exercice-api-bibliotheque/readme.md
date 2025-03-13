@@ -20,9 +20,9 @@
    - `PUT /api/emprunts/:id` → Modifie un emprunt (ex: retour de livre) OK
    - `DELETE /api/emprunts/:id` → Supprime un emprunt OK
 3. **Fonctionnalités avancées**
-   - Ajouter le filtrage des livres par catégorie (`GET /api/livres?categorie=1`)
-   - Ajouter le filtrage des livres par auteur (`GET /api/livres?auteur=2`)
-   - Ajouter la pagination des résultats (`GET /api/livres?page=1&limit=10`) OK 
+   - Ajouter le filtrage des livres par catégorie (`GET /api/livres?categorie=1`) OK
+   - Ajouter le filtrage des livres par auteur (`GET /api/livres?auteur=2`) OK
+   - Ajouter la pagination des résultats (`GET /api/livres?page=1&limit=10`) OK
 
 ### 🔍 Points d'attention
 

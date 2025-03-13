@@ -70,3 +70,23 @@ export async function getPaginatedLivreTotalRowsRepository() {
 
   return total;
 }
+
+export async function getLivreAuteurByIdRepository(id) {
+  const db = await openDb();
+  const livreAuteur = await db.all(
+    "SELECT LIVRE.titre, AUTEUR.nom_auteur FROM LIVRE JOIN AUTEUR_LIVRE ON LIVRE.livre_id = AUTEUR_LIVRE.livre_id JOIN AUTEUR ON AUTEUR.auteur_id = AUTEUR_LIVRE.auteur_id WHERE AUTEUR.auteur_id  = ? ",
+    [id]
+  );
+  console.log(livreAuteur);
+  return livreAuteur;
+}
+
+export async function getLivreCategorieRepository(id) {
+  const db = await openDb();
+  const livreCategorie = await db.all(
+    "SELECT LIVRE.titre, CATEGORIES.nom_genre, CATEGORIES.description FROM LIVRE JOIN LIVRE_CATEGORIES ON LIVRE.livre_id = LIVRE_CATEGORIES.livre_id JOIN CATEGORIES ON CATEGORIES.categories_id = LIVRE_CATEGORIES.categories_id WHERE CATEGORIES.categories_id = ?",
+    [id]
+  );
+  console.log(livreCategorie);
+  return livreCategorie;
+}
