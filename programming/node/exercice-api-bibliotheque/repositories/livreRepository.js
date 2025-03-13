@@ -1,14 +1,29 @@
 import { openDb } from "../config/database.js";
+import { Livre } from "../models/livreModel.js";
 
 // Method GET pour récup tous les livres
 export async function getAllLivresRepository() {
   const db = await openDb();
-
   return await db.all("SELECT * FROM LIVRE");
 }
 
 // Method POST pour ajouter un nouveau livre
 export async function createLivreRepository(newLivre) {
+  const book = new Livre(
+    newLivre.titre,
+    newLivre.ISBN,
+    newLivre.nb_pages,
+    newLivre.annee_publication,
+    newLivre.uniquement_sur_place,
+    newLivre.disponible
+  );
+  console.log("Validator book ", book.estValide());
+  if (book.estValide().length > 0) {
+    return {
+      error: "Un ou plusieurs champs pose(nt) problème.",
+      validation: book.estValide(),
+    };
+  }
   const db = await openDb();
   const result = await db.run(
     "INSERT INTO LIVRE (titre, ISBN,nb_pages,annee_publication, uniquement_sur_place,disponible) VALUES(?,?,?,?,?,?)",
@@ -48,6 +63,8 @@ export async function updateLivreRepository(id, updateLivre) {
 export async function deleteLivreRepository(id) {
   const db = await openDb();
 
+  await db.run("DELETE FROM AUTEUR_LIVRE WHERE livre_id = ?", [id]);
+  await db.run("DELETE FROM AUTEUR_LIVRE WHERE livre_id = ?", [id]);
   const result = await db.run("DELETE FROM LIVRE WHERE livre_id = ?", [id]);
   return result.changes > 0;
 }
@@ -87,6 +104,6 @@ export async function getLivreCategorieRepository(id) {
     "SELECT LIVRE.titre, CATEGORIES.nom_genre, CATEGORIES.description FROM LIVRE JOIN LIVRE_CATEGORIES ON LIVRE.livre_id = LIVRE_CATEGORIES.livre_id JOIN CATEGORIES ON CATEGORIES.categories_id = LIVRE_CATEGORIES.categories_id WHERE CATEGORIES.categories_id = ?",
     [id]
   );
-  console.log(livreCategorie);
+
   return livreCategorie;
 }

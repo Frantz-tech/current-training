@@ -114,7 +114,7 @@ export async function getLivreCategorieController(res, id) {
   try {
     const livreCategorie = await getLivreCategorieService(id);
     console.log("id de la catégorie function getLivreCategorieController");
-    console.log("Voici le livreCategorie by id : | ", livreCategorie);
+    console.log("Voici les livreCategorie by id : | ", livreCategorie);
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify(livreCategorie));
   } catch (error) {
