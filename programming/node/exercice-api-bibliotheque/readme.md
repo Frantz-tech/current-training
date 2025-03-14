@@ -36,7 +36,7 @@
 ### ✅ Bonus
 
 1. **Tests unitaires**
-   - Installer Vitest, Jest ou Mocha/Chai pour les tests
+   - Installer Vitest, Jest ou Mocha/Chai pour les tests OK
    - Écrire des tests pour les repositories
    - Écrire des tests pour les services
    - Simuler les requêtes HTTP pour tester les controllers
