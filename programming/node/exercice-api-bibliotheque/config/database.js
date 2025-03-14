@@ -1,7 +1,7 @@
 import fs from "fs";
 import { open } from "sqlite";
 import sqlite3 from "sqlite3";
-import { logError } from "../utils/logger.js";
+import { logError } from "./logger.js";
 
 export async function openDb() {
   try {

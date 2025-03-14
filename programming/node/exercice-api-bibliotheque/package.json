@@ -16,5 +16,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "vitest": "^3.0.8"
+  }
 }
