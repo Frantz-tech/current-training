@@ -47,3 +47,44 @@
 2025-03-11T11:12:50.246Z - TypeError [ERR_INVALID_HTTP_TOKEN]: Header name must be a valid HTTP token ["Content-Type "]
 2025-03-11T11:15:37.469Z - TypeError [ERR_INVALID_HTTP_TOKEN]: Header name must be a valid HTTP token ["Content-Type "]
 2025-03-11T11:17:47.705Z - TypeError [ERR_INVALID_HTTP_TOKEN]: Header name must be a valid HTTP token ["Content-Type "]
+2025-03-12T08:49:12.564Z - TypeError: Cannot read properties of undefined (reading 'all')
+2025-03-12T08:49:23.445Z - TypeError: Cannot read properties of undefined (reading 'all')
+2025-03-12T08:54:25.877Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T08:55:04.312Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T08:56:42.548Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T08:56:55.635Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T08:58:06.493Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T08:58:25.266Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T09:00:46.710Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T09:01:23.604Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T09:01:38.079Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T09:01:48.795Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T09:02:43.517Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T09:03:34.064Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T09:04:18.725Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T09:04:22.845Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T09:04:33.457Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T09:05:23.116Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T09:06:13.123Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T09:07:45.164Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T09:10:33.454Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T09:10:43.088Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T09:23:07.860Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-12T10:09:29.016Z - ReferenceError: res is not defined
+2025-03-12T10:09:37.020Z - ReferenceError: res is not defined
+2025-03-12T10:09:49.205Z - TypeError: res.writeHead is not a function
+2025-03-13T08:24:42.335Z - ReferenceError: id is not defined
+2025-03-13T08:26:44.629Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-13T08:27:31.522Z - ReferenceError: id is not defined
+2025-03-13T08:27:41.722Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-13T08:28:56.109Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-13T08:29:11.136Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-13T08:29:19.917Z - ReferenceError: id is not defined
+2025-03-13T08:32:24.184Z - ReferenceError: id is not defined
+2025-03-13T08:33:42.977Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-13T08:34:27.954Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-13T08:35:26.889Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-13T08:37:32.167Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-13T08:37:47.224Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-13T08:38:59.296Z - Error [ERR_HTTP_HEADERS_SENT]: Cannot write headers after they are sent to the client
+2025-03-13T10:13:08.470Z - ReferenceError: id is not defined

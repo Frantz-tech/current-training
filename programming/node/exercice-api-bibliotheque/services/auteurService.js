@@ -1,14 +1,14 @@
 import {
-  AuteurUpdate,
-  createAuteur,
-  deleteAuteur,
-  getAllAuteurs,
+  createAuteurRepository,
+  deleteAuteurRepository,
+  getAllAuteursRepository,
+  updateAuteurRepository,
 } from "../repositories/auteurRepository.js";
 
 // Récupération de tout les auteurs
 export async function getAllAuteursService() {
   try {
-    return await getAllAuteurs();
+    return await getAllAuteursRepository();
   } catch (error) {
     console.error("Erreur lors de la récupération des auteurs", error);
     throw new Error("Erreur lors de la récupération des auteurs");
@@ -26,7 +26,7 @@ export async function createAuteurService(newAuteur) {
       throw new Error("Donnée manquantes pour la création de l'auteur");
     }
 
-    const createdAuteur = await createAuteur(newAuteur);
+    const createdAuteur = await createAuteurRepository(newAuteur);
     return createdAuteur;
   } catch (error) {
     console.error("Erreur lors de la création de l'auteur", error);
@@ -40,7 +40,7 @@ export async function updateAuteurService(id, updateAuteur) {
     if (!id) {
       throw new Error("Id incorrect pour la suppression du auteur");
     }
-    const updatedAuteur = await AuteurUpdate(id, updateAuteur);
+    const updatedAuteur = await updateAuteurRepository(id, updateAuteur);
     return updatedAuteur;
   } catch (error) {
     console.error("Erreur lors de la modification de l'auteur", error);
@@ -54,7 +54,7 @@ export async function deleteAuteurService(id) {
     if (!id) {
       throw new Error("Id incorrect pour la suppression de l'auteur");
     }
-    const deletedAuteur = await deleteAuteur(id);
+    const deletedAuteur = await deleteAuteurRepository(id);
     return deletedAuteur;
   } catch (error) {
     console.error("Erreur lors de la suppression de l'auteur", error);

@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `LIVRE` (
   `nb_pages` SMALLINT,
   `annee_publication` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `uniquement_sur_place` BOOLEAN,
-  `disponible` BOOLEAN 
+  `disponible` BOOLEAN
 );
 
 CREATE TABLE IF NOT EXISTS `AUTEUR` (
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `AUTEUR` (
   `prenom_auteur` TEXT NOT NULL,
   `date_naissance` TEXT NOT NULL,
   `id_pays` INTEGER,
-  FOREIGN KEY (`id_pays`) REFERENCES `PAYS` (`id_pays`)
+  FOREIGN KEY (`id_pays`) REFERENCES `PAYS` (`id_pays`) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `EXEMPLAIRES` (
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `EXEMPLAIRES` (
   `etat` TEXT,
   `disponibilite` BOOLEAN NOT NULL DEFAULT 1,
   `date_dachat` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (`livre_id`) REFERENCES `LIVRE` (`livre_id`)
+  FOREIGN KEY (`livre_id`) REFERENCES `LIVRE` (`livre_id`) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `EMPRUNT` (
@@ -33,8 +33,8 @@ CREATE TABLE IF NOT EXISTS `EMPRUNT` (
   `date_emprunt` DATE DEFAULT (CURRENT_DATE),
   `date_retour_prévu` DATE,
   `date_retour_effective` DATE,
-  FOREIGN KEY (`exemplaire_id`) REFERENCES `EXEMPLAIRES` (`exemplaire_id`),
-  FOREIGN KEY (`membre_id`) REFERENCES `MEMBRE` (`membre_id`)
+  FOREIGN KEY (`exemplaire_id`) REFERENCES `EXEMPLAIRES` (`exemplaire_id`) ON DELETE CASCADE, 
+  FOREIGN KEY (`membre_id`) REFERENCES `MEMBRE` (`membre_id`) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `PAYS` (
@@ -60,17 +60,17 @@ CREATE TABLE IF NOT EXISTS `CATEGORIES` (
 CREATE TABLE IF NOT EXISTS `LIVRE_CATEGORIES` (
   `livre_id` INTEGER,
   `categories_id` INTEGER,
-  PRIMARY KEY (`livre_id`, `categories_id`),
-  FOREIGN KEY (`livre_id`) REFERENCES `LIVRE` (`livre_id`),
-  FOREIGN KEY (`categories_id`) REFERENCES `CATEGORIES` (`categories_id`)
+  PRIMARY KEY (`livre_id`, `categories_id`) ,
+  FOREIGN KEY (`livre_id`) REFERENCES `LIVRE` (`livre_id`) ON DELETE CASCADE,
+  FOREIGN KEY (`categories_id`) REFERENCES `CATEGORIES` (`categories_id`) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `AUTEUR_LIVRE` (
   `auteur_id` INTEGER,
   `livre_id` INTEGER,
   PRIMARY KEY (`auteur_id`, `livre_id`),
-  FOREIGN KEY (`auteur_id`) REFERENCES `AUTEUR` (`auteur_id`),
-  FOREIGN KEY (`livre_id`) REFERENCES `LIVRE` (`livre_id`)
+  FOREIGN KEY (`auteur_id`) REFERENCES `AUTEUR` (`auteur_id`) ON DELETE CASCADE,
+  FOREIGN KEY (`livre_id`) REFERENCES `LIVRE` (`livre_id`)ON DELETE CASCADE
 );
 
 CREATE VIEW IF NOT EXISTS vue_livres_auteurs_categories AS

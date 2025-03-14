@@ -2,6 +2,9 @@ import {
   createLivreService,
   deleteLivreService,
   getAllLivreService,
+  getLivreAuteurByIdService,
+  getLivreCategorieService,
+  paginatedLivreService,
   updateLivreService,
 } from "../services/livreService.js";
 import { parseRequestBody } from "../utils/httpHelper.js";
@@ -65,5 +68,58 @@ export async function deleteLivreController(res, id) {
   } catch (error) {
     res.writeHead(500, { "Content-Type": "application/json" });
     res.end(JSON.stringify({ error: "Erreur serveur lors de la suppression" }));
+  }
+}
+
+export async function getPaginatedLivreController(res, limit, offset) {
+  try {
+    const livres = await paginatedLivreService(limit, offset);
+    console.log(
+      "Get all livres avec pagination |limit, :",
+      limit,
+      "| offset :",
+      offset
+    );
+
+    console.log("Voici les livres paginées : | ", livres);
+
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify(livres));
+    console.log(typeof livres);
+  } catch (error) {
+    console.error("Erreur lors de la recup des livres", error);
+
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(
+      JSON.stringify({ error: "Erreur lors de la récupération des livres." })
+    );
+  }
+}
+
+export async function getLivreAuteurByIdController(res, id) {
+  try {
+    const livreAuteurById = await getLivreAuteurByIdService(id);
+    console.log(id);
+    console.log("Voici le livreAuteurby id ", livreAuteurById);
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify(livreAuteurById));
+  } catch (error) {
+    console.error("Erreur lors de la récupération du Livre par auteur", error);
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ error: "Erreur de recup" }));
+  }
+}
+
+export async function getLivreCategorieController(res, id) {
+  try {
+    const livreCategorie = await getLivreCategorieService(id);
+    console.log("id de la catégorie function getLivreCategorieController");
+    console.log("Voici les livreCategorie by id : | ", livreCategorie);
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify(livreCategorie));
+  } catch (error) {
+    console.error("Erreur lors de la récupération des livres par catégories");
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ error: "Erreur de recup" }));
   }
 }
