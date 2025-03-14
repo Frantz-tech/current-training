@@ -24,6 +24,7 @@ export async function createLivreRepository(newLivre) {
       validation: book.estValide(),
     };
   }
+
   const db = await openDb();
   const result = await db.run(
     "INSERT INTO LIVRE (titre, ISBN,nb_pages,annee_publication, uniquement_sur_place,disponible) VALUES(?,?,?,?,?,?)",

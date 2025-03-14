@@ -1,17 +1,30 @@
 import fs from "fs";
+import { Sequelize } from "sequelize";
 import { open } from "sqlite";
 import sqlite3 from "sqlite3";
-import { logError } from "./logger.js";
+import { logError } from "../utils/logger.js";
+
+console.log("NODE_ENV:", process.env.NODE_ENV);
+
+const isTestEnv = process.env.NODE_ENV === "test";
+
+export const sequelize = new Sequelize({
+  dialect: "sqlite",
+  storage: "./database.db",
+  logging: false, // Désactiver les logs en test
+});
 
 export async function openDb() {
   try {
     const db = await open({
-      filename: "./database.db",
+      filename: isTestEnv ? "database.test.db" : "./database.db",
       driver: sqlite3.Database,
     });
     await db.exec("PRAGMA foreign_keys = ON;");
-    // S'assurer que la table existe
-    await initDb(db);
+
+    if (!isTestEnv) {
+      await initDb(db);
+    }
 
     return db;
   } catch (error) {
@@ -34,7 +47,5 @@ async function initDb(db) {
     );
   }
 }
-
-//  Lancer l'initialisation de la bdd :
 
 openDb();
