@@ -90,22 +90,6 @@ INSERT INTO EXEMPLAIRES (livre_id, etat, disponibilite, date_dachat) VALUES
 (6, 'Neuf', 1, '2024-07-22'),
 (6, 'Correct', 0, '2022-08-13'),
 (7, 'Abîmé', 1, '2021-04-03'),
-(7, 'Correct', 0, '2023-09-11');
-
-INSERT INTO EXEMPLAIRES (livre_id, etat, disponibilite, date_dachat) VALUES
-(1, 'Neuf', 1, '2024-01-15'),
-(1, 'Usagé', 0, '2022-05-10'),
-(2, 'Neuf', 1, '2023-06-05'),
-(2, 'Correct', 0, '2021-07-20'),
-(3, 'Abîmé', 1, '2020-03-15'),
-(3, 'Correct', 0, '2019-12-05'),
-(4, 'Usagé', 1, '2022-02-18'),
-(4, 'Neuf', 0, '2021-11-11'),
-(5, 'Correct', 1, '2023-04-30'),
-(5, 'Usagé', 0, '2020-01-10'),
-(6, 'Neuf', 1, '2024-07-22'),
-(6, 'Correct', 0, '2022-08-13'),
-(7, 'Abîmé', 1, '2021-04-03'),
 (7, 'Correct', 0, '2023-09-11'),
 (8, 'Neuf', 1, '2024-09-10'),
 (8, 'Correct', 0, '2023-12-12'),
