@@ -37,8 +37,8 @@
 
 1. **Tests unitaires**
    - Installer Vitest, Jest ou Mocha/Chai pour les tests OK
-   - Écrire des tests pour les repositories
-   - Écrire des tests pour les services
+   - Écrire des tests pour les repositories OK
+   - Écrire des tests pour les services OK
    - Simuler les requêtes HTTP pour tester les controllers
 2. **Documentation de l'API**
    - Créer la documentation SWAGGER décrivant tous les endpoints

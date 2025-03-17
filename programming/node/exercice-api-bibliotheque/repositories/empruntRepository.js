@@ -1,4 +1,5 @@
 import { openDb } from "../config/database.js";
+import { Emprunt } from "../models/empruntModel.js";
 
 // Method GET pour récup tous les emprunts
 export async function getAllEmpruntRepository() {
@@ -16,6 +17,17 @@ export async function getEmpruntIdRepository(id) {
 }
 // Method POST pour ajouter un nouveau emprunt
 export async function createEmpruntRepository(newEmprunt) {
+  const emprunt = new Emprunt(newEmprunt.membre_id, newEmprunt.exemplaire_id);
+  console.log("Validator Emprunt ", emprunt.estValide());
+  // console.log("Erreur: ", emprunt.estValide()[0].erreur);
+
+  if (emprunt.estValide().length < 0) {
+    return {
+      error: "Un ou plusieurs champs posent problèmes",
+      validation: emprunt.estValide(),
+    };
+  }
+
   const db = await openDb();
   const result = await db.run(
     "INSERT INTO EMPRUNT (membre_id,exemplaire_id) VALUES(?,?)",
