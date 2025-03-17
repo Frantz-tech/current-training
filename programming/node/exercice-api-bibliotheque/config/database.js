@@ -4,9 +4,9 @@ import { open } from "sqlite";
 import sqlite3 from "sqlite3";
 import { logError } from "../utils/logger.js";
 
-console.log("NODE_ENV:", process.env.NODE_ENV);
-
 const isTestEnv = process.env.NODE_ENV === "test";
+
+if (isTestEnv) console.log("NODE_ENV:", process.env.NODE_ENV);
 
 export const sequelize = new Sequelize({
   dialect: "sqlite",

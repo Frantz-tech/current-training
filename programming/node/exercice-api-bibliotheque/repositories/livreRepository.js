@@ -44,7 +44,7 @@ export async function updateLivreRepository(id, updateLivre) {
   console.log("livreUpdateRepository | id: ", id);
   console.log("livreUpdateRepository | updatelivre:", updateLivre);
   const result = await db.run(
-    "UPDATE LIVRE SET titre = ?, ISBN = ?, nb_pages = ?, annee_publication = ? , uniquement_sur_place = ?, WHERE livre_id = ?",
+    "UPDATE LIVRE SET titre = ?, ISBN = ?, nb_pages = ?, annee_publication = ? , uniquement_sur_place = ? WHERE livre_id = ?",
     [
       updateLivre.titre,
       updateLivre.ISBN,
