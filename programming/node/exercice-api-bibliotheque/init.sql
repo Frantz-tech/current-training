@@ -80,6 +80,12 @@ JOIN AUTEUR ON AUTEUR_LIVRE.auteur_id = AUTEUR.auteur_id
 JOIN LIVRE_CATEGORIES ON LIVRE.livre_id = LIVRE_CATEGORIES.livre_id
 JOIN CATEGORIES ON LIVRE_CATEGORIES.categories_id = CATEGORIES.categories_id;
 
+CREATE VIEW IF NOT EXISTS vue_emprunt_membre_exemplaire AS 
+SELECT DISTINCT EMPRUNT.emprunt_id, MEMBRE.nom_membre, MEMBRE.prenom_membre, EXEMPLAIRES.livre_id
+FROM EMPRUNT
+JOIN MEMBRE ON EMPRUNT.membre_id = EMPRUNT.membre_id
+JOIN EXEMPLAIRES ON EMPRUNT.exemplaire_id = EXEMPLAIRES.exemplaire_id;
+
 
 CREATE TRIGGER if NOT EXISTS update_date_retour_apres_emprunt
 AFTER INSERT ON EMPRUNT
