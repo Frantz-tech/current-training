@@ -1,19 +1,11 @@
 // Créateur de livre - une "factory function"
 export class Livre {
-  constructor(
-    titre,
-    isbn,
-    nb_pages,
-    annee_publication,
-    uniquement_sur_place,
-    disponible
-  ) {
+  constructor(titre, isbn, nb_pages, annee_publication, uniquement_sur_place) {
     this.titre = titre;
     this.isbn = isbn;
     this.nb_pages = nb_pages;
     this.annee_publication = annee_publication;
     this.uniquement_sur_place = uniquement_sur_place;
-    this.disponible = disponible;
   }
 
   // Validations
@@ -68,12 +60,6 @@ export class Livre {
         valide: false,
         erreur: "Uniquement sur place doit être un nombre",
       });
-      if (isNaN(this.disponible)) {
-        erreurs.push({
-          valide: false,
-          erreur: "Disponible doit être un nombre",
-        });
-      }
     }
     return erreurs;
   }

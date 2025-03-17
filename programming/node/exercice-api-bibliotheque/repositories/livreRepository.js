@@ -14,8 +14,7 @@ export async function createLivreRepository(newLivre) {
     newLivre.ISBN,
     newLivre.nb_pages,
     newLivre.annee_publication,
-    newLivre.uniquement_sur_place,
-    newLivre.disponible
+    newLivre.uniquement_sur_place
   );
   console.log("Validator book ", book.estValide());
   if (book.estValide().length > 0) {
@@ -27,14 +26,13 @@ export async function createLivreRepository(newLivre) {
 
   const db = await openDb();
   const result = await db.run(
-    "INSERT INTO LIVRE (titre, ISBN,nb_pages,annee_publication, uniquement_sur_place,disponible) VALUES(?,?,?,?,?,?)",
+    "INSERT INTO LIVRE (titre, ISBN,nb_pages,annee_publication, uniquement_sur_place) VALUES(?,?,?,?,?)",
     [
       newLivre.titre,
       newLivre.ISBN,
       newLivre.nb_pages,
       newLivre.annee_publication,
       newLivre.uniquement_sur_place,
-      newLivre.disponible,
     ]
   );
   return { id: result.lastID, ...newLivre }; // Retourne le livre avec son ID
@@ -46,14 +44,13 @@ export async function updateLivreRepository(id, updateLivre) {
   console.log("livreUpdateRepository | id: ", id);
   console.log("livreUpdateRepository | updatelivre:", updateLivre);
   const result = await db.run(
-    "UPDATE LIVRE SET titre = ?, ISBN = ?, nb_pages = ?, annee_publication = ? , uniquement_sur_place = ?, disponible = ? WHERE livre_id = ?",
+    "UPDATE LIVRE SET titre = ?, ISBN = ?, nb_pages = ?, annee_publication = ? , uniquement_sur_place = ?, WHERE livre_id = ?",
     [
       updateLivre.titre,
       updateLivre.ISBN,
       updateLivre.nb_pages,
       updateLivre.annee_publication,
       updateLivre.uniquement_sur_place,
-      updateLivre.disponible,
       id,
     ]
   );

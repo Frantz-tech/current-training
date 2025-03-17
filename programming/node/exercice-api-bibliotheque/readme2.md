@@ -55,15 +55,15 @@ INSERT INTO EXEMPLAIRES (livre_id, etat, disponibilite, date_dachat) VALUES
 (7, 'Abîmé', 1, '2021-04-03'),
 (7, 'Correct', 0, '2023-09-11');
 
-INSERT INTO LIVRE (titre,ISBN,nb_pages,annee_publication,uniquement_sur_place,disponible)
+INSERT INTO LIVRE (titre,ISBN,nb_pages,annee_publication,uniquement_sur_place)
 VALUES
-('JavaScript Moderne', '987654321098765', 600, '2024-11-10', 0, 1),
-('Introduction à Node.js', '564738291047562', 350, '2023-06-15', 1, 1),
-('Les bases du CSS', '745839102456789', 450, '2022-03-19', 0, 0),
-('Python pour débutants', '963852741036258', 400, '2023-05-05', 0, 1),
-('Pratique du développement web', '258147963025478', 700, '2022-07-30', 1, 1),
-('Vue.js pour les développeurs', '159753486032159', 500, '2024-09-10', 0, 1),
-('Les secrets de React', '321654987753258', 650, '2023-12-12', 0, 0);
+('JavaScript Moderne', '987654321098765', 600, '2024-11-10', 0),
+('Introduction à Node.js', '564738291047562', 350, '2023-06-15', 1),
+('Les bases du CSS', '745839102456789', 450, '2022-03-19', 0),
+('Python pour débutants', '963852741036258', 400, '2023-05-05', 0),
+('Pratique du développement web', '258147963025478', 700, '2022-07-30', 1),
+('Vue.js pour les développeurs', '159753486032159', 500, '2024-09-10', 0),
+('Les secrets de React', '321654987753258', 650, '2023-12-12', 0);
 
 INSERT INTO LIVRE_CATEGORIES (livre_id, categories_id) VALUES
 (1, 1),
