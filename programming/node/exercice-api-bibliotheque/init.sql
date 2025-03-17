@@ -4,8 +4,7 @@ CREATE TABLE IF NOT EXISTS `LIVRE` (
   `ISBN` CHAR(20),
   `nb_pages` SMALLINT,
   `annee_publication` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `uniquement_sur_place` BOOLEAN,
-  `disponible` BOOLEAN
+  `uniquement_sur_place` BOOLEAN
 );
 
 CREATE TABLE IF NOT EXISTS `AUTEUR` (

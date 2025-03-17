@@ -15,7 +15,6 @@ describe("createLivreRepository", () => {
       nb_pages: 100,
       annee_publication: "1943-12-01",
       uniquement_sur_place: false,
-      disponible: true,
     };
 
     const result = await createLivreRepository(livre);
@@ -34,7 +33,6 @@ describe("updateLivreRepository", () => {
       nb_pages: 200,
       annee_publication: "1943-12-01",
       uniquement_sur_place: false,
-      disponible: true,
     };
 
     const createdBook = await createLivreRepository(livre);
@@ -56,7 +54,6 @@ describe("deleteLivreRepository", () => {
       nb_pages: 150,
       annee_publication: "1943-12-01",
       uniquement_sur_place: false,
-      disponible: true,
     };
 
     const createdBook = await createLivreRepository(livre);
