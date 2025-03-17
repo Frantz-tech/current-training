@@ -27,10 +27,10 @@ INSERT INTO AUTEUR_LIVRE (auteur_id, livre_id) VALUES
 
 INSERT INTO CATEGORIES (nom_genre, description) VALUES
 ('Policier', 'Enquêtes criminelles et mystères.'),
-('Romance', 'Histoires d\'amour et émotions.'),
+('Romance', 'Histoires d''amour et émotions.'),
 ('Science-Fiction', 'Voyages dans le futur.'),
 ('Jeunesse', 'Aventures pour jeunes lecteurs.'),
-('Histoire', 'Récits d\'événements passés.');
+('Histoire', 'Récits d''événements passés.');
 
 INSERT INTO EMPRUNT (membre_id, exemplaire_id, date_emprunt) VALUES
 (1, 3, '2025-03-07'),
