@@ -39,6 +39,7 @@ describe("updateLivreRepository", () => {
     const updated = await updateLivreRepository(createdBook.id, {
       ...livre,
       titre: "Nouveau Titre",
+      annee_publication: "1944-12-01",
     });
 
     expect(updated).toBe(true);
