@@ -25,6 +25,7 @@
   "description": "",
   "devDependencies": {
     "cross-env": "^7.0.3",
+    "supertest": "^7.0.0",
     "vitest": "^3.0.8"
   }
 }
