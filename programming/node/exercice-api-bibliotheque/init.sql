@@ -85,7 +85,7 @@ SELECT DISTINCT EMPRUNT.emprunt_id, MEMBRE.nom_membre, MEMBRE.prenom_membre, EXE
 FROM EMPRUNT
 JOIN MEMBRE ON EMPRUNT.membre_id = EMPRUNT.membre_id
 JOIN EXEMPLAIRES ON EMPRUNT.exemplaire_id = EXEMPLAIRES.exemplaire_id
-GROUP BY EMPRUNT.exemplaire_id
+GROUP BY EMPRUNT.exemplaire_id;
 
 
 CREATE TRIGGER if NOT EXISTS update_date_retour_apres_emprunt
