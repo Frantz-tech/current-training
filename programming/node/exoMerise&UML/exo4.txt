@@ -34,4 +34,4 @@ dès que le produit est de nouveau disponible.
 7. Les commentaires ne peuvent pas dépasser les 500 caractères.
 8. Les articles sont archivés automatiquements 360 jours après leurs publication.
 9. Les articles peuvent être likés / partagés.
-
+10. Le titre de l'article ne peut pas dépasser les 30 caractères.
