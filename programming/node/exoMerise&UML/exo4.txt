@@ -16,7 +16,7 @@ Les stocks des articles présents dans la commande est mis à jour.
 11. Chaque produit doit avoir un code unique pour faciliter sa gestion.
 12. Un client peut commandé plusieurs fois le même produit.
 13. Lorsque le paiement de la commande du client est validée, il reçoit un mail de confirmation de sa commande.
-14. Le client est également par mail ou par SMS ( choix du client ) sur le statut de la commande ( expédié, livré, annulée, etc).
+14. Le client est également contacté par mail ou par SMS ( choix du client ) sur le statut de la commande ( expédié, livré, annulée, etc).
 15. Le client peut annuler sa commandes dans un délai de X jour avant le départ de l'expédition de sa commande.
 16. Si une partie de la commande est livré, le statut reste en "attente".
 17. Lorsqu'un produit est en rupture de stock mais qu'un client souhaite le commandé, il peut demandé à être notifié par email
