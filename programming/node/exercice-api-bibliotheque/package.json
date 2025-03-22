@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "sequelize": "^6.37.6",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-dist": "^5.20.1",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "name": "exercice-api-bibliotheque",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "init-db": "node config/database.js",
+    "dev": "node --watch server.js",
+    "testUnitaire": "NODE_ENV=test vitest",
+    "devTest": "cross-env NODE_ENV=development node server.js",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "vitest": "^3.0.8"
+  }
+}

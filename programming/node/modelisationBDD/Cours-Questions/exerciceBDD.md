@@ -35,7 +35,7 @@
    - Insérer au moins 10 nouveaux livres et les associer à leurs auteurs
 
    =>
-   INSERT INTO LIVRE (titre, ISBN, nb_pages, année_publication, uniquement_sur_place, disponible)
+   INSERT INTO LIVRE (titre,ISBN,nb_pages,annee_publication,uniquement_sur_place,disponible)
    VALUES
    ('JavaScript Moderne', '987654321098765', 600, '2024-11-10', 0, 1),
    ('Introduction à Node.js', '564738291047562', 350, '2023-06-15', 1, 1),

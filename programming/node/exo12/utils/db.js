@@ -46,8 +46,8 @@ CREATE TABLE IF NOT EXISTS articles (
     content TEXT NOT NULL,
     user_id INTEGER NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-        ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users(id) 
+    ON DELETE CASCADE
 );
 
 CREATE INDEX IF NOT EXISTS idx_articles_user_id ON articles(user_id);
