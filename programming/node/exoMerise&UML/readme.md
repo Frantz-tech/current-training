@@ -1,5 +1,7 @@
 # Exercices - Modélisation
 
+https://dbdiagram.io/d/Chris-Brown-Online-Store-67dbf9c075d75cc844d191c5
+
 # Exercices
 
 Voici une série d'exercices progressifs pour vous familiariser avec la modélisation de bases de données à l'aide de dbdiagram.io.
