@@ -1,6 +1,7 @@
 # Phase 1 - Cours - Modélisation des Bases de Données
 
-https://formation-dwwm.notion.site/phase-1-modelisation-bdd
+https://formation-dwwm.notion.site/modelisation-bdd
+https://formation-dwwm.notion.site/modelisation-dbdiagram-io-1aa26ec923dc80cdab80d347022dc0f5
 
 ### Notre exemple fil rouge : gestion d'une bibliothèque
 
