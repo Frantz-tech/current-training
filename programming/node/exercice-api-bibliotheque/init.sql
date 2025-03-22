@@ -81,6 +81,21 @@ JOIN LIVRE_CATEGORIES ON LIVRE.livre_id = LIVRE_CATEGORIES.livre_id
 JOIN CATEGORIES ON LIVRE_CATEGORIES.categories_id = CATEGORIES.categories_id;
 
 
+CREATE VIEW IF NOT EXISTS vue_emprunt_membre_exemplaire AS 
+SELECT 
+    EMPRUNT.emprunt_id, 
+    MEMBRE.nom_membre, 
+    MEMBRE.prenom_membre, 
+    EXEMPLAIRES.livre_id, 
+    LIVRE.titre
+FROM EMPRUNT
+JOIN MEMBRE ON EMPRUNT.membre_id = MEMBRE.membre_id
+JOIN EXEMPLAIRES ON EMPRUNT.exemplaire_id = EXEMPLAIRES.exemplaire_id
+JOIN LIVRE ON EXEMPLAIRES.livre_id = LIVRE.livre_id
+GROUP BY EXEMPLAIRES.exemplaire_id
+ORDER BY EMPRUNT.membre_id ASC;
+
+
 CREATE TRIGGER if NOT EXISTS update_date_retour_apres_emprunt
 AFTER INSERT ON EMPRUNT
 BEGIN 

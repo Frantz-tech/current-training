@@ -21,7 +21,7 @@ export async function createEmpruntRepository(newEmprunt) {
   console.log("Validator Emprunt ", emprunt.estValide());
   // console.log("Erreur: ", emprunt.estValide()[0].erreur);
 
-  if (emprunt.estValide().length < 0) {
+  if (emprunt.estValide().length > 0) {
     return {
       error: "Un ou plusieurs champs posent problèmes",
       validation: emprunt.estValide(),
