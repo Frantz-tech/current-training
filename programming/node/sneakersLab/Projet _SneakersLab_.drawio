@@ -1119,7 +1119,7 @@
         <mxCell id="7rwt8Vp4H8kqnkwfP_TJ-288" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.625;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="7rwt8Vp4H8kqnkwfP_TJ-284" target="7rwt8Vp4H8kqnkwfP_TJ-202" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Gp4opgCFO8q-tsgtLLC1-22" value="POST_PHOTO(S)" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;fontSize=16;labelBackgroundColor=none;fillColor=#e51400;fontColor=#ffffff;strokeColor=#B20000;" vertex="1" parent="1">
+        <mxCell id="Gp4opgCFO8q-tsgtLLC1-22" value="POST_PHOTO(S)" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;fontSize=16;labelBackgroundColor=none;fillColor=#6a00ff;fontColor=#ffffff;strokeColor=#3700CC;" vertex="1" parent="1">
           <mxGeometry x="-1200" y="960" width="240" height="90" as="geometry" />
         </mxCell>
         <mxCell id="Gp4opgCFO8q-tsgtLLC1-23" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=16;labelBackgroundColor=none;" vertex="1" parent="Gp4opgCFO8q-tsgtLLC1-22">
@@ -1206,7 +1206,7 @@
             <mxRectangle width="200" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Gp4opgCFO8q-tsgtLLC1-44" value="POST_PHOTO(S)" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;fontSize=16;labelBackgroundColor=none;fillColor=#e51400;fontColor=#ffffff;strokeColor=#B20000;" vertex="1" parent="1">
+        <mxCell id="Gp4opgCFO8q-tsgtLLC1-44" value="POST_PHOTO(S)" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;fontSize=16;labelBackgroundColor=none;fillColor=#6a00ff;fontColor=#ffffff;strokeColor=#3700CC;" vertex="1" parent="1">
           <mxGeometry x="-190" y="-280" width="240" height="120" as="geometry" />
         </mxCell>
         <mxCell id="Gp4opgCFO8q-tsgtLLC1-45" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=16;labelBackgroundColor=none;" vertex="1" parent="Gp4opgCFO8q-tsgtLLC1-44">
@@ -1442,7 +1442,7 @@
         <mxCell id="Gp4opgCFO8q-tsgtLLC1-120" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Gp4opgCFO8q-tsgtLLC1-93" target="Gp4opgCFO8q-tsgtLLC1-117">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Gp4opgCFO8q-tsgtLLC1-123" value="COMMENTS_LIKE(S)" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;fontSize=16;labelBackgroundColor=none;fillColor=#e51400;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="Gp4opgCFO8q-tsgtLLC1-123" value="COMMENTS_LIKE(S)" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;fontSize=16;labelBackgroundColor=none;fillColor=#a20025;strokeColor=#6F0000;fontColor=#ffffff;" vertex="1" parent="1">
           <mxGeometry x="1160" y="450" width="240" height="130" as="geometry" />
         </mxCell>
         <mxCell id="Gp4opgCFO8q-tsgtLLC1-124" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=16;labelBackgroundColor=none;" vertex="1" parent="Gp4opgCFO8q-tsgtLLC1-123">
@@ -1495,7 +1495,7 @@
         <mxCell id="Gp4opgCFO8q-tsgtLLC1-139" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.837;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Gp4opgCFO8q-tsgtLLC1-137" target="Gp4opgCFO8q-tsgtLLC1-124">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Gp4opgCFO8q-tsgtLLC1-145" value="COMMENTS_LIKE(S)" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;fontSize=16;labelBackgroundColor=none;fillColor=#e51400;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="1">
+        <mxCell id="Gp4opgCFO8q-tsgtLLC1-145" value="COMMENTS_LIKE(S)" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;fontSize=16;labelBackgroundColor=none;fillColor=#a20025;strokeColor=#6F0000;fontColor=#ffffff;" vertex="1" parent="1">
           <mxGeometry x="-1480" y="120" width="240" height="130" as="geometry" />
         </mxCell>
         <mxCell id="Gp4opgCFO8q-tsgtLLC1-146" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=16;labelBackgroundColor=none;" vertex="1" parent="Gp4opgCFO8q-tsgtLLC1-145">
