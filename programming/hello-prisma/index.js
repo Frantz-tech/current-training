@@ -1,4 +1,3 @@
-//index.js
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
@@ -15,6 +14,7 @@ async function main() {
       },
     },
   });
+
   console.log("Utilisateur créé:", nouvelUtilisateur);
 
   const utilisateurs = await prisma.user.findMany({

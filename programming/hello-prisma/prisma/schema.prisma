@@ -16,7 +16,7 @@ datasource db {
 model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
-  name  String?
+  name  String? 
   posts Post[]
 }
 
@@ -26,4 +26,14 @@ model Post {
   content  String?
   author   User   @relation(fields: [authorId], references: [id])
   authorId Int
+}
+model Comment {
+  id       Int    @id @default(autoincrement())
+  title    String
+  content  String?
+}
+model Status {
+  id       Int    @id @default(autoincrement())
+  title    String
+  content  String?
 }
