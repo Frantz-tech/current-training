@@ -1,39 +1,82 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// // This is your Prisma schema file,
+// // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-generator client {
-  provider = "prisma-client-js"
-}
+// generator client {
+//   provider = "prisma-client-js"
+// }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String? 
-  posts Post[]
-}
+// model User {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   email     String   @unique
+//   name      String?
+//   posts     Post[]
+//   profile   Profile?
+//   /// user role
+//   role      Role     @default(USER)
+//   groups    Group[]  @relation("UserGroups")
+// }
 
-model Post {
-  id       Int    @id @default(autoincrement())
-  title    String
-  content  String?
-  author   User   @relation(fields: [authorId], references: [id])
-  authorId Int
-}
-model Comment {
-  id       Int    @id @default(autoincrement())
-  title    String
-  content  String?
-}
-model Status {
-  id       Int    @id @default(autoincrement())
-  title    String
-  content  String?
-}
+// /// User profile
+// model Profile {
+//   id     Int     @default(autoincrement()) @id
+//   bio    String?
+//   user   User    @relation(fields: [userId], references: [id])
+//   userId Int     @unique
+// }
+
+// model Post {
+//   id         Int        @id @default(autoincrement())
+//   title      String     @default("")
+//   content    String?
+//   published  Boolean    @default(false)
+//   author     User?      @relation(fields: [authorId], references: [id])
+//   authorId   Int?
+//   categories Category[]
+// }
+
+// model Category {
+//   id    Int    @id @default(autoincrement())
+//   name  String
+//   posts Post[]
+// }
+
+// /// user role
+// enum Role {
+//   ADMIN /// allowed to do everything
+//   USER
+// }
+
+// model Group {
+//   id          Int      @id @default(autoincrement())
+//   adminId     Int
+//   name        String   @notNull
+//   type        String   @notNull
+//   nbMembres   Int      @default(0) @notNull
+//   maxMembres  Int?
+//   dateCreation DateTime @default(now()) @notNull
+//   usersGroupes UsersGroup @relation("UserGroups")
+// }
+
+// model UsersGroup {
+//   id           Int       @id @default(autoincrement())
+//   membreId     Int
+//   groupId      Int
+//   dateAdhesion DateTime  @default(now())
+//   isAdmin      Boolean   @default(false)
+//   membre       User      @relation(fields: [membreId], references: [id])
+//   group        Group     @relation(fields: [groupId], references: [id])
+// }
+
+// generator dbml {
+//   provider = "prisma-dbml-generator"
+// }
