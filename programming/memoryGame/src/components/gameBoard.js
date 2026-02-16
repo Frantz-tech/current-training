@@ -21,7 +21,6 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = require("react");
-var cards_1 = require("./cards");
 function GameBoard() {
     var images = [
         'https://picsum.photos/id/237/100/100',
@@ -106,19 +105,31 @@ function GameBoard() {
         setSecondCard(null);
         setIsChecked(false);
     };
-    return (<div className='bg-amber-400 p-8'>
-      <h1 className='text-red-400'> GameBoard </h1>
-      <div className='flex items-center justify-between w-full px-8
-      '>
-        <div className='m-2'>P1 - Score :</div>
-        <div className='m-2'>P2 - Score: </div>
-      </div>
-      <div className='grid grid-cols-4 grid-rows-4 gap-2.5 justify-center mx-8 my-5'>
-        {cards.map(function (card) { return (<cards_1.default key={card.id} id={card.id} value={card.value} isFlipped={card.isFlipped} onClick={handleCardClick}/>); })}
-      </div>
-      <div>
-        <button onClick={resetGame}>Rejouer</button>
-      </div>
-    </div>);
 }
-exports.default = GameBoard;
+//   return (
+//     <div className='bg-amber-400 p-8'>
+//       <h1 className='text-red-400'> GameBoard </h1>
+//       <div
+//         className='flex items-center justify-between w-full px-8
+//       '>
+//         <div className='m-2'>P1 - Score :</div>
+//         <div className='m-2'>P2 - Score: </div>
+//       </div>
+//       <div className='grid grid-cols-4 grid-rows-4 gap-2.5 justify-center mx-8 my-5'>
+//         {cards.map(card => (
+//           <Card
+//             key={card.id}
+//             id={card.id}
+//             value={card.value}
+//             isFlipped={card.isFlipped}
+//             onClick={handleCardClick}
+//           />
+//         ))}
+//       </div>
+//       <div>
+//         <button onClick={resetGame}>Rejouer</button>
+//       </div>
+//     </div>
+//   )
+// }
+// export default GameBoard
