@@ -2,7 +2,7 @@ interface CardsProps {
   id: number
   value: string
   isFlipped: boolean
-  onClick: (id: number) => null
+  onClick: (id: number) => void
 }
 
 function Card({ id, value, isFlipped, onClick }: CardsProps) {
