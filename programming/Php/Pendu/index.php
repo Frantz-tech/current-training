@@ -6,7 +6,7 @@ $mot_a_completer = "_____________" ;
 $essais_restants = 12 ; # le nombre d’erreurs autorisées
 # la commande while permet d’exécuter en boucle tout le code compris entre accolades,
 # tant que les expressions booléennes entre parenthèses sont évaluées à True
-while($mot_a_trouver ?????? $mot_a_completer ?????? $essais_restants ?????? 0){
+while($mot_a_trouver != $mot_a_completer && $essais_restants > 0){
     echo "Mot à compléter : {$mot_a_completer}\n" ;
     echo "Nombre d'essais restants : {$essais_restants}\n" ;
     # la commande readline permet à l’utilisateur de saisir une information au clavier
@@ -30,13 +30,13 @@ while($mot_a_trouver ?????? $mot_a_completer ?????? $essais_restants ?????? 0){
     # à ce moment, si la lettre saisie est toujours absente du mot mystère
     # c’est qu’il s’agit d’une lettre en erreur et il convient de décompter le nombre d’essais restants
     if($lettre_absente){
-        $essais_restants ?????? 1 ;
+        $essais_restants -= 1 ;
     }
 } # fin de la boucle while
 # l’expression booléenne du while est évaluée à False
 # si l’utilisateur a trouvé le mot, c’est qu’il avait encore un droit à l’erreur
 # si l’utilisateur a utilisé toute les erreurs autorisées, il n’a pas trouvé le mot
-if($essais_restants ?????? 0){
+if($essais_restants > 0){
     echo "Bravo ! Vous avez trouvé le mot mystère : {$mot_a_trouver}\n" ;
 }
 else{
