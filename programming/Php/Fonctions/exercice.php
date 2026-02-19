@@ -39,11 +39,31 @@ Vous pouvez vous aider des fonctions PHP strpos(string $haystack, string $needle
 int $offset = 0): int | false et pour écrire votre fonction. -->
 
 
+<?php 
+function countTokenBetweenTags(string $string, string $openTag, string $closeTag): int {
 
+// Définir la condition d'arrêt, quand la chaine à analyser est égale a 0
 
+if (empty($string)) return 0;
 
-<!-- Code  -->
+$openTagPosition = strpos($string, $openTag);
+$closeTagPosition = strpos($string, $closeTag, $openTagPosition + strlen($closeTag));
 
+if($openTagPosition === 0 || $closeTagPosition === 0) return 0; 
+  
+
+$offset = $closeTagPosition + strlen($closeTag);
+
+$extractString = substr($string, $offset)  ;
+
+return 1 + countTokenBetweenTags($extractString, $openTag, $closeTag);
+
+} 
+
+$test = 'Git est un répertoire, * illisible * masi * ici * et *la * et * la * fait pour certains  * la * mais * la * et * la * et * la * et * la * et * la *dévelopeurs * néamoins, il se *pourrait* que tout aille mieux *bientot*';
+echo 'Question 2: test ', PHP_EOL;
+print_r(countTokenBetweenTags($test, '*', '*'))
+ ?>
 
 <!-- Partie 2 -->
 <!-- Écrire une fonction récursive qui compte le nombre de tokens entre balises 
